@@ -1,0 +1,17 @@
+---
+layout: default
+title: Projects
+permalink: /projects/
+---
+
+{% include navbar.html %}
+
+<h1>Projects</h1>
+<ul>
+  {% for project in site.projects %}
+    <li>
+      <a href="{{ project.url | relative_url }}">{{ project.title }}</a>
+      <p>{{ project.summary }}</p>
+    </li>
+  {% endfor %}
+</ul>

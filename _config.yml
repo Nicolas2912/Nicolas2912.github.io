@@ -1,0 +1,51 @@
+# Site settings
+title: Nicolas Schneider - Data Scientist / Developer
+email: schneidernicolas90@gmail.com
+description: >- # this means to ignore newlines until "baseurl:"
+  This is where you write a short description of your site.
+  Something about your skills, interests, and what the site contains.
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "https://nicolas2912.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+github_username:  Nicolas2912 # optional
+
+# Build settings
+theme: minima # A simple default Jekyll theme
+# Plugins
+plugins:
+  - jekyll-feed # Generates an Atom feed for your blog
+
+# Enable syntax highlighting for code blocks using Rouge
+markdown: kramdown
+highlighter: rouge
+
+# Kramdown settings for GitHub Flavored Markdown and Rouge syntax highlighting
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    css_class: highlight
+
+# Collections for Projects
+collections:
+  projects:
+    output: true # Tells Jekyll to create a page for each project file
+    permalink: /projects/:name/ # Sets the URL structure for project pages
+
+# Exclude from processing.
+# The following items will not be processed, by default.
+# Any item listed under the `exclude:` key here will be automatically added to
+# the internal "default list".
+#
+# Excluded items can be re-included by adding them to the `include:` list of the Jekyll config file.
+#
+# exclude:
+#   - .sass-cache/
+#   - .jekyll-cache/
+#   - gemfiles/
+#   - Gemfile
+#   - Gemfile.lock
+#   - node_modules/
+#   - vendor/bundle/
+#   - vendor/cache/
+#   - vendor/gems/
+#   - vendor/ruby/

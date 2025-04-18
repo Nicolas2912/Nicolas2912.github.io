@@ -1,0 +1,20 @@
+---
+layout: default
+title: Blog
+permalink: /blog/
+---
+
+{% include navbar.html %}
+
+<h1>Blog</h1>
+<ul>
+  {% for post in site.posts %}
+    <li>
+      <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+      <small>{{ post.date | date_to_string }}</small>
+      {% if post.excerpt %}
+      <p>{{ post.excerpt | markdownify }}</p>
+      {% endif %}
+    </li>
+  {% endfor %}
+</ul>

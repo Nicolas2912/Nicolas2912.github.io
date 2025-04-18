@@ -1,0 +1,53 @@
+---
+layout: default
+title: Home
+---
+
+{% include navbar.html %}
+
+<h2>About Me</h2>
+<p>
+  Hello! I'm Nicolas Schneider, a Data Scientist & Developer passionate about building data-driven solutions and web applications.
+</p>
+
+<h3>Quick Links</h3>
+<ul>
+  <li><a href="{{ '/' | relative_url }}">Home</a></li>
+  <li><a href="{{ '/projects/' | relative_url }}">Projects</a></li>
+  <li><a href="{{ '/blog/' | relative_url }}">Blog</a></li>
+  {% if site.github_username %}
+  <li><a href="https://github.com/{{ site.github_username }}" target="_blank">GitHub</a></li>
+  {% endif %}
+  {% if site.twitter_username %}
+  <li><a href="https://twitter.com/{{ site.twitter_username }}" target="_blank">Twitter</a></li>
+  {% endif %}
+</ul>
+
+<h3 id="cv">CV Summary</h3>
+<p>
+  With over 3 years of experience in Data Science and Software Development, I'm skilled in Python, SQL, machine learning, and web development.
+  Feel free to <a href="#contact">reach out</a> for more info.
+</p>
+
+<h2>Latest Blog Posts</h2>
+<ul id="latest-posts">
+  {% for post in site.posts limit: 5 %}
+    <li>
+      <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+      <small>{{ post.date | date_to_string }}</small>
+      {% if post.excerpt %}
+      <p>{{ post.excerpt | markdownify }}</p>
+      {% endif %}
+    </li>
+  {% endfor %}
+</ul>
+
+<h2>Featured Projects</h2>
+<ul id="latest-projects">
+  {% for project in site.projects limit: 3 %}
+    <li>
+      <a href="{{ project.url | relative_url }}">{{ project.title }}</a>
+      <p>{{ project.summary }}</p>
+    </li>
+  {% endfor %}
+</ul>
