@@ -4,7 +4,6 @@ title: "My Awesome Data Analysis Project"
 summary: "Analyzing sales data to identify key trends and customer behavior."
 date: 2023-10-27 # Optional date for the project
 github_repo: https://github.com/your-username/my-awesome-project # Optional link
-live_demo: https://your-demo-url.com # Optional link
 ---
 
 ## Project Description
