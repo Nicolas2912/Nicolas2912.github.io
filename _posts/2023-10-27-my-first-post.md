@@ -19,3 +19,6 @@ You can use Markdown formatting like **bold**, *italics*, lists, and code blocks
 
 ```python
 print("Hello, world!")
+```
+
+Thank you for reading!

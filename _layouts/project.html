@@ -6,7 +6,7 @@ layout: default # Inherit from the default layout
 <p><em>{{ page.summary }}</em></p>
 
 <!-- Main project content -->
-{{ content }}
+{{ content | markdownify }}
 
 <h2>Results, Insights, and Lessons Learned</h2>
 {# You can structure this section within your project markdown files using headings #}
