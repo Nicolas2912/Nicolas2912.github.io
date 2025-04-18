@@ -4,7 +4,7 @@ email: schneidernicolas90@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
   This is where you write a short description of your site.
   Something about your skills, interests, and what the site contains.
-baseurl: "/Nicolas2912" # the subpath of your site, e.g. /blog
+baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://nicolas2912.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  Nicolas2912 # optional
 
