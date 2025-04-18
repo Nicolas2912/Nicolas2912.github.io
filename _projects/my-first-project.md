@@ -28,4 +28,4 @@ You can embed code blocks and images of visualizations here to illustrate your w
 import pandas as pd
 df = pd.read_csv('data.csv')
 print(df.head())
-```  # <-- close the code fence
+```
