@@ -134,6 +134,85 @@ body {
 .dark-mode .navbar-light .navbar-toggler {
     border-color: #ffffff !important;
 }
+/* Modern minimalistic CV timeline */
+.cv-timeline {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: relative;
+  margin: 2rem auto;
+  padding: 2rem 0;
+  max-width: 960px;
+}
+.cv-timeline::before {
+  content: '';
+  position: absolute;
+  top: 40px;
+  left: 5%;
+  right: 5%;
+  height: 1px;
+  background-color: #ddd;
+  z-index: 1;
+}
+.cv-step {
+  position: relative;
+  flex: 1;
+  max-width: 180px;
+  padding: 0 1rem;
+  z-index: 2;
+}
+.cv-step::before {
+  content: '';
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  background-color: var(--bs-primary);
+  border-radius: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+.cv-icon {
+  background-color: #fff;
+  border: 2px solid var(--bs-primary);
+  width: 48px;
+  height: 48px;
+  line-height: 48px;
+  display: inline-block;
+  font-size: 1.25rem;
+  color: var(--bs-primary);
+  border-radius: 50%;
+  margin-bottom: 0.5rem;
+}
+.cv-step h5 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+.cv-step p {
+  font-size: 0.875rem;
+  color: #666;
+  margin-bottom: 0;
+}
+.dark-mode .cv-timeline::before {
+  background-color: #444;
+}
+.dark-mode .cv-step::before {
+  background-color: #64b5f6;
+}
+.dark-mode .cv-icon {
+  background-color: #1f1f1f;
+  border-color: #64b5f6;
+  color: #64b5f6;
+}
+.dark-mode .cv-step h5 {
+  color: #e1e1e1;
+}
+.dark-mode .cv-step p {
+  color: #aaa;
+}
 /* Dark mode: increase visibility for muted text (dates, subtitles) */
 .dark-mode .text-muted {
     color: #cccccc !important;
