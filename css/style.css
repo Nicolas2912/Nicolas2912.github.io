@@ -9,6 +9,92 @@ body {
     color: #333;
 }
 
+/* Dark mode styles */
+.dark-mode body {
+    background-color: #121212;
+    color: #e1e1e1;
+}
+.dark-mode h1, .dark-mode h2, .dark-mode h3 {
+    color: #ffffff;
+}
+.dark-mode a:not(.btn) {
+    color: #64b5f6;
+}
+.dark-mode a:not(.btn):hover {
+    text-decoration: underline;
+}
+.dark-mode .navbar {
+    background-color: #1f1f1f !important;
+}
+.dark-mode .navbar-light .navbar-brand,
+.dark-mode .navbar-light .navbar-nav .nav-link {
+    color: rgba(255,255,255,0.7) !important;
+}
+.dark-mode .navbar-light .navbar-nav .nav-link:hover {
+    color: #ffffff !important;
+}
+.dark-mode .card {
+    background-color: #1e1e1e;
+    border-color: #2c2c2c;
+}
+.dark-mode .card .card-body {
+    color: #e1e1e1;
+}
+.dark-mode .btn-outline-secondary {
+    border-color: #e1e1e1;
+    color: #e1e1e1;
+}
+.dark-mode .btn-outline-secondary:hover {
+    background-color: #e1e1e1;
+    color: #000000;
+}
+.dark-mode .btn-outline-primary {
+    border-color: #64b5f6;
+    color: #64b5f6;
+}
+.dark-mode .btn-outline-primary:hover {
+    background-color: #64b5f6;
+    color: #000000;
+}
+.dark-mode code {
+    background-color: #2e2e2e;
+    color: #e1e1e1;
+}
+.dark-mode pre,
+.dark-mode .highlight {
+    background-color: #2e2e2e;
+    border-color: #444444;
+}
+.dark-mode .site-header {
+    border-bottom-color: #444444;
+}
+/* Minimalistic thematic icons styling */
+.minimal-icons .minimal-icon svg {
+    width: 80px;
+    height: 60px;
+    color: #007bff;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+}
+.minimal-icons .minimal-icon:hover svg {
+    opacity: 1;
+}
+/* Dark mode: icons adjust color */
+.dark-mode .minimal-icons .minimal-icon svg {
+    color: #64b5f6;
+}
+/* Dark mode: make navbar toggler (hamburger) visible */
+.dark-mode .navbar-light .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'><path stroke='rgba(255,255,255,1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/></svg>") !important;
+}
+.dark-mode .navbar-light .navbar-toggler {
+    border-color: #ffffff !important;
+}
+/* Dark mode: increase visibility for muted text (dates, subtitles) */
+.dark-mode .text-muted {
+    color: #cccccc !important;
+}
+
 .site-header {
     border-bottom: 1px solid #eee;
     padding-bottom: 10px;
@@ -43,12 +129,12 @@ h1, h2, h3 {
     color: #333;
 }
 
-a {
+a:not(.btn) {
     color: #007bff;
     text-decoration: none;
 }
 
-a:hover {
+a:not(.btn):hover {
     text-decoration: underline;
 }
 
@@ -90,4 +176,72 @@ pre code {
   margin: 0;
   font-size: 0.9em;
   line-height: 1.4;
+}
+
+/* Override for primary buttons: ensure white text */
+a.btn.btn-primary,
+a.btn.btn-primary:visited,
+a.btn.btn-primary:hover,
+a.btn.btn-primary:focus,
+a.btn.btn-primary:active {
+    color: #fff;
+}
+/* Dark mode styles */
+.dark-mode body {
+    background-color: #121212;
+    color: #e1e1e1;
+}
+.dark-mode h1, .dark-mode h2, .dark-mode h3 {
+    color: #ffffff;
+}
+.dark-mode a:not(.btn) {
+    color: #64b5f6;
+}
+.dark-mode a:not(.btn):hover {
+    text-decoration: underline;
+}
+.dark-mode .navbar {
+    background-color: #1f1f1f !important;
+}
+.dark-mode .navbar-light .navbar-brand,
+.dark-mode .navbar-light .navbar-nav .nav-link {
+    color: rgba(255,255,255,0.7) !important;
+}
+.dark-mode .navbar-light .navbar-nav .nav-link:hover {
+    color: #ffffff !important;
+}
+.dark-mode .card {
+    background-color: #1e1e1e;
+    border-color: #2c2c2c;
+}
+.dark-mode .card .card-body {
+    color: #e1e1e1;
+}
+.dark-mode .btn-outline-secondary {
+    border-color: #e1e1e1;
+    color: #e1e1e1;
+}
+.dark-mode .btn-outline-secondary:hover {
+    background-color: #e1e1e1;
+    color: #000000;
+}
+.dark-mode .btn-outline-primary {
+    border-color: #64b5f6;
+    color: #64b5f6;
+}
+.dark-mode .btn-outline-primary:hover {
+    background-color: #64b5f6;
+    color: #000000;
+}
+.dark-mode code {
+    background-color: #2e2e2e;
+    color: #e1e1e1;
+}
+.dark-mode pre,
+.dark-mode .highlight {
+    background-color: #2e2e2e;
+    border-color: #444444;
+}
+.dark-mode .site-header {
+    border-bottom-color: #444444;
 }

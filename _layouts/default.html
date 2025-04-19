@@ -7,5 +7,36 @@
       {{ content }}
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      (function() {
+        const toggle = document.getElementById('theme-toggle');
+        if (!toggle) return;
+        const root = document.documentElement;
+        const stored = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        function setDark() {
+          root.classList.add('dark-mode');
+          toggle.textContent = '☀️';
+        }
+        function setLight() {
+          root.classList.remove('dark-mode');
+          toggle.textContent = '🌙';
+        }
+        if (stored === 'dark' || (!stored && prefersDark)) {
+          setDark();
+        } else {
+          setLight();
+        }
+        toggle.addEventListener('click', function() {
+          if (root.classList.contains('dark-mode')) {
+            setLight();
+            localStorage.setItem('theme', 'light');
+          } else {
+            setDark();
+            localStorage.setItem('theme', 'dark');
+          }
+        });
+      })();
+    </script>
   </body>
 </html>

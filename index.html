@@ -4,13 +4,49 @@ title: Home
 ---
 
 <div class="hero text-center my-5">
-  <img src="/assets/images/profile.png" alt="Nicolas Schneider" class="rounded-circle img-fluid mb-4" style="max-width:150px;">
+  <img src="{{ '/images/profile.png' | relative_url }}"
+       alt="Nicolas Schneider"
+       class="rounded-circle img-fluid mb-4"
+       style="max-width:150px;">
   <h1 class="display-4">I'm Nicolas Schneider</h1>
   <p class="lead">Data Scientist & Developer passionate about building data-driven solutions and web applications.</p>
   <a href="#projects" class="btn btn-primary btn-lg mx-2">My Projects</a>
   <a href="#contact" class="btn btn-outline-primary btn-lg mx-2">Contact Me</a>
-</div>
-<hr class="my-4">
+  </div>
+  <!-- Minimalistic thematic icons -->
+  <div class="minimal-icons d-flex justify-content-center align-items-center mb-4">
+    <div class="minimal-icon mx-3" title="Line Chart">
+      <svg viewBox="0 0 80 60" xmlns="http://www.w3.org/2000/svg">
+        <polyline points="0,60 20,40 40,50 60,20 80,30" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/>
+        <line x1="0" y1="0" x2="0" y2="60" stroke="currentColor" stroke-width="1"/>
+        <line x1="0" y1="60" x2="80" y2="60" stroke="currentColor" stroke-width="1"/>
+      </svg>
+    </div>
+    <div class="minimal-icon mx-3" title="Neural Network">
+      <svg viewBox="0 0 80 60" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="15" cy="15" r="5" stroke="currentColor" stroke-width="2" fill="none"/>
+        <circle cx="15" cy="45" r="5" stroke="currentColor" stroke-width="2" fill="none"/>
+        <circle cx="40" cy="30" r="5" stroke="currentColor" stroke-width="2" fill="none"/>
+        <circle cx="65" cy="15" r="5" stroke="currentColor" stroke-width="2" fill="none"/>
+        <circle cx="65" cy="45" r="5" stroke="currentColor" stroke-width="2" fill="none"/>
+        <line x1="20" y1="15" x2="35" y2="30" stroke="currentColor" stroke-width="1"/>
+        <line x1="20" y1="45" x2="35" y2="30" stroke="currentColor" stroke-width="1"/>
+        <line x1="45" y1="30" x2="60" y2="15" stroke="currentColor" stroke-width="1"/>
+        <line x1="45" y1="30" x2="60" y2="45" stroke="currentColor" stroke-width="1"/>
+      </svg>
+    </div>
+    <div class="minimal-icon mx-3" title="Data Matrix">
+      <svg viewBox="0 0 80 60" xmlns="http://www.w3.org/2000/svg">
+        <rect x="5" y="5" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1"/>
+        <rect x="30" y="5" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1"/>
+        <rect x="55" y="5" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1"/>
+        <rect x="5" y="35" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1"/>
+        <rect x="30" y="35" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1"/>
+        <rect x="55" y="35" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1"/>
+      </svg>
+    </div>
+  </div>
+  <hr class="my-4">
 <section id="projects" class="my-5">
   <h2 class="mb-4">Featured Projects</h2>
   <div class="row">
