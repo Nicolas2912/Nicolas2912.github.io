@@ -7,7 +7,7 @@ permalink:   /projects/simplex/
 github_repo: https://github.com/Nicolas2912/SimplexAlgorithm
 ---
 
-##Overview
+## Overview
 
 This project is a complete Linear Programming (LP) solver suite built in Python. I implemented both the classic Two-Phase Primal Simplex algorithm and Karmarkar’s Interior-Point method (though the latter isn’t fully wired into the UI yet). The goal was to offer flexibility in solving a wide range of LP problems, while also making the process more transparent and interactive — not just a black box.
 
