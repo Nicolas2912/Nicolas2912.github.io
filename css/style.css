@@ -83,6 +83,50 @@ body {
 .dark-mode .minimal-icons .minimal-icon svg {
     color: #64b5f6;
 }
+/* CV Timeline Styles */
+.cv-timeline {
+  position: relative;
+  padding: 2rem 0;
+}
+.cv-timeline::before {
+  content: '';
+  position: absolute;
+  top: 40px;
+  left: 10%;
+  right: 10%;
+  height: 2px;
+  background-color: #ddd;
+}
+.cv-step {
+  position: relative;
+  z-index: 2;
+}
+.cv-icon {
+  width: 60px;
+  height: 60px;
+  font-size: 1.5rem;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+.cv-step h5 {
+  margin-top: 0.5rem;
+  font-weight: 600;
+}
+.cv-step p {
+  font-size: 0.9rem;
+  margin-bottom: 0;
+}
+.dark-mode .cv-timeline::before {
+  background-color: #444444;
+}
+.dark-mode .cv-icon {
+  background-color: #64b5f6;
+}
 /* Dark mode: make navbar toggler (hamburger) visible */
 .dark-mode .navbar-light .navbar-toggler-icon {
     background-image: url("data:image/svg+xml;charset=utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'><path stroke='rgba(255,255,255,1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/></svg>") !important;
