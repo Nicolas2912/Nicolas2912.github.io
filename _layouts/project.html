@@ -7,10 +7,6 @@ layout: default # Inherit from the default layout
 <!-- Main project content -->
 {{ content | markdownify }}
 
-<h2>Results, Insights, and Lessons Learned</h2>
-{# You can structure this section within your project markdown files using headings #}
-
-{# Optional: Add links to GitHub repo, live demo, etc. #}
 {% if page.github_repo %}
 <p><a href="{{ page.github_repo }}" target="_blank">View on GitHub</a></p>
 {% endif %}
