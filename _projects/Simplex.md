@@ -7,7 +7,7 @@ permalink:   /projects/simplex/
 github_repo: https://github.com/Nicolas2912/SimplexAlgorithm
 ---
 
-Overview
+##Overview
 
 This project is a complete Linear Programming (LP) solver suite built in Python. I implemented both the classic Two-Phase Primal Simplex algorithm and Karmarkar’s Interior-Point method (though the latter isn’t fully wired into the UI yet). The goal was to offer flexibility in solving a wide range of LP problems, while also making the process more transparent and interactive — not just a black box.
 
@@ -25,9 +25,45 @@ The stack reflects a mix of practicality and precision:
 * Language: Python 3.12 (Conda-compatible)
 * Math Libraries: NumPy, SciPy (for validation), fractions (for exact mode)
 * UI: Streamlit (multi-page app), Plotly & Matplotlib for 2D/3D plots, Pandas for Simplex tableaus
-* LLM Integration: Google Gemini via `google-genai`, with .env key management using `python-dotenv`
+* LLM Integration: Google Gemini via `google-genai`, with .env key management using `python-dotenv` because of free limits and great performance
 * Testing: Python unittest, compared to SciPy’s “highs” solver
 * Dev Tools: Git, pip, pre-commit (for linting, type checks)
+
+## Getting Started
+
+1. Clone the repository:
+```powershell
+git clone https://github.com/nicolas2912/linear-programming-solver.git
+cd linear-programming-solver
+```
+
+2. Create and activate a conda environment:
+```powershell
+conda create -n lp-solver python=3.12
+conda activate lp-solver
+```
+
+3. Install dependencies:
+```powershell
+pip install -r requirements.txt
+```
+
+## Usage
+
+Start the Streamlit application (powershell):
+```powershell
+python -m streamlit run app.py
+```
+
+or for other shells:
+```bash
+python run app.py
+```
+
+If you want to use the LLM solver, create a `.env` file in the root directory and add your Gemini API key:
+```bash
+GEMINI_API_KEY=your_api_key_here
+```
 
 
 ## Architecture & Components
@@ -56,16 +92,16 @@ Tests
 A few areas required extra care:
 * Standard Form Conversion: Handling mixed constraints and negative RHS values was tedious and easy to get wrong.
 * Two-Phase Setup: Building Phase I/II cleanly, managing artificial variables, and ensuring correct pivoting wasn’t trivial.
-* Numerical Stability: Mixing fractions and floats added complexity — especially when formatting outputs or switching modes mid-flow.
 * Streamlit State Management: Keeping solver states, plots, and UI synced correctly across reruns and interactions took a lot of iteration.
 * LLM Output Handling: Getting consistent, structured output from the LLM was fragile. It needed prompt tuning and post-processing logic for cleanup and execution safety.
 
 ## What I Learned
-* Implementing Simplex and Karmarkar from scratch gave me a much deeper understanding than using libraries.
-* Streamlit’s session model and UI elements are powerful but require discipline to use well in multi-page apps.
-* Using fractions really clarified how small numerical errors in floating-point can mislead interpretations.
-* Prompt engineering and safe execution for LLM-generated code need to be designed cautiously — especially in a live app.
-* Testing against a trusted solver (SciPy’s linprog) was essential for catching edge cases early.
+
+* **Deep Understanding Through Implementation**: Implementing the Simplex and Karmarkar algorithms from scratch significantly deepened my understanding of linear programming. The transition from Phase I to Phase II in the Simplex method was particularly enlightening, as it required careful handling of basis changes and maintaining feasibility. This process sharpened my ability to translate mathematical concepts into efficient code, especially when managing the pivot operations and ensuring numerical stability.
+* **Integrating Interactive Plots in Streamlit**: Incorporating both Matplotlib and Plotly for visualization within the Streamlit UI posed unique challenges. The key was ensuring that plots remained interactive and responsive to user inputs without unnecessary reruns or recalculations. This involved managing Streamlit's session state effectively to store intermediate results and user preferences, allowing for dynamic updates to plots like the feasible region and sensitivity analysis without restarting the application.
+* **Leveraging Streamlit’s Session Model**: Streamlit's session model and UI components are powerful tools for building interactive applications. However, they require disciplined management, especially in multi-page apps, to ensure that session state is consistently updated and shared across different components. This involved careful initialization and resetting of session variables to maintain a seamless user experience.
+* **Validation Through Trusted Solvers**: Testing my implementation against SciPy's linprog was crucial for identifying edge cases and ensuring accuracy. This comparison helped catch subtle bugs early, such as issues with numerical precision or edge cases in constraint handling, and provided a benchmark for the performance and correctness of my algorithms.
+
 
 ## Improvements I’d Like to Make
 
