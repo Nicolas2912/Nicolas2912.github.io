@@ -178,6 +178,33 @@ pre code {
   line-height: 1.4;
 }
 
+/* Copy-to-clipboard button for code blocks */
+pre {
+  position: relative;
+}
+.copy-button {
+  position: absolute;
+  bottom: 0.25rem;
+  right: 0.25rem;
+  padding: 0.2em 0.5em;
+  font-size: 0.75rem;
+  background: rgba(0, 0, 0, 0.2);
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+pre:hover .copy-button {
+  opacity: 1;
+}
+/* Dark mode: adjust copy button styling */
+.dark-mode .copy-button {
+  background: rgba(255, 255, 255, 0.2);
+  color: #e1e1e1;
+}
+
 /* Override for primary buttons: ensure white text */
 a.btn.btn-primary,
 a.btn.btn-primary:visited,
