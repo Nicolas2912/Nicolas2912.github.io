@@ -1,7 +1,21 @@
-<nav>
-  <ul class="site-nav">
-    <li><a href="{{ '/' | relative_url }}">Home</a></li>
-    <li><a href="{{ '/projects/' | relative_url }}">Projects</a></li>
-    <li><a href="{{ '/blog/' | relative_url }}">Blog</a></li>
-  </ul>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container">
+    <a class="navbar-brand" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="{{ '/' | relative_url }}">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ '/projects/' | relative_url }}">Projects</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ '/blog/' | relative_url }}">Blog</a></li>
+        {% if site.github_username %}
+        <li class="nav-item"><a class="nav-link" href="https://github.com/{{ site.github_username }}" target="_blank">GitHub</a></li>
+        {% endif %}
+        {% if site.twitter_username %}
+        <li class="nav-item"><a class="nav-link" href="https://twitter.com/{{ site.twitter_username }}" target="_blank">Twitter</a></li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
 </nav>

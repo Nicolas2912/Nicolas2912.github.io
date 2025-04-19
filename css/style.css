@@ -2,7 +2,7 @@
 /* This will apply on top of the default Minima theme styles */
 
 body {
-    font-family: sans-serif; /* Example: Change font */
+    font-family: 'Inter', sans-serif;
     line-height: 1.6;
     margin: 20px;
     background-color: #f4f4f4;

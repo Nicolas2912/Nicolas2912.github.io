@@ -3,51 +3,67 @@ layout: default
 title: Home
 ---
 
-{% include navbar.html %}
-
-<h2>About Me</h2>
-<p>
-  Hello! I'm Nicolas Schneider, a Data Scientist & Developer passionate about building data-driven solutions and web applications.
-</p>
-
-<h3>Quick Links</h3>
-<ul>
-  <li><a href="{{ '/' | relative_url }}">Home</a></li>
-  <li><a href="{{ '/projects/' | relative_url }}">Projects</a></li>
-  <li><a href="{{ '/blog/' | relative_url }}">Blog</a></li>
-  {% if site.github_username %}
-  <li><a href="https://github.com/{{ site.github_username }}" target="_blank">GitHub</a></li>
-  {% endif %}
-  {% if site.twitter_username %}
-  <li><a href="https://twitter.com/{{ site.twitter_username }}" target="_blank">Twitter</a></li>
-  {% endif %}
-</ul>
-
-<h3 id="cv">CV Summary</h3>
-<p>
-  With over 3 years of experience in Data Science and Software Development, I'm skilled in Python, SQL, machine learning, and web development.
-  Feel free to <a href="#contact">reach out</a> for more info.
-</p>
-
-<h2>Latest Blog Posts</h2>
-<ul id="latest-posts">
-  {% for post in site.posts limit: 5 %}
-    <li>
-      <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-      <small>{{ post.date | date_to_string }}</small>
-      {% if post.excerpt %}
-      <p>{{ post.excerpt | markdownify }}</p>
-      {% endif %}
-    </li>
-  {% endfor %}
-</ul>
-
-<h2>Featured Projects</h2>
-<ul id="latest-projects">
-  {% for project in site.projects limit: 3 %}
-    <li>
-      <a href="{{ project.url | relative_url }}">{{ project.title }}</a>
-      <p>{{ project.summary }}</p>
-    </li>
-  {% endfor %}
-</ul>
+<div class="hero text-center my-5">
+  <img src="/assets/images/profile.png" alt="Nicolas Schneider" class="rounded-circle img-fluid mb-4" style="max-width:150px;">
+  <h1 class="display-4">I'm Nicolas Schneider</h1>
+  <p class="lead">Data Scientist & Developer passionate about building data-driven solutions and web applications.</p>
+  <a href="#projects" class="btn btn-primary btn-lg mx-2">My Projects</a>
+  <a href="#contact" class="btn btn-outline-primary btn-lg mx-2">Contact Me</a>
+</div>
+<hr class="my-4">
+<section id="projects" class="my-5">
+  <h2 class="mb-4">Featured Projects</h2>
+  <div class="row">
+    {% for project in site.projects limit: 3 %}
+      <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">
+              <a href="{{ project.url | relative_url }}" class="stretched-link text-decoration-none">{{ project.title }}</a>
+            </h5>
+            <p class="card-text">{{ project.summary }}</p>
+            <div class="mt-auto">
+              <a href="{{ project.url | relative_url }}" class="btn btn-sm btn-primary">Learn More</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+  <div class="text-center">
+    <a href="{{ '/projects/' | relative_url }}" class="btn btn-outline-secondary">View All Projects</a>
+  </div>
+</section>
+<hr class="my-4">
+<section id="blog" class="my-5">
+  <h2 class="mb-4">Latest Blog Posts</h2>
+  <div class="row">
+    {% for post in site.posts limit: 4 %}
+      <div class="col-md-3 mb-4">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">
+              <a href="{{ post.url | relative_url }}" class="stretched-link text-decoration-none">{{ post.title }}</a>
+            </h5>
+            <p class="card-text">{{ post.excerpt | strip_html | truncate: 100 }}</p>
+            <small class="text-muted">{{ post.date | date_to_string }}</small>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+  <div class="text-center">
+    <a href="{{ '/blog/' | relative_url }}" class="btn btn-outline-secondary">View All Posts</a>
+  </div>
+</section>
+<hr class="my-4">
+<section id="about" class="my-5">
+  <h2>About Me</h2>
+  <p>Hello! I'm Nicolas Schneider, a Data Scientist & Developer passionate about building data-driven solutions and web applications. With over 3 years of experience in Python, SQL, machine learning, and web development.</p>
+  <p><a href="#contact">Reach out for more info</a></p>
+</section>
+<section id="contact" class="my-5">
+  <h2>Contact</h2>
+  <p>Email: <a href="mailto:{{ site.email }}">{{ site.email }}</a></p>
+  <p>Find me on <a href="https://github.com/{{ site.github_username }}" target="_blank">GitHub</a> and <a href="https://twitter.com/{{ site.twitter_username }}" target="_blank">Twitter</a>.</p>
+</section>
