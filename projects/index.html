@@ -4,14 +4,24 @@ title: Projects
 permalink: /projects/
 ---
 
-{% include navbar.html %}
-
-<h1>Projects</h1>
-<ul>
+<div class="py-5 text-center">
+  <h1 class="display-5 mb-3">Projects</h1>
+  <p class="lead text-muted">A selection of my work</p>
+</div>
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
   {% for project in site.projects %}
-    <li>
-      <a href="{{ project.url | relative_url }}">{{ project.title }}</a>
-      <p>{{ project.summary }}</p>
-    </li>
+    <div class="col">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">
+            <a href="{{ project.url | relative_url }}" class="stretched-link text-decoration-none">{{ project.title }}</a>
+          </h5>
+          <p class="card-text">{{ project.summary }}</p>
+        </div>
+      </div>
+    </div>
   {% endfor %}
-</ul>
+</div>
+<div class="text-center mt-4">
+  <a href="{{ '/' | relative_url }}" class="btn btn-outline-secondary">Back to Home</a>
+</div>
