@@ -218,6 +218,36 @@ body {
     color: #cccccc !important;
 }
 
+/* Skills Section Styles */
+.skills-section {
+  max-width: 960px;
+  margin: 0 auto;
+}
+.skills-section h5 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+}
+.skills-section ul {
+  padding: 0;
+  margin: 0;
+}
+.skills-section .badge {
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+}
+/* Dark mode: Skills Section */
+.dark-mode .skills-section h5 {
+  color: #e1e1e1;
+}
+.dark-mode .skills-section .badge.bg-primary {
+  background-color: #64b5f6 !important;
+}
+.dark-mode .skills-section .badge.bg-secondary {
+  background-color: #777 !important;
+}
+
 .site-header {
     border-bottom: 1px solid #eee;
     padding-bottom: 10px;
