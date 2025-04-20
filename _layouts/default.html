@@ -2,7 +2,9 @@
 <html lang="en">
   {% include head.html %}
   <body>
-    {% include navbar.html %}
+  <!-- Particle background canvas -->
+  <canvas id="particle-canvas"></canvas>
+  {% include navbar.html %}
     <div class="container mt-5">
       {{ content }}
     </div>
@@ -36,6 +38,83 @@
             localStorage.setItem('theme', 'dark');
           }
         });
+      })();
+    </script>
+    <!-- Particle background animation -->
+    <script>
+      (function() {
+        const canvas = document.getElementById('particle-canvas');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        let w = canvas.width = window.innerWidth;
+        let h = canvas.height = window.innerHeight;
+        window.addEventListener('resize', () => {
+          w = canvas.width = window.innerWidth;
+          h = canvas.height = window.innerHeight;
+        });
+        const config = {
+          particleCount: Math.floor(w * h / 20000),
+          maxVelocity: 0.3,
+          maxDistance: 100,
+          lineColor: 'rgba(200,200,200,0.15)',
+          particleColor: 'rgba(200,200,200,0.2)'
+        };
+        class Particle {
+          constructor() {
+            this.x = Math.random() * w;
+            this.y = Math.random() * h;
+            this.vx = (Math.random() * 2 - 1) * config.maxVelocity;
+            this.vy = (Math.random() * 2 - 1) * config.maxVelocity;
+          }
+          update() {
+            this.x += this.vx;
+            this.y += this.vy;
+            if (this.x < 0 || this.x > w) this.vx *= -1;
+            if (this.y < 0 || this.y > h) this.vy *= -1;
+          }
+          draw() {
+            ctx.fillStyle = config.particleColor;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, 2, 0, Math.PI * 2);
+            ctx.fill();
+          }
+        }
+        const particles = [];
+        for (let i = 0; i < config.particleCount; i++) particles.push(new Particle());
+        const mouse = { x: null, y: null };
+        window.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
+        window.addEventListener('mouseout', () => { mouse.x = null; mouse.y = null; });
+        function animate() {
+          ctx.clearRect(0, 0, w, h);
+          for (let i = 0; i < particles.length; i++) {
+            const p = particles[i];
+            p.update();
+            p.draw();
+            for (let j = i + 1; j < particles.length; j++) {
+              const q = particles[j];
+              const dx = p.x - q.x, dy = p.y - q.y;
+              const dist = Math.hypot(dx, dy);
+              if (dist < config.maxDistance) {
+                const alpha = 1 - dist / config.maxDistance;
+                ctx.strokeStyle = `rgba(200,200,200,${alpha * 0.15})`;
+                ctx.lineWidth = 1;
+                ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y); ctx.stroke();
+              }
+            }
+            if (mouse.x !== null && mouse.y !== null) {
+              const mx = p.x - mouse.x, my = p.y - mouse.y;
+              const md = Math.hypot(mx, my);
+              const radius = 100;
+              if (md < radius) {
+                const angle = Math.atan2(my, mx);
+                p.vx += Math.cos(angle) * 0.01;
+                p.vy += Math.sin(angle) * 0.01;
+              }
+            }
+          }
+          requestAnimationFrame(animate);
+        }
+        animate();
       })();
     </script>
     <script>
