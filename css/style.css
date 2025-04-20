@@ -160,7 +160,9 @@ body {
   max-width: 180px;
   padding: 0 1rem;
   z-index: 2;
-  cursor: pointer;
+    cursor: pointer;
+    /* smooth hover transition */
+    transition: transform 0.2s ease;
 }
 .cv-step::before {
   content: '';
@@ -174,6 +176,9 @@ body {
   transform: translateX(-50%);
   z-index: 2;
 }
+.cv-step:hover {
+    transform: translateY(-5px);
+}
 .cv-icon {
   background-color: #fff;
   border: 2px solid var(--bs-primary);
@@ -185,6 +190,20 @@ body {
   color: var(--bs-primary);
   border-radius: 50%;
   margin-bottom: 0.5rem;
+}
+/* smooth icon transition */
+.cv-icon {
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+}
+.cv-step:hover .cv-icon {
+    background-color: var(--bs-primary);
+    color: #fff;
+    border-color: var(--bs-primary);
+    transform: scale(1.1);
+}
+.cv-step:hover h5,
+.cv-step:hover p {
+    color: var(--bs-primary);
 }
 .cv-step h5 {
   font-size: 1rem;
@@ -247,6 +266,25 @@ body {
 }
 .dark-mode .skills-section .badge.bg-secondary {
   background-color: #777 !important;
+}
+
+/* Dark mode: Modal popup styling */
+.dark-mode .modal-content {
+    background-color: #2e2e2e;
+    color: #e1e1e1;
+    border-color: #444;
+}
+.dark-mode .modal-header {
+    border-bottom: 1px solid #444;
+}
+.dark-mode .modal-title {
+    color: #fff;
+}
+.dark-mode .modal-body {
+    color: #ccc;
+}
+.dark-mode .btn-close {
+    filter: invert(1) grayscale(1) brightness(2);
 }
 
 .site-header {
