@@ -2,6 +2,7 @@
 <html lang="en">
   {% include head.html %}
   <body>
+  {% if page.url == "/" %}
   <!-- Particle background canvas -->
   <canvas id="particle-canvas"></canvas>
   {% include navbar.html %}
@@ -41,6 +42,7 @@
       })();
     </script>
     <!-- Particle background animation -->
+    {% if page.url == "/" %}
     <script>
       (function() {
         const canvas = document.getElementById('particle-canvas');
@@ -117,6 +119,7 @@
         animate();
       })();
     </script>
+    {% endif %}
     <script>
       document.addEventListener('DOMContentLoaded', function() {
         document.querySelectorAll('pre').forEach(function(pre) {

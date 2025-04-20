@@ -14,17 +14,25 @@
 /* Add your custom CSS here */
 /* This will apply on top of the default Minima theme styles */
 
+/* Page body: padded container and typography */
 body {
+    margin: 0;
+    padding: 20px;
     font-family: 'Calibri', sans-serif;
     line-height: 1.6;
-    margin: 20px;
-    background-color: #f4f4f4;
+    background: transparent;
     color: #333;
+}
+html {
+    background-color: #f4f4f4;
+}
+.dark-mode html {
+    background-color: #121212 !important;
 }
 
 /* Dark mode styles */
 .dark-mode body {
-    background-color: #121212;
+    background: transparent;
     color: #e1e1e1;
 }
 .dark-mode h1, .dark-mode h2, .dark-mode h3 {
