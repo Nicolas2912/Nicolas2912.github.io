@@ -69,6 +69,109 @@ title: Home
   <div class="text-center">
     <a href="{{ '/projects/' | relative_url }}" class="btn btn-outline-secondary">View All Projects</a>
   </div>
+  <!-- CV Detail Modals -->
+  <!-- B.Sc. Details -->
+  <div class="modal fade" id="cvModal-bsc" tabindex="-1" aria-labelledby="cvModalLabel-bsc" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="cvModalLabel-bsc">B.Sc. in Computer Science (10.2018 – 05.2021)</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <ul>
+            <li>Deep understanding of algorithms, data structures, and mathematical foundations.</li>
+            <li>Completed Bachelor thesis at Diamant Software on data-driven process optimization.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Interviewer Details -->
+  <div class="modal fade" id="cvModal-interviewer" tabindex="-1" aria-labelledby="cvModalLabel-interviewer" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="cvModalLabel-interviewer">Interviewer at SOKO Institut (08.2020 – 05.2021)</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <ul>
+            <li>Conducted structured interviews and surveys with target participants.</li>
+            <li>Analyzed qualitative data to extract key insights for research reports.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Master Optimization and Simulation Details -->
+  <div class="modal fade" id="cvModal-master" tabindex="-1" aria-labelledby="cvModalLabel-master" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="cvModalLabel-master">Master Optimization and Simulation (03.2023 – Present)</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <ul>
+            <li>Developed simulation models for complex systems using Python and SimPy.</li>
+            <li>Studied advanced optimization techniques, including metaheuristics and linear programming.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Diamant Software Details -->
+  <div class="modal fade" id="cvModal-diamant" tabindex="-1" aria-labelledby="cvModalLabel-diamant" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="cvModalLabel-diamant">Working Student / Data Scientist at Diamant Software (02.2023 – 08.2024)</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <ul>
+            <li>Implemented ETL pipelines and data preprocessing routines in Python.</li>
+            <li>Built and evaluated machine learning models to support software features.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 4brands Reply Details -->
+  <div class="modal fade" id="cvModal-reply" tabindex="-1" aria-labelledby="cvModalLabel-reply" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="cvModalLabel-reply">Working Student / Data Analyst at 4brands Reply (10.2024 – Present)</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <ul>
+            <li>Performed exploratory data analysis and visualization using Pandas and Matplotlib.</li>
+            <li>Automated reporting processes and created interactive dashboards.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Fraunhofer IPT Details -->
+  <div class="modal fade" id="cvModal-ipt" tabindex="-1" aria-labelledby="cvModalLabel-ipt" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="cvModalLabel-ipt">Master Student & Scientist at Fraunhofer IPT (11.2024 – Present)</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <ul>
+            <li>Conduct research on simulation-based optimization for production processes.</li>
+            <li>Collaborate with industry partners to implement modeling solutions.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 <hr class="my-4">
 <!-- CV Timeline Section -->
@@ -79,33 +182,34 @@ title: Home
     <p>Hi, I’m Nicolas Schneider — a Data Scientist and Developer with a passion for building data-driven solutions and intelligent web applications. I bring a solid foundation in mathematics, machine learning, and large language models, and I enjoy turning complex problems into practical tools that create real-world impact.</p>
     <p>With over two years of hands-on experience, I’ve applied LLMs and Python to tackle real challenges across industries. I’m always looking for new opportunities where I can push boundaries, build useful things, and make a meaningful contribution.</p>
   </div>
-  <div class="cv-timeline position-relative d-flex justify-content-between align-items-start mx-auto" style="max-width: 960px;">
-    <div class="cv-step text-center">
+    <div class="cv-timeline position-relative d-flex justify-content-between align-items-start mx-auto" style="max-width: 960px;">
+    <!-- Timeline entries clickable to reveal more details -->
+    <div class="cv-step text-center" role="button" data-bs-toggle="modal" data-bs-target="#cvModal-bsc" aria-label="B.Sc. in Computer Science details">
       <div class="cv-icon">🎓</div>
       <h5>10.2018 – 05.2021</h5>
       <p>B.Sc. in Applied Mathematics University of Applied Sciences Bielefeld<br>Grade: 2.3<br></p>
     </div>
-    <div class="cv-step text-center">
+    <div class="cv-step text-center" role="button" data-bs-toggle="modal" data-bs-target="#cvModal-interviewer" aria-label="Interviewer at SOKO Institut details">
       <div class="cv-icon">🗣️</div>
       <h5>08.2020 – 05.2021</h5>
       <p>Interviewer<br>SOKO Institut</p>
     </div>
-    <div class="cv-step text-center">
+    <div class="cv-step text-center" role="button" data-bs-toggle="modal" data-bs-target="#cvModal-master" aria-label="Master Optimization and Simulation details">
       <div class="cv-icon">🎓</div>
       <h5>03.2023 – Present</h5>
       <p>Master Optimization and Simulation<br>HSBI Bielefeld</p>
     </div>
-    <div class="cv-step text-center">
+    <div class="cv-step text-center" role="button" data-bs-toggle="modal" data-bs-target="#cvModal-diamant" aria-label="Working Student/Data Scientist at Diamant Software details">
       <div class="cv-icon">💼</div>
       <h5>01.02.2023 – 31.08.2024</h5>
       <p>Working Student / Data Scientist<br>Diamant Software</p>
     </div>
-    <div class="cv-step text-center">
+    <div class="cv-step text-center" role="button" data-bs-toggle="modal" data-bs-target="#cvModal-reply" aria-label="Working Student/Data Analyst at 4brands Reply details">
       <div class="cv-icon">📊</div>
       <h5>15.10.2024 – Present</h5>
       <p>Working Student / Data Analyst<br>4brands Reply</p>
     </div>
-    <div class="cv-step text-center">
+    <div class="cv-step text-center" role="button" data-bs-toggle="modal" data-bs-target="#cvModal-ipt" aria-label="Master Student & Scientist at Fraunhofer IPT details">
       <div class="cv-icon">🔬</div>
       <h5>15.11.2024 – Present</h5>
       <p>Master Student & Scientist<br>Fraunhofer Institute for Production Technology IPT</p>
