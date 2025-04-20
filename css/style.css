@@ -23,10 +23,11 @@ body {
     background: transparent;
     color: #333;
 }
+/* Page background colors */
 html {
     background-color: #f4f4f4;
 }
-.dark-mode html {
+html.dark-mode {
     background-color: #121212 !important;
 }
 

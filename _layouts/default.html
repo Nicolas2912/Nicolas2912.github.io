@@ -2,10 +2,11 @@
 <html lang="en">
   {% include head.html %}
   <body>
-  {% if page.url == "/" %}
-  <!-- Particle background canvas -->
-  <canvas id="particle-canvas"></canvas>
-  {% include navbar.html %}
+    {% include navbar.html %}
+    {% if page.url == "/" %}
+      <!-- Particle background canvas -->
+      <canvas id="particle-canvas"></canvas>
+    {% endif %}
     <div class="container mt-5">
       {{ content }}
     </div>
