@@ -6,10 +6,6 @@
     <div id="theme-background"></div>
     
     {% include navbar.html %}
-    {% if page.url == "/" %}
-      <!-- Particle background canvas -->
-      <canvas id="particle-canvas"></canvas>
-    {% endif %}
     <div class="container mt-5">
       {{ content }}
     </div>
@@ -25,19 +21,11 @@
         function setDark() {
           root.classList.add('dark-mode');
           toggle.textContent = '☀️';
-          // Update particle colors for dark mode if the animation is running
-          if (typeof updateParticleColors === 'function') {
-            updateParticleColors();
-          }
         }
         
         function setLight() {
           root.classList.remove('dark-mode');
           toggle.textContent = '🌙';
-          // Update particle colors for light mode if the animation is running
-          if (typeof updateParticleColors === 'function') {
-            updateParticleColors();
-          }
         }
         
         if (stored === 'dark' || (!stored && prefersDark)) {
@@ -57,128 +45,6 @@
         });
       })();
     </script>
-    <!-- Particle background animation -->
-    {% if page.url == "/" %}
-    <script>
-      // Declare variables and functions in global scope to be accessible for theme toggle
-      let particleConfig;
-      let ctx;
-      let particles = [];
-      
-      function updateParticleColors() {
-        const isDarkMode = document.documentElement.classList.contains('dark-mode');
-        
-        // Update colors based on current theme
-        if (isDarkMode) {
-          // Darker background gets more whitish particles with less opacity
-          particleConfig.lineColor = 'rgba(180,180,220,0.2)';
-          particleConfig.particleColor = 'rgba(220,220,240,0.25)';
-        } else {
-          // Light background gets blue particles with less opacity
-          particleConfig.lineColor = 'rgba(70,130,210,0.12)';
-          particleConfig.particleColor = 'rgba(70,150,255,0.15)';
-        }
-        
-        // No need to recreate particles, just change their appearance on next draw
-      }
-      
-      (function() {
-        const canvas = document.getElementById('particle-canvas');
-        if (!canvas) return;
-        ctx = canvas.getContext('2d');
-        let w = canvas.width = window.innerWidth;
-        let h = canvas.height = window.innerHeight;
-        
-        window.addEventListener('resize', () => {
-          w = canvas.width = window.innerWidth;
-          h = canvas.height = window.innerHeight;
-        });
-        
-        // Configure particle system
-        particleConfig = {
-          particleCount: Math.floor(w * h / 20000),
-          maxVelocity: 0.3,
-          maxDistance: 100,
-          lineColor: 'rgba(200,200,200,0.15)',
-          particleColor: 'rgba(200,200,200,0.2)'
-        };
-        
-        // Set initial colors based on current theme
-        updateParticleColors();
-        
-        class Particle {
-          constructor() {
-            this.x = Math.random() * w;
-            this.y = Math.random() * h;
-            this.vx = (Math.random() * 2 - 1) * particleConfig.maxVelocity;
-            this.vy = (Math.random() * 2 - 1) * particleConfig.maxVelocity;
-          }
-          update() {
-            this.x += this.vx;
-            this.y += this.vy;
-            if (this.x < 0 || this.x > w) this.vx *= -1;
-            if (this.y < 0 || this.y > h) this.vy *= -1;
-          }
-          draw() {
-            ctx.fillStyle = particleConfig.particleColor;
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, 2, 0, Math.PI * 2);
-            ctx.fill();
-          }
-        }
-        
-        particles = [];
-        for (let i = 0; i < particleConfig.particleCount; i++) {
-          particles.push(new Particle());
-        }
-        
-        const mouse = { x: null, y: null };
-        window.addEventListener('mousemove', e => { 
-          mouse.x = e.clientX; 
-          mouse.y = e.clientY; 
-        });
-        window.addEventListener('mouseout', () => { 
-          mouse.x = null; 
-          mouse.y = null; 
-        });
-        
-        function animate() {
-          ctx.clearRect(0, 0, w, h);
-          for (let i = 0; i < particles.length; i++) {
-            const p = particles[i];
-            p.update();
-            p.draw();
-            for (let j = i + 1; j < particles.length; j++) {
-              const q = particles[j];
-              const dx = p.x - q.x, dy = p.y - q.y;
-              const dist = Math.hypot(dx, dy);
-              if (dist < particleConfig.maxDistance) {
-                const alpha = 1 - dist / particleConfig.maxDistance;
-                ctx.strokeStyle = particleConfig.lineColor.replace('0.15', alpha * 0.15);
-                ctx.lineWidth = 1;
-                ctx.beginPath(); 
-                ctx.moveTo(p.x, p.y); 
-                ctx.lineTo(q.x, q.y); 
-                ctx.stroke();
-              }
-            }
-            if (mouse.x !== null && mouse.y !== null) {
-              const mx = p.x - mouse.x, my = p.y - mouse.y;
-              const md = Math.hypot(mx, my);
-              const radius = 100;
-              if (md < radius) {
-                const angle = Math.atan2(my, mx);
-                p.vx += Math.cos(angle) * 0.01;
-                p.vy += Math.sin(angle) * 0.01;
-              }
-            }
-          }
-          requestAnimationFrame(animate);
-        }
-        animate();
-      })();
-    </script>
-    {% endif %}
     <script>
       document.addEventListener('DOMContentLoaded', function() {
         // Add CSS for the theme background
@@ -191,15 +57,6 @@
             width: 100%;
             height: 100%;
             z-index: -2;
-            pointer-events: none;
-          }
-          #particle-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
             pointer-events: none;
           }
           html.dark-mode #theme-background {
