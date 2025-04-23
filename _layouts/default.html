@@ -47,27 +47,6 @@
     </script>
     <script>
       document.addEventListener('DOMContentLoaded', function() {
-        // Add CSS for the theme background
-        const style = document.createElement('style');
-        style.textContent = `
-          #theme-background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -2;
-            pointer-events: none;
-          }
-          html.dark-mode #theme-background {
-            background-color: #121212;
-          }
-          html:not(.dark-mode) #theme-background {
-            background-color: #f4f4f4;
-          }
-        `;
-        document.head.appendChild(style);
-        
         // Copy button for code blocks
         document.querySelectorAll('pre').forEach(function(pre) {
           pre.style.position = 'relative';
