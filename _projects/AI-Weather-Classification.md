@@ -151,3 +151,7 @@ generalization.
 * Experiment with transfer learning (ResNet/MobileNet backbones) to boost accuracy and
 speed.
 * Provide a Streamlit or Flask web UI for interactive image upload & prediction.
+
+## Screenshots
+
+

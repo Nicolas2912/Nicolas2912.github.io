@@ -125,11 +125,7 @@ Testing:
 
 Several technical challenges emerged during development:
 
-* **Balancing Exploration vs. Exploitation**: The bee algorithm naturally provides this balance through its division of labor, but fine-tuning the parameters was crucial. I implemented an adaptive mechanism that adjusts the ratio of scouts to followers based on solution improvement rates, preventing premature convergence to local optima.
-
-* **Efficient Neighborhood Search**: For large problem instances, the neighborhood search became a bottleneck. I optimized this with a 2-opt implementation that caches distance calculations and employs early termination when no improvement is possible, reducing computational overhead.
-
-* **Real-time Visualization**: Updating plots in real-time without blocking the main search loop required careful threading in Python. I implemented a non-blocking visualization approach using Matplotlib's animation features with a dedicated rendering thread.
+* **Efficient Neighborhood Search**: For large problem instances, the neighborhood search became a bottleneck. I optimized this with a 2-opt implementation that caches distance calculations, reducing computational overhead.
 
 * **Cross-language Implementation**: Maintaining consistency between Python, C++, and MATLAB implementations required a unified abstract model. I developed a common interface specification that all implementations follow, ensuring algorithm behavior remains consistent across languages.
 
@@ -137,7 +133,7 @@ Several technical challenges emerged during development:
 
 * **Metaheuristic Algorithm Design**: Implementing the Bee Algorithm deepened my understanding of population-based search strategies. Particularly insightful was seeing how simple rules of agent behavior can lead to emergent problem-solving capabilities across diverse TSP instances.
 
-* **Optimization Techniques**: The project provided practical experience in algorithmic optimization, from vectorizing operations in NumPy to leveraging compiler optimizations in C++. The most significant performance improvements came from translating the neighborhood search logic into C++.
+* **Optimization Techniques**: The project provided practical experience in algorithmic optimization, from vectorizing operations in NumPy to leveraging optimization techniques in C++. The most significant performance improvements came from translating the neighborhood search logic into C++.
 
 * **Multi-language Development**: Working across Python, C++, and MATLAB reinforced the importance of consistent interfaces and modular design. Each language offered different strengths: Python for rapid development and visualization, C++ for raw performance, and MATLAB for mathematical analysis and animation.
 
@@ -149,11 +145,11 @@ Here are enhancements planned for future iterations:
 
 * **GPU Acceleration**: Implement CUDA kernels for parallel neighborhood search operations, potentially yielding 10-100x speedup for large problem instances.
 
-* **Reinforcement Learning Integration**: Develop an RL model to adaptively control colony parameters based on problem characteristics and convergence patterns.
-
 * **Web Dashboard**: Create an interactive web interface for experimenting with parameters and visualizing results in real-time.
 
 * **Problem Extensions**: Adapt the solver for variants like the Vehicle Routing Problem (VRP), Multiple TSP, and Prize-collecting TSP.
 
 
 ## Screenshots
+
+![BeeTSPOptimizer_animation](/images/BeeTSPOptimizer/BeeTSPOptimizer_animation.gif)
