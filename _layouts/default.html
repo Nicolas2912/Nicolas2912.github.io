@@ -4,45 +4,76 @@
   <body>
     <!-- Dark background div that sits behind everything -->
     <div id="theme-background"></div>
-    
+    {% if page.url == "/" %}
+      <div id="particles-js"></div>
+    {% endif %}
+
     {% include navbar.html %}
     <div class="container mt-5">
       {{ content }}
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
     <script>
       (function() {
         const toggle = document.getElementById('theme-toggle');
-        if (!toggle) return;
         const root = document.documentElement;
+        const particlesContainer = document.getElementById('particles-js'); // Get particle container
         const stored = localStorage.getItem('theme');
         const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-        
+
         function setDark() {
           root.classList.add('dark-mode');
-          toggle.textContent = '☀️';
+          if (toggle) toggle.textContent = '☀️';
+          if (particlesContainer) particlesContainer.style.display = 'block'; // Show particles
         }
-        
+
         function setLight() {
           root.classList.remove('dark-mode');
-          toggle.textContent = '🌙';
+          if (toggle) toggle.textContent = '🌙';
+          if (particlesContainer) particlesContainer.style.display = 'none'; // Hide particles
         }
-        
+
+        // Initialize theme
         if (stored === 'dark' || (!stored && prefersDark)) {
           setDark();
         } else {
           setLight();
         }
-        
-        toggle.addEventListener('click', function() {
-          if (root.classList.contains('dark-mode')) {
-            setLight();
-            localStorage.setItem('theme', 'light');
-          } else {
-            setDark();
-            localStorage.setItem('theme', 'dark');
+
+        // Theme toggle listener
+        if (toggle) {
+            toggle.addEventListener('click', function() {
+              if (root.classList.contains('dark-mode')) {
+                setLight();
+                localStorage.setItem('theme', 'light');
+              } else {
+                setDark();
+                localStorage.setItem('theme', 'dark');
+              }
+            });
+        }
+
+        // Initialize particles if on homepage
+        if (particlesContainer) {
+          tsParticles.load("particles-js", {
+            particles: {
+              number: { value: 80, density: { enable: true, value_area: 800 } },
+              color: { value: "#ffffff" },
+              shape: { type: "circle" },
+              opacity: { value: 0.5, random: false, anim: { enable: false } },
+              size: { value: 3, random: true, anim: { enable: false } },
+              line_linked: { enable: true, distance: 150, color: "#ffffff", opacity: 0.4, width: 1 },
+              move: { enable: true, speed: 2, direction: "none", random: false, straight: false, out_mode: "out", bounce: false }
+            },
+            interactivity: { detect_on: "canvas", events: { onhover: { enable: false }, onclick: { enable: false }, resize: true } }, // Disable interactivity
+            retina_detect: true
+          });
+          // Ensure it's hidden initially if light mode is default
+          if (!root.classList.contains('dark-mode')) {
+              particlesContainer.style.display = 'none';
           }
-        });
+        }
       })();
     </script>
     <script>
