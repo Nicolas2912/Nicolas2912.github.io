@@ -4,6 +4,24 @@
 /* Add your custom CSS here */
 /* This will apply on top of the default Minima theme styles */
 
+/* Connected dots background for homepage dark mode */
+#particles-js {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Ensure particles canvas occupies full container */
+#particles-js canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
 /* Page body: padded container and typography */
 body {
     margin: 0;
