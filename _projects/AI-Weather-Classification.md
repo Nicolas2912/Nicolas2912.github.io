@@ -98,6 +98,44 @@ Batch‑predict on a folder of images:
         --dataset dataset \
         --device cuda
 
+### Usage Highlights
+
+* **WeatherClassifier** (`train_model.py`):
+
+
+    * Convolutional blocks (3 layers): channels [3→64→512→1024], `kernel_size=3`, `stride=2`, `padding=1`
+
+    * LeakyReLU activations + `MaxPool2d`, dynamic feature-size computation
+
+    * Classifier head: dropout 0.3573 → linear (`num_features→1024`) → LeakyReLU → dropout → linear (→`num_classes`)
+
+    * Training loop with `CrossEntropyLoss` + `Adam`, history of loss & accuracy plotted
+* **Hyperparameter Optimization**:
+
+
+    * **Small mode**: tunes `lr` (1e-6–1e-1) & `weight_decay` (1e-10–1e-2), minimizes validation loss
+
+    * **Large mode**: tunes `lr`, `weight_decay`, `batch_size` (2–32), `activation` [ReLU/SiLU/LeakyReLU], `dropout` (0.1–0.5), `epochs` (5–50), maximizes test
+accuracy
+* **DataLoader** (`utils/data_loader.py`):
+
+
+    * Splits into train/val/test (70/15/15) with seed reproducibility
+
+    * `custom_image_loader` for single-image prediction
+
+    * Class distribution analysis + pie-chart plotting
+* **Evaluation** (`evaluation.py`):
+
+
+    * Computes weighted F1, precision, recall via scikit-learn
+
+    * Plots & saves confusion matrix with class labels
+* **Prediction** (`predict.py`):
+
+
+    * Batch predicts on any folder of images, outputs a table of filename → predicted class
+
 ## Architecture & Components
 
 Core Modules
@@ -130,9 +168,44 @@ There is no formal unit‑test suite yet; instead, a small set of labeled images
 
 ## Challenges
 
-* Designing an efficient and effective CNN architecture like number of layers, neurons per layer, activation functions, etc. that generalizes across subtle weather patterns.
-* Finding a balanced image size for resizing that works well for all weather conditions.
-* Effective hyperparameter optimization for training a CNN.
+### 1. Building a CNN from Scratch in PyTorch
+
+Implemented Solution
+
+* Designed the `WeatherClassifier` class: modular `_initialize_layers` & `_setup_classifier` methods
+* Dynamically computed the flatten size via a dummy input tensor
+* Managed model-to-device transfers and verbosity flags for detailed tabular logging
+
+Why This Approach
+
+* **Clarity & Debuggability**: Layer init and classifier setup are decoupled, making it easier to inspect intermediate shapes
+* **Flexibility**: Channel counts, dropout rates and activation functions are all easy to tweak
+
+Future Improvements
+
+* Incorporate residual or depthwise-separable blocks for efficiency
+* Leverage transfer-learning (e.g. ResNet, EfficientNet) for faster convergence on limited data
+* Add mixed-precision training (`torch.cuda.amp`) to exploit RTX 4070 Ti fully
+
+### 2. Hyperparameter Optimization under Resource Constraints
+
+Implemented Solution
+
+* Employed Optuna to tune learning rates, weight decay, batch sizes and architectural hyperparameters
+* Separated “small” (quick lr/wd sweep) and “large” (full search) modes to manage GPU time
+* Persisted trials in `db.sqlite3` and enabled interactive inspection via `optuna-dashboard`
+
+Why This Approach
+
+* **Efficiency**: Focused searches reduce wasted GPU cycles
+* **Reproducibility**: SQLite storage lets you resume or share studies
+* **Transparency**: CLI prints best parameters in a neat table
+
+Future Improvements
+
+* Integrate Optuna pruning to preemptively halt poor trials
+* Implement multi-objective studies (accuracy vs training speed)
+* Auto-scale batch sizes based on real-time GPU memory profiling
 
 ## What I Learned
 
@@ -153,5 +226,8 @@ speed.
 * Provide a Streamlit or Flask web UI for interactive image upload & prediction.
 
 ## Screenshots
+
+![Loss](/images/AI-Weather-Classification/loss.png)
+![Confusion Matrix](/images/AI-Weather-Classification/confusion_matrix.png)
 
 
