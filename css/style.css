@@ -12,7 +12,8 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: -1;
+  /* Place particles above page background but behind content */
+  z-index: 0;
   pointer-events: none;
 }
 
@@ -20,6 +21,8 @@
 #particles-js canvas {
   width: 100% !important;
   height: 100% !important;
+  /* Allow clicks/hover to pass through canvas itself */
+  pointer-events: none;
 }
 
 /* Page body: padded container and typography */

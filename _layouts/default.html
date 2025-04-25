@@ -18,61 +18,88 @@
       (function() {
         const toggle = document.getElementById('theme-toggle');
         const root = document.documentElement;
-        const particlesContainer = document.getElementById('particles-js'); // Get particle container
+        const particlesContainer = document.getElementById('particles-js');
         const stored = localStorage.getItem('theme');
         const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        let particlesInstance = null;
+
+        function createParticles(theme) {
+          if (!particlesContainer) return;
+          const isDark = theme === 'dark';
+          // Fewer dots overall; lower opacity in both modes
+          const count = 40;
+          // Dot and line colors: white in dark, light blue in light
+          const color = isDark ? '#ffffff' : '#64b5f6';
+          // Reduced opacity: darker mode less opaque, light mode moderate opacity
+          const opacity = isDark ? 0.3 : 0.6;
+          const linkOpacity = isDark ? 0.2 : 0.6;
+          const options = {
+            particles: {
+              number: { value: count, density: { enable: true, area: 800 } },
+              color: { value: color },
+              shape: { type: 'circle' },
+              opacity: { value: opacity },
+              size: { value: 3, random: true },
+              links: { enable: true, distance: 150, color: color, opacity: linkOpacity, width: 1 },
+              move: { enable: true, speed: 1, outModes: { default: 'out' } }
+            },
+            interactivity: {
+              // Listen for pointer events on the window so canvas floats visually behind content
+              detectsOn: 'window',
+              events: {
+                onHover: { enable: true, mode: 'grab' },
+                onClick: { enable: false },
+                resize: true
+              },
+              modes: {
+                grab: { distance: 200, links: { opacity: linkOpacity } }
+              }
+            },
+            detectRetina: true
+          };
+          tsParticles.load('particles-js', options).then(container => {
+            particlesInstance = container;
+          });
+          particlesContainer.style.display = 'block';
+        }
+
+        function refreshParticles(theme) {
+          if (particlesInstance) {
+            particlesInstance.destroy();
+            particlesInstance = null;
+          }
+          createParticles(theme);
+        }
 
         function setDark() {
           root.classList.add('dark-mode');
           if (toggle) toggle.textContent = '☀️';
-          if (particlesContainer) particlesContainer.style.display = 'block'; // Show particles
+          localStorage.setItem('theme', 'dark');
+          refreshParticles('dark');
         }
 
         function setLight() {
           root.classList.remove('dark-mode');
           if (toggle) toggle.textContent = '🌙';
-          if (particlesContainer) particlesContainer.style.display = 'none'; // Hide particles
+          localStorage.setItem('theme', 'light');
+          refreshParticles('light');
         }
 
-        // Initialize theme
+        // Initial setup
         if (stored === 'dark' || (!stored && prefersDark)) {
           setDark();
         } else {
           setLight();
         }
 
-        // Theme toggle listener
         if (toggle) {
-            toggle.addEventListener('click', function() {
-              if (root.classList.contains('dark-mode')) {
-                setLight();
-                localStorage.setItem('theme', 'light');
-              } else {
-                setDark();
-                localStorage.setItem('theme', 'dark');
-              }
-            });
-        }
-
-        // Initialize particles if on homepage
-        if (particlesContainer) {
-          tsParticles.load("particles-js", {
-            particles: {
-              number: { value: 80, density: { enable: true, value_area: 800 } },
-              color: { value: "#ffffff" },
-              shape: { type: "circle" },
-              opacity: { value: 0.5, random: false, anim: { enable: false } },
-              size: { value: 3, random: true, anim: { enable: false } },
-              line_linked: { enable: true, distance: 150, color: "#ffffff", opacity: 0.4, width: 1 },
-              move: { enable: true, speed: 2, direction: "none", random: false, straight: false, out_mode: "out", bounce: false }
-            },
-            interactivity: { detect_on: "canvas", events: { onhover: { enable: false }, onclick: { enable: false }, resize: true } }, // Disable interactivity
-            retina_detect: true
+          toggle.addEventListener('click', () => {
+            if (root.classList.contains('dark-mode')) {
+              setLight();
+            } else {
+              setDark();
+            }
           });
-          // Ensure it's hidden initially if light mode is default
-          if (!root.classList.contains('dark-mode')) {
-              particlesContainer.style.display = 'none';
-          }
         }
       })();
     </script>
