@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connected Dots & Effects</title>
+    <style>
+        /* --- CSS (No changes needed from previous version) --- */
+        body { margin: 0; overflow: hidden; display: flex; height: 100vh; font-family: 'Arial', sans-serif; background-color: #000; /* Base background */ }
+        canvas { display: block; /* background-color set dynamically by JS */ }
+        .controls { position: absolute; bottom: 20px; left: 20px; background-color: rgba(0, 0, 0, 0.65); padding: 10px 15px; border-radius: 8px; color: rgba(255, 255, 255, 0.9); font-size: 14px; transition: opacity 0.3s; opacity: 0.5; z-index: 10; max-height: calc(100vh - 60px); overflow-y: auto; }
+        .controls:hover { opacity: 1; }
+        .controls .slider-container { margin: 8px 0; display: flex; align-items: center; }
+        .controls label { width: 140px; display: inline-block; flex-shrink: 0; }
+        .controls input[type="range"] { width: 120px; flex-grow: 1; min-width: 80px; }
+        .controls .value { width: 45px; text-align: right; margin-left: 10px; flex-shrink: 0; }
+        .color-schemes { margin-top: 10px; display: flex; gap: 8px; }
+        .color-scheme { width: 25px; height: 25px; border-radius: 50%; cursor: pointer; transition: transform 0.2s; border: 2px solid transparent; }
+        .color-scheme:hover { transform: scale(1.1); }
+        .color-scheme.active { border-color: white; }
+        .control-options { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 8px; }
+        .control-option { background-color: rgba(255, 255, 255, 0.1); padding: 5px 10px; border-radius: 5px; cursor: pointer; transition: all 0.2s; }
+        .control-option:hover { background-color: rgba(255, 255, 255, 0.2); }
+        .control-option.active { background-color: rgba(255, 255, 255, 0.4); }
+    </style>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+
+    <div class="controls">
+        <!-- Node/Connection/Physics sliders -->
+        <div class="slider-container"><label for="dots">Nodes:</label><input type="range" id="dots" min="20" max="150" value="60"><span class="value" id="dots-value">60</span></div>
+        <div class="slider-container"><label for="distance">Connection Range:</label><input type="range" id="distance" min="80" max="250" value="150"><span class="value" id="distance-value">150</span></div>
+        <div class="slider-container"><label for="dotLineIntensity">Dot Line Intensity:</label><input type="range" id="dotLineIntensity" min="0" max="1.0" step="0.05" value="0.4"><span class="value" id="dotLineIntensity-value">0.40</span></div>
+        <div class="slider-container"><label for="speed">Movement Speed:</label><input type="range" id="speed" min="0.2" max="2.0" step="0.1" value="0.8"><span class="value" id="speed-value">0.8</span></div>
+        <div class="slider-container"><label for="curve">Curve Intensity:</label><input type="range" id="curve" min="0.1" max="1.0" step="0.1" value="0.5"><span class="value" id="curve-value">0.5</span></div>
+        <div class="slider-container"><label for="physics">Physics Intensity:</label><input type="range" id="physics" min="0" max="1.0" step="0.1" value="0.5"><span class="value" id="physics-value">0.5</span></div>
+        <div class="slider-container"><label for="randomness">Randomness:</label><input type="range" id="randomness" min="0" max="1.0" step="0.01" value="0.1"><span class="value" id="randomness-value">0.100</span></div>
+        <!-- Gravity sliders -->
+        <div class="slider-container"><label for="gravity">Node Gravity:</label><input type="range" id="gravity" min="0" max="2.0" step="0.02" value="0.8"><span class="value" id="gravity-value">0.800</span></div>
+        <div class="slider-container"><label for="gravityRes">Gravity Res:</label><input type="range" id="gravityRes" min="5" max="40" step="1" value="15"><span class="value" id="gravityRes-value">15</span></div>
+        <div class="slider-container"><label for="gravityWarp">Gravity Warp:</label><input type="range" id="gravityWarp" min="0" max="8000" step="100" value="2500"><span class="value" id="gravityWarp-value">2500</span></div>
+        <div class="slider-container"><label for="gridCurve">Grid Curve:</label><input type="range" id="gridCurve" min="0" max="50" step="1" value="15"><span class="value" id="gridCurve-value">15</span></div>
+        <!-- Parallax sliders -->
+        <div class="slider-container"><label for="parallaxFactor">Parallax Factor:</label><input type="range" id="parallaxFactor" min="0.1" max="0.95" step="0.05" value="0.65"><span class="value" id="parallaxFactor-value">0.65</span></div>
+        <div class="slider-container"><label for="parallaxAlpha">Parallax Alpha:</label><input type="range" id="parallaxAlpha" min="0.1" max="1.0" step="0.05" value="0.7"><span class="value" id="parallaxAlpha-value">0.70</span></div>
+        <div class="slider-container"><label for="parallaxWidth">Parallax Width:</label><input type="range" id="parallaxWidth" min="0.1" max="1.0" step="0.05" value="0.8"><span class="value" id="parallaxWidth-value">0.80</span></div>
+        <!-- Effects Sliders -->
+        <div class="slider-container"><label for="sparkIntensity">Spark Intensity:</label><input type="range" id="sparkIntensity" min="0" max="15" step="1" value="5"><span class="value" id="sparkIntensity-value">5</span></div>
+        <div class="slider-container"><label for="motionBlur">Motion Blur:</label><input type="range" id="motionBlur" min="0" max="5" step="0.1" value="1.5"><span class="value" id="motionBlur-value">1.5</span></div>
+        <!-- NEW Dust Particle Sliders -->
+        <div class="slider-container"><label for="dustAmount">Dust Amount:</label><input type="range" id="dustAmount" min="50" max="500" value="300"><span class="value" id="dustAmount-value">300</span></div>
+        <div class="slider-container"><label for="dustSize">Dust Size:</label><input type="range" id="dustSize" min="0.5" max="3.0" step="0.1" value="1.5"><span class="value" id="dustSize-value">1.5</span></div>
+        <div class="slider-container"><label for="dustSpeed">Dust Speed:</label><input type="range" id="dustSpeed" min="0.05" max="1.0" step="0.05" value="0.2"><span class="value" id="dustSpeed-value">0.20</span></div>
+        <div class="slider-container"><label for="dustOpacity">Dust Opacity:</label><input type="range" id="dustOpacity" min="0.1" max="1.0" step="0.05" value="0.4"><span class="value" id="dustOpacity-value">0.40</span></div>
+        <!-- Toggles -->
+        <div class="control-options">
+            <div class="control-option active" id="toggle-gravity-field">Hide Gravity Field</div>
+            <div class="control-option" id="toggle-trails">Show Trails</div>
+            <div class="control-option active" id="toggle-sparks">Show Sparks</div>
+            <div class="control-option active" id="toggle-blur">Enable Motion Blur</div>
+            <div class="control-option active" id="toggle-dust">Show Dust</div>
+        </div>
+        <!-- Color schemes -->
+        <div class="color-schemes">
+             <div class="color-scheme active" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);" data-scheme="blue"></div>
+             <div class="color-scheme" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);" data-scheme="pink"></div>
+             <div class="color-scheme" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);" data-scheme="green"></div>
+             <div class="color-scheme" style="background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);" data-scheme="golden"></div>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+
+        // Color schemes (no changes needed)
+        const colorSchemes = {
+            blue: { background: '#050520', dots: [ { color: '#4facfe', size: 1 }, { color: '#00f2fe', size: 1.5 }, { color: '#ffffff', size: 2 } ], lines: { color1: 'rgba(79, 172, 254, ', color2: 'rgba(0, 242, 254, ' }, gravityField: { lineColor: 'rgba(100, 150, 255, ' }, trail: { color: 'rgba(0, 242, 254, 0.15)' }, sparkColor: ['#ffffff', '#80ffff', '#00f2fe'] }, // Add spark colors
+            pink: { background: '#0a0a18', dots: [ { color: '#f093fb', size: 1 }, { color: '#f5576c', size: 1.5 }, { color: '#ffffff', size: 2 } ], lines: { color1: 'rgba(240, 147, 251, ', color2: 'rgba(245, 87, 108, ' }, gravityField: { lineColor: 'rgba(255, 150, 200, ' }, trail: { color: 'rgba(245, 87, 108, 0.15)' }, sparkColor: ['#ffffff', '#ffc0cb', '#f5576c'] },
+            green: { background: '#0a1a15', dots: [ { color: '#43e97b', size: 1 }, { color: '#38f9d7', size: 1.5 }, { color: '#ffffff', size: 2 } ], lines: { color1: 'rgba(67, 233, 123, ', color2: 'rgba(56, 249, 215, ' }, gravityField: { lineColor: 'rgba(100, 220, 150, ' }, trail: { color: 'rgba(56, 249, 215, 0.15)' }, sparkColor: ['#ffffff', '#a0ffd0', '#38f9d7'] },
+            golden: { background: '#151008', dots: [ { color: '#f6d365', size: 1 }, { color: '#fda085', size: 1.5 }, { color: '#ffffff', size: 2 } ], lines: { color1: 'rgba(246, 211, 101, ', color2: 'rgba(253, 160, 133, ' }, gravityField: { lineColor: 'rgba(255, 200, 100, ' }, trail: { color: 'rgba(253, 160, 133, 0.15)' }, sparkColor: ['#ffffff', '#fff0b0', '#fda085'] }
+        };
+
+        // Configuration
+        const config = {
+            numDots: 60, dotRadius: 2, lineWidth: 0.7,
+            dotConnectionIntensity: 0.4,
+            maxLineDistance: 150, speedFactor: 0.8, bounce: true, curveIntensity: 0.5,
+            colorScheme: 'blue',
+            particleTypes: [ { size: 0.618, frequency: 0.618, mass: 0.618 }, { size: 1.0, frequency: 0.236, mass: 1.0 }, { size: 1.618, frequency: 0.146, mass: 2.618 } ],
+            glow: true, mouseFactor: 0.08, nodeGravity: 0.8,
+            friction: 0.97, collisionDamping: 0.8, windEffect: 0.001,
+            gravityFieldVisible: true,
+            trailsVisible: false, trailLength: 50, randomnessFactor: 0.1,
+            gravityFieldResolution: 15,
+            gravityWarpScale: 2500,
+            gravityFieldMaxMagnitude: 0.1,
+            gravityGridCurveFactor: 15,
+            parallaxFactor: 0.65, parallaxAlphaFactor: 0.7, parallaxLineWidthFactor: 0.8,
+            // --- Effects Config ---
+            sparksEnabled: true,
+            sparkIntensity: 5,     // Base number of particles per spark effect
+            sparkLife: 30,         // Frames a spark particle lasts
+            sparkSpeed: 2.5,       // Max speed of spark particles
+            sparkFriction: 0.96,   // Slowdown factor for sparks
+            motionBlurEnabled: true,
+            motionBlurFactor: 1.5, // Multiplier for line width based on speed
+            motionBlurSpeedThreshold: 2.0, // Speed (pixels/frame) above which blur starts
+            // --- NEW Dust Particles Config ---
+            dustEnabled: true,
+            numDustParticles: 300,
+            dustSize: 1.5,
+            dustSpeed: 0.2,
+            dustOpacity: 0.4,
+            dustFollowFactor: 0.8  // How strongly dust follows gravity (0-1)
+        };
+
+        // --- Global Variables ---
+        let mouseX = null, mouseY = null, mouseRadius = 200;
+        let dots = [];
+        let gravityGridPointsClose = [];
+        let gravityGridPointsFar = [];
+        let sparks = []; // Array to hold spark particles
+        let dustParticles = []; // NEW: Array to hold dust particles
+
+        // --- Initialization & Canvas ---
+        function resizeCanvas() {
+             canvas.width = window.innerWidth; canvas.height = window.innerHeight; 
+             if (config.gravityFieldVisible) calculateGravityGrid();
+        }
+        
+        function initDots() {
+            dots = []; 
+            for (let i = 0; i < config.numDots; i++) { 
+                let typeIndex = 0; 
+                const rand = Math.random(); 
+                let cumulative = 0; 
+                for (let t = 0; t < config.particleTypes.length; t++) { 
+                    cumulative += config.particleTypes[t].frequency; 
+                    if (rand < cumulative) { 
+                        typeIndex = t; 
+                        break; 
+                    } 
+                } 
+                const scheme = colorSchemes[config.colorScheme]; 
+                const dotColor = scheme.dots[typeIndex].color; 
+                const dotSize = scheme.dots[typeIndex].size * config.dotRadius; 
+                const dotMass = config.particleTypes[typeIndex].mass; 
+                dots.push({ 
+                    x: Math.random() * canvas.width, 
+                    y: Math.random() * canvas.height, 
+                    vx: (Math.random() - 0.5) * config.speedFactor, 
+                    vy: (Math.random() - 0.5) * config.speedFactor, 
+                    radius: dotSize, 
+                    mass: dotMass, 
+                    color: dotColor, 
+                    type: typeIndex, 
+                    phase: Math.random() * Math.PI * 2, 
+                    trail: [], 
+                    prevX: 0, 
+                    prevY: 0 
+                }); 
+            } 
+            
+            if (config.gravityFieldVisible) calculateGravityGrid(); 
+            
+            sparks = []; // Clear sparks on reset
+            
+            // Initialize dust particles if enabled
+            if (config.dustEnabled) {
+                initDustParticles();
+            }
+        }
+
+        // --- NEW: Initialize Dust Particles ---
+        function initDustParticles() {
+            dustParticles = [];
+            for (let i = 0; i < config.numDustParticles; i++) {
+                dustParticles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    size: (Math.random() * 0.5 + 0.5) * config.dustSize,
+                    alpha: (Math.random() * 0.5 + 0.5) * config.dustOpacity,
+                    vx: (Math.random() - 0.5) * config.dustSpeed * 0.5,
+                    vy: (Math.random() - 0.5) * config.dustSpeed * 0.5,
+                    phase: Math.random() * Math.PI * 2,
+                    layer: Math.random()  // 0-1 for parallax effect
+                });
+            }
+        }
+
+        // --- Physics and Updates ---
+        function getPulsatingRadius(dot, time) {
+             return dot.radius * (1 + 0.15 * Math.sin(time * 0.001 + dot.phase));
+        }
+
+        function updateDots() {
+            const time = Date.now();
+            const windAngle = time * 0.0001;
+            const windForceX = Math.cos(windAngle) * config.windEffect;
+            const windForceY = Math.sin(windAngle) * config.windEffect;
+            let forces = Array(dots.length).fill().map(() => ({ fx: 0, fy: 0 }));
+
+            // --- Pre-calculate forces ---
+            for (let i = 0; i < dots.length; i++) { 
+                const dot1 = dots[i]; 
+                for (let j = 0; j < dots.length; j++) { 
+                    if (i === j) continue; 
+                    const dot2 = dots[j]; 
+                    const dx = dot2.x - dot1.x; 
+                    const dy = dot2.y - dot1.y; 
+                    const distanceSquared = Math.max(dx * dx + dy * dy, (dot1.radius + dot2.radius) * (dot1.radius + dot2.radius)); 
+                    const distance = Math.sqrt(distanceSquared); 
+                    const gravForce = config.nodeGravity * dot2.mass / distanceSquared; 
+                    forces[i].fx += gravForce * dx / distance; 
+                    forces[i].fy += gravForce * dy / distance; 
+                } 
+            }
+
+            for (let i = 0; i < dots.length; i++) {
+                const dot = dots[i];
+
+                // Store previous position for potential future motion blur methods
+                dot.prevX = dot.x;
+                dot.prevY = dot.y;
+
+                // --- Trails ---
+                if (config.trailsVisible) { 
+                    if (dot.trail.length >= config.trailLength) dot.trail.shift(); 
+                    dot.trail.push({ x: dot.x, y: dot.y }); 
+                } else { 
+                    dot.trail = []; 
+                }
+
+                // --- Apply forces ---
+                dot.vx += forces[i].fx; 
+                dot.vy += forces[i].fy; 
+                
+                if (config.randomnessFactor > 0) { 
+                    const randomAngle = Math.random() * Math.PI * 2; 
+                    const randomForce = Math.random() * config.randomnessFactor * 0.05; 
+                    dot.vx += Math.cos(randomAngle) * randomForce; 
+                    dot.vy += Math.sin(randomAngle) * randomForce; 
+                } 
+                
+                const phi = 1.618033988749895; 
+                const oscX = Math.sin(time * 0.0005 * (1/phi) + dot.phase) * 0.1; 
+                const oscY = Math.cos(time * 0.0005 * phi + dot.phase + 1) * 0.1; 
+                
+                dot.vx += windForceX * (1 + 0.2 * Math.sin(time * 0.001 * (1/phi) + dot.phase * phi)); 
+                dot.vy += windForceY * (1 + 0.2 * Math.cos(time * 0.001 * phi + dot.phase * (1/phi))); 
+                
+                if (mouseX !== null && mouseY !== null) { 
+                    const mdx = dot.x - mouseX; 
+                    const mdy = dot.y - mouseY; 
+                    const mouseDistance = Math.sqrt(mdx * mdx + mdy * mdy); 
+                    if (mouseDistance < mouseRadius && mouseDistance > 0) { 
+                        const force = (1 - mouseDistance / mouseRadius) * config.mouseFactor * 50; 
+                        dot.vx += mdx / mouseDistance * force / dot.mass; 
+                        dot.vy += mdy / mouseDistance * force / dot.mass; 
+                    } 
+                }
+
+                // --- Collision Detection & Response ---
+                for (let j = i + 1; j < dots.length; j++) {
+                    const otherDot = dots[j];
+                    const cdx = otherDot.x - dot.x;
+                    const cdy = otherDot.y - dot.y;
+                    const distance = Math.sqrt(cdx * cdx + cdy * cdy);
+                    const minDistance = dot.radius + otherDot.radius;
+
+                    if (distance < minDistance) {
+                        const nx = cdx / distance; 
+                        const ny = cdy / distance;
+                        const rvx = dot.vx - otherDot.vx; 
+                        const rvy = dot.vy - otherDot.vy;
+                        const velocityAlongNormal = rvx * nx + rvy * ny;
+
+                        if (velocityAlongNormal < 0) { // Check if moving towards each other
+                            const impulseScalar = -(1 + config.collisionDamping) * velocityAlongNormal / (1/dot.mass + 1/otherDot.mass);
+
+                            // Apply impulse
+                            dot.vx -= impulseScalar * nx / dot.mass; 
+                            dot.vy -= impulseScalar * ny / dot.mass;
+                            otherDot.vx += impulseScalar * nx / otherDot.mass; 
+                            otherDot.vy += impulseScalar * ny / otherDot.mass;
+
+                            // --- GENERATE SPARKS ---
+                            if (config.sparksEnabled && config.sparkIntensity > 0) {
+                                const collisionStrength = Math.min(Math.abs(velocityAlongNormal) * 0.5, 5); // Base strength on impact velocity
+                                const numSparks = Math.max(1, Math.floor(config.sparkIntensity * collisionStrength));
+                                const collisionX = dot.x + nx * dot.radius; // Approx collision point
+                                const collisionY = dot.y + ny * dot.radius;
+                                const scheme = colorSchemes[config.colorScheme];
+                                for (let k = 0; k < numSparks; k++) {
+                                    const angle = Math.random() * Math.PI * 2;
+                                    const speed = (Math.random() * 0.5 + 0.5) * config.sparkSpeed * (1 + collisionStrength * 0.2); // Sparks faster on harder hits
+                                    sparks.push({
+                                        x: collisionX + (Math.random() - 0.5) * 5, // Add slight position jitter
+                                        y: collisionY + (Math.random() - 0.5) * 5,
+                                        vx: Math.cos(angle) * speed + (dot.vx + otherDot.vx) * 0.1, // Inherit some average velocity
+                                        vy: Math.sin(angle) * speed + (dot.vy + otherDot.vy) * 0.1,
+                                        life: config.sparkLife * (0.8 + Math.random() * 0.4), // Vary life slightly
+                                        maxLife: config.sparkLife,
+                                        color: scheme.sparkColor[Math.floor(Math.random() * scheme.sparkColor.length)],
+                                        size: Math.random() * 1.5 + 0.5
+                                    });
+                                }
+                            }
+
+                            // Positional correction (simple separation)
+                            const overlap = (minDistance - distance) / 2;
+                            const separationX = nx * overlap * 1.01; // Add tiny boost to prevent sticking
+                            const separationY = ny * overlap * 1.01;
+                            dot.x -= separationX; 
+                            dot.y -= separationY;
+                            otherDot.x += separationX; 
+                            otherDot.y += separationY;
+                        }
+                    }
+                }
+
+                // --- Update Position & Apply Friction ---
+                dot.x += dot.vx + oscX * config.speedFactor; 
+                dot.y += dot.vy + oscY * config.speedFactor; 
+                dot.vx *= config.friction; 
+                dot.vy *= config.friction;
+
+                // --- Boundary Interaction ---
+                if (config.bounce) { 
+                    if (dot.x < dot.radius) { 
+                        dot.x = dot.radius; 
+                        dot.vx = -dot.vx * config.collisionDamping; 
+                    } else if (dot.x > canvas.width - dot.radius) { 
+                        dot.x = canvas.width - dot.radius; 
+                        dot.vx = -dot.vx * config.collisionDamping; 
+                    } 
+                    
+                    if (dot.y < dot.radius) { 
+                        dot.y = dot.radius; 
+                        dot.vy = -dot.vy * config.collisionDamping; 
+                    } else if (dot.y > canvas.height - dot.radius) { 
+                        dot.y = canvas.height - dot.radius; 
+                        dot.vy = -dot.vy * config.collisionDamping; 
+                    } 
+                } else { 
+                    if (dot.x < -dot.radius) dot.x = canvas.width + dot.radius; 
+                    if (dot.x > canvas.width + dot.radius) dot.x = -dot.radius; 
+                    if (dot.y < -dot.radius) dot.y = canvas.height + dot.radius; 
+                    if (dot.y > canvas.height + dot.radius) dot.y = -dot.radius; 
+                }
+
+                // --- Random Jitter & Speed Cap ---
+                if (Math.random() < 0.005 * (1/1.618)) { 
+                    dot.vx += (Math.random() - 0.5) * 0.1 * config.speedFactor; 
+                    dot.vy += (Math.random() - 0.5) * 0.1 * config.speedFactor; 
+                } 
+                
+                const massSpeedFactor = Math.sqrt(dot.mass); 
+                const maxSpeed = config.speedFactor * (1.5 + 0.5 * massSpeedFactor); 
+                const speed = Math.sqrt(dot.vx * dot.vx + dot.vy * dot.vy); 
+                if (speed > maxSpeed) { 
+                    dot.vx = (dot.vx / speed) * maxSpeed; 
+                    dot.vy = (dot.vy / speed) * maxSpeed; 
+                }
+            }
+
+            if (config.gravityFieldVisible) calculateGravityGrid();
+        }
+
+        // --- Spark Update Function ---
+        function updateSparks() {
+            for (let i = sparks.length - 1; i >= 0; i--) {
+                const p = sparks[i];
+                p.x += p.vx;
+                p.y += p.vy;
+                p.vx *= config.sparkFriction;
+                p.vy *= config.sparkFriction;
+                p.life--;
+
+                if (p.life <= 0) {
+                    sparks.splice(i, 1); // Remove dead particles
+                }
+            }
+        }
+
+        // --- NEW: Dust Particles Update Function ---
+        function updateDustParticles() {
+            const time = Date.now();
+            
+            for (let i = 0; i < dustParticles.length; i++) {
+                const dust = dustParticles[i];
+                
+                // Get the gravitational force at the dust particle's position
+                const force = getGravityForceAt(dust.x, dust.y);
+                
+                // Apply a portion of the gravitational force
+                dust.vx += force.fx * config.dustFollowFactor * 0.02;
+                dust.vy += force.fy * config.dustFollowFactor * 0.02;
+                
+                // Add a slight sine wave motion for more organic movement
+                const waveX = Math.sin(time * 0.0003 + dust.phase) * 0.02;
+                const waveY = Math.cos(time * 0.0003 + dust.phase + 1.5) * 0.02;
+                
+                dust.vx += waveX;
+                dust.vy += waveY;
+                
+                // Apply friction to prevent excessive speed
+                dust.vx *= 0.98;
+                dust.vy *= 0.98;
+                
+                // Cap maximum speed
+                const speed = Math.sqrt(dust.vx * dust.vx + dust.vy * dust.vy);
+                const maxSpeed = config.dustSpeed * (1 + force.magnitude * 2);
+                if (speed > maxSpeed) {
+                    dust.vx = (dust.vx / speed) * maxSpeed;
+                    dust.vy = (dust.vy / speed) * maxSpeed;
+                }
+                
+                // Update position
+                dust.x += dust.vx;
+                dust.y += dust.vy;
+                
+                // Wrap around edges
+                if (dust.x < 0) dust.x = canvas.width;
+                if (dust.x > canvas.width) dust.x = 0;
+                if (dust.y < 0) dust.y = canvas.height;
+                if (dust.y > canvas.height) dust.y = 0;
+            }
+        }
+
+        // --- Gravity Field Calculation ---
+        function getGravityForceAt(px, py) {
+            let forceX = 0; 
+            let forceY = 0; 
+            const minPixelDistSq = 25 * 25; 
+            
+            for (const dot of dots) { 
+                const dx = dot.x - px; 
+                const dy = dot.y - py; 
+                const distanceSquared = Math.max(dx * dx + dy * dy, minPixelDistSq); 
+                const distance = Math.sqrt(distanceSquared); 
+                const gravForce = config.nodeGravity * dot.mass / distanceSquared; 
+                forceX += gravForce * dx / distance; 
+                forceY += gravForce * dy / distance; 
+            } 
+            
+            return { 
+                fx: forceX, 
+                fy: forceY, 
+                magnitude: Math.sqrt(forceX * forceX + forceY * forceY) 
+            };
+        }
+        
+        function calculateGravityGrid() {
+            const gridSize = config.gravityFieldResolution; 
+            const numPointsX = gridSize + 1; 
+            const numPointsY = gridSize + 1; 
+            const cellWidth = canvas.width / gridSize; 
+            const cellHeight = canvas.height / gridSize; 
+            
+            gravityGridPointsClose = []; 
+            gravityGridPointsFar = []; 
+            let maxMag = 0; 
+            
+            for (let y = 0; y < numPointsY; y++) { 
+                let rowClose = []; 
+                let rowFar = []; 
+                
+                for (let x = 0; x < numPointsX; x++) { 
+                    const idealX = x * cellWidth; 
+                    const idealY = y * cellHeight; 
+                    const force = getGravityForceAt(idealX, idealY); 
+                    maxMag = Math.max(maxMag, force.magnitude); 
+                    
+                    const warpScaleClose = config.gravityWarpScale; 
+                    const displacedX_Close = idealX - force.fx * warpScaleClose; 
+                    const displacedY_Close = idealY - force.fy * warpScaleClose; 
+                    rowClose.push({ 
+                        x: displacedX_Close, 
+                        y: displacedY_Close, 
+                        magnitude: force.magnitude 
+                    }); 
+                    
+                    const warpScaleFar = config.gravityWarpScale * config.parallaxFactor; 
+                    const displacedX_Far = idealX - force.fx * warpScaleFar; 
+                    const displacedY_Far = idealY - force.fy * warpScaleFar; 
+                    rowFar.push({ 
+                        x: displacedX_Far, 
+                        y: displacedY_Far, 
+                        magnitude: force.magnitude 
+                    }); 
+                } 
+                
+                gravityGridPointsClose.push(rowClose); 
+                gravityGridPointsFar.push(rowFar); 
+            } 
+            
+            config.gravityFieldMaxMagnitude = Math.max(config.gravityFieldMaxMagnitude * 0.9 + maxMag * 0.1, 0.001);
+        }
+
+        // --- Drawing ---
+
+        // --- MODIFIED: Helper function to draw a single grid layer with color gradients ---
+        function drawGridLayer(gridPoints, alphaMultiplier, lineWidthMultiplier) {
+            if (!gridPoints || gridPoints.length === 0 || gridPoints[0].length === 0) return;
+            
+            const scheme = colorSchemes[config.colorScheme];
+            const baseLineColor = scheme.gravityField.lineColor;
+            
+            // Extract the base RGB components for color transitions
+            let baseR, baseG, baseB;
+            
+            if (baseLineColor.startsWith('rgba(')) {
+                const parts = baseLineColor.substring(5, baseLineColor.lastIndexOf(',')).split(',');
+                baseR = parseInt(parts[0].trim());
+                baseG = parseInt(parts[1].trim());
+                baseB = parseInt(parts[2].trim());
+            } else {
+                // Default fallback if we can't extract
+                baseR = 100;
+                baseG = 150;
+                baseB = 255;
+            }
+            
+            const numPointsY = gridPoints.length;
+            const numPointsX = gridPoints[0].length;
+            const curveFactor = config.gravityGridCurveFactor;
+            
+            ctx.lineCap = "round";
+            
+            for (let y = 0; y < numPointsY; y++) {
+                for (let x = 0; x < numPointsX; x++) {
+                    const p1 = gridPoints[y][x];
+                    const normalizedMagP1 = Math.min(p1.magnitude / (config.gravityFieldMaxMagnitude + 0.0001), 1.0);
+                    const alpha = (Math.pow(normalizedMagP1, 0.4) * 0.9 + 0.1) * alphaMultiplier;
+                    const lineWidth = (Math.pow(normalizedMagP1, 0.6) * 3.0 + 0.5) * lineWidthMultiplier;
+                    
+                    // Create color gradient based on magnitude
+                    // As force increases: blue -> white -> yellow -> red
+                    let r, g, b;
+                    
+                    if (normalizedMagP1 < 0.5) {
+                        // Base color (usually blue) to white
+                        const t = normalizedMagP1 * 2; // 0 to 1
+                        r = baseR + (255 - baseR) * t;
+                        g = baseG + (255 - baseG) * t;
+                        b = baseB + (255 - baseB) * t;
+                    } else {
+                        // White to yellow to red
+                        const t = (normalizedMagP1 - 0.5) * 2; // 0 to 1
+                        // White to yellow to red transition
+                        r = 255; // Stays at 255 for yellow and red
+                        g = 255 * (1 - t * 0.8); // Decreases to create red
+                        b = 255 * (1 - t); // Decreases faster to create yellow, then red
+                    }
+                    
+                    // Generate the color string with proper alpha
+                    const lineColor = `rgba(${Math.round(r)}, ${Math.round(g)}, ${Math.round(b)}, ${alpha})`;
+                    
+                    if (x + 1 < numPointsX) {
+                        const p2 = gridPoints[y][x+1];
+                        const normalizedMagP2 = Math.min(p2.magnitude / (config.gravityFieldMaxMagnitude + 0.0001), 1.0);
+                        
+                        // Get color for end point
+                        let r2, g2, b2;
+                        if (normalizedMagP2 < 0.5) {
+                            const t = normalizedMagP2 * 2;
+                            r2 = baseR + (255 - baseR) * t;
+                            g2 = baseG + (255 - baseG) * t;
+                            b2 = baseB + (255 - baseB) * t;
+                        } else {
+                            const t = (normalizedMagP2 - 0.5) * 2;
+                            r2 = 255;
+                            g2 = 255 * (1 - t * 0.8);
+                            b2 = 255 * (1 - t);
+                        }
+                        
+                        const endColor = `rgba(${Math.round(r2)}, ${Math.round(g2)}, ${Math.round(b2)}, ${alpha})`;
+                        
+                        const avgNormMag = (normalizedMagP1 + normalizedMagP2) / 2;
+                        const midX = (p1.x + p2.x) / 2;
+                        const midY = (p1.y + p2.y) / 2;
+                        const vecX = p2.x - p1.x;
+                        const vecY = p2.y - p1.y;
+                        let perpX = -vecY;
+                        let perpY = vecX;
+                        const len = Math.sqrt(perpX*perpX + perpY*perpY);
+                        
+                        if (len > 0) {
+                            perpX /= len;
+                            perpY /= len;
+                        }
+                        
+                        const offset = avgNormMag * curveFactor;
+                        const ctrlX = midX + perpX * offset;
+                        const ctrlY = midY + perpY * offset;
+                        
+                        ctx.beginPath();
+                        ctx.moveTo(p1.x, p1.y);
+                        ctx.quadraticCurveTo(ctrlX, ctrlY, p2.x, p2.y);
+                        ctx.lineWidth = lineWidth;
+                        
+                        // Create gradient between the two points
+                        const gradient = ctx.createLinearGradient(p1.x, p1.y, p2.x, p2.y);
+                        gradient.addColorStop(0, lineColor);
+                        gradient.addColorStop(1, endColor);
+                        ctx.strokeStyle = gradient;
+                        ctx.stroke();
+                    }
+                    
+                    if (y + 1 < numPointsY) {
+                        const p3 = gridPoints[y+1][x];
+                        const normalizedMagP3 = Math.min(p3.magnitude / (config.gravityFieldMaxMagnitude + 0.0001), 1.0);
+                        
+                        // Get color for end point
+                        let r3, g3, b3;
+                        if (normalizedMagP3 < 0.5) {
+                            const t = normalizedMagP3 * 2;
+                            r3 = baseR + (255 - baseR) * t;
+                            g3 = baseG + (255 - baseG) * t;
+                            b3 = baseB + (255 - baseB) * t;
+                        } else {
+                            const t = (normalizedMagP3 - 0.5) * 2;
+                            r3 = 255;
+                            g3 = 255 * (1 - t * 0.8);
+                            b3 = 255 * (1 - t);
+                        }
+                        
+                        const endColor = `rgba(${Math.round(r3)}, ${Math.round(g3)}, ${Math.round(b3)}, ${alpha})`;
+                        
+                        const avgNormMag = (normalizedMagP1 + normalizedMagP3) / 2;
+                        const midX = (p1.x + p3.x) / 2;
+                        const midY = (p1.y + p3.y) / 2;
+                        const vecX = p3.x - p1.x;
+                        const vecY = p3.y - p1.y;
+                        let perpX = -vecY;
+                        let perpY = vecX;
+                        const len = Math.sqrt(perpX*perpX + perpY*perpY);
+                        
+                        if (len > 0) {
+                            perpX /= len;
+                            perpY /= len;
+                        }
+                        
+                        const offset = avgNormMag * curveFactor;
+                        const ctrlX = midX + perpX * offset;
+                        const ctrlY = midY + perpY * offset;
+                        
+                        ctx.beginPath();
+                        ctx.moveTo(p1.x, p1.y);
+                        ctx.quadraticCurveTo(ctrlX, ctrlY, p3.x, p3.y);
+                        ctx.lineWidth = lineWidth;
+                        
+                        // Create gradient between the two points
+                        const gradient = ctx.createLinearGradient(p1.x, p1.y, p3.x, p3.y);
+                        gradient.addColorStop(0, lineColor);
+                        gradient.addColorStop(1, endColor);
+                        ctx.strokeStyle = gradient;
+                        ctx.stroke();
+                    }
+                }
+            }
+            
+            ctx.lineCap = "butt";
+        }
+
+        // --- NEW: Dust Particles Drawing Function ---
+        function drawDustParticles() {
+            const scheme = colorSchemes[config.colorScheme];
+            const time = Date.now();
+            
+            ctx.globalCompositeOperation = 'lighter';
+            
+            for (const dust of dustParticles) {
+                // Pulsating size and opacity for more dynamic look
+                const pulseFactor = 0.15 * Math.sin(time * 0.001 + dust.phase);
+                const currentSize = dust.size * (1 + pulseFactor);
+                const currentAlpha = dust.alpha * (0.8 + 0.2 * Math.sin(time * 0.0015 + dust.phase));
+                
+                // Get color based on the color scheme
+                let dustColor;
+                // Use different colors based on layer for depth effect
+                if (dust.layer < 0.33) {
+                    dustColor = scheme.dots[0].color; // Use the first dot color
+                } else if (dust.layer < 0.66) {
+                    dustColor = scheme.dots[1].color; // Use the second dot color
+                } else {
+                    dustColor = scheme.dots[2].color; // Use the third dot color
+                }
+                
+                // Convert hex to rgba for opacity control
+                let rgbaColor;
+                if (dustColor.startsWith('#')) {
+                    const bigint = parseInt(dustColor.slice(1), 16);
+                    const r = (bigint >> 16) & 255;
+                    const g = (bigint >> 8) & 255;
+                    const b = bigint & 255;
+                    rgbaColor = `rgba(${r}, ${g}, ${b}, ${currentAlpha})`;
+                } else {
+                    rgbaColor = dustColor.replace('rgb', 'rgba').replace(')', `, ${currentAlpha})`);
+                }
+                
+                // Draw the dust particle
+                ctx.beginPath();
+                ctx.arc(dust.x, dust.y, currentSize, 0, Math.PI * 2);
+                ctx.fillStyle = rgbaColor;
+                ctx.fill();
+            }
+            
+            ctx.globalCompositeOperation = 'source-over';
+        }
+
+        // --- Spark Drawing Function ---
+        function drawSparks() {
+            ctx.globalCompositeOperation = 'lighter'; // Additive blending for sparks
+            for (const p of sparks) {
+                const alpha = (p.life / p.maxLife) * 0.9; // Fade out
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size * (p.life / p.maxLife), 0, Math.PI * 2); // Shrink over time
+                ctx.fillStyle = p.color;
+                ctx.globalAlpha = alpha;
+                ctx.fill();
+            }
+            ctx.globalAlpha = 1.0; // Reset alpha
+            ctx.globalCompositeOperation = 'source-over'; // Reset composite mode
+        }
+
+        function drawDots() {
+            const time = Date.now();
+            const scheme = colorSchemes[config.colorScheme];
+
+            canvas.style.backgroundColor = scheme.background;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // --- Draw Warped Gravity Field (Parallax) ---
+            if (config.gravityFieldVisible) { 
+                drawGridLayer(gravityGridPointsFar, config.parallaxAlphaFactor, config.parallaxLineWidthFactor); 
+                drawGridLayer(gravityGridPointsClose, 1.0, 1.0); 
+            }
+
+            // --- Draw Trails (with Motion Blur) ---
+            if (config.trailsVisible) {
+                ctx.lineCap = "round";
+                for (let i = 0; i < dots.length; i++) {
+                    const dot = dots[i];
+                    if (dot.trail.length > 1) {
+                        ctx.beginPath();
+                        ctx.moveTo(dot.trail[0].x, dot.trail[0].y);
+
+                        for (let t = 1; t < dot.trail.length; t++) {
+                            const p1 = dot.trail[t-1];
+                            const p2 = dot.trail[t];
+                            const midX = (p1.x + p2.x) / 2;
+                            const midY = (p1.y + p2.y) / 2;
+
+                            // --- Motion Blur Calculation ---
+                            let currentLineWidth = dot.radius * 0.7; // Base width
+                            if (config.motionBlurEnabled && config.motionBlurFactor > 0) {
+                                const dx = p2.x - p1.x;
+                                const dy = p2.y - p1.y;
+                                const speed = Math.sqrt(dx * dx + dy * dy); // Speed between these two points
+                                if (speed > config.motionBlurSpeedThreshold) {
+                                    const blurAmount = Math.min((speed - config.motionBlurSpeedThreshold) * 0.1 * config.motionBlurFactor, dot.radius * 1.5); // Limit max blur width
+                                    currentLineWidth += blurAmount;
+                                }
+                            }
+                            // --- End Motion Blur Calc ---
+
+                            ctx.lineWidth = currentLineWidth; // Apply potentially modified width
+                            ctx.quadraticCurveTo(p1.x, p1.y, midX, midY);
+                        }
+                        ctx.lineTo(dot.trail[dot.trail.length - 1].x, dot.trail[dot.trail.length - 1].y);
+
+                        // Gradient remains the same
+                        const trailGradient = ctx.createLinearGradient(dot.trail[0].x, dot.trail[0].y, dot.trail[dot.trail.length - 1].x, dot.trail[dot.trail.length - 1].y);
+                        const baseColor = scheme.trail.color.substring(0, scheme.trail.color.lastIndexOf(',') + 1);
+                        trailGradient.addColorStop(0, baseColor + " 0)");
+                        trailGradient.addColorStop(1, scheme.trail.color);
+                        ctx.strokeStyle = trailGradient;
+                        ctx.stroke();
+                    }
+                }
+                ctx.lineCap = "butt"; // Reset line cap
+                ctx.lineWidth = 1; // Reset line width just in case
+            }
+
+            // --- Draw Connecting Lines (Dots) ---
+            ctx.globalCompositeOperation = 'lighter'; 
+            for (let i = 0; i < dots.length; i++) { 
+                const dot1 = dots[i]; 
+                for (let j = i + 1; j < dots.length; j++) { 
+                    const dot2 = dots[j]; 
+                    const dx = dot1.x - dot2.x; 
+                    const dy = dot1.y - dot2.y; 
+                    const distance = Math.sqrt(dx * dx + dy * dy); 
+                    if (distance <= config.maxLineDistance) { 
+                        const opacity = config.dotConnectionIntensity * Math.pow(1 - distance / config.maxLineDistance, 2); 
+                        const lineGradient = ctx.createLinearGradient(dot1.x, dot1.y, dot2.x, dot2.y); 
+                        lineGradient.addColorStop(0, scheme.lines.color1 + opacity + ')'); 
+                        lineGradient.addColorStop(1, scheme.lines.color2 + opacity + ')'); 
+                        const midX = (dot1.x + dot2.x) / 2; 
+                        const midY = (dot1.y + dot2.y) / 2; 
+                        const perpX = -dy * config.curveIntensity; 
+                        const perpY = dx * config.curveIntensity; 
+                        const animationFactor = Math.sin(time * 0.001 + dot1.phase + dot2.phase) * 0.3; 
+                        const ctrlX = midX + perpX * (1 + animationFactor); 
+                        const ctrlY = midY + perpY * (1 + animationFactor); 
+                        if (config.glow && distance < config.maxLineDistance * 0.6) { 
+                            const glowIntensity = 1 - distance / (config.maxLineDistance * 0.6); 
+                            const glowIterations = Math.floor(3 * glowIntensity); 
+                            for (let g = 0; g < glowIterations; g++) { 
+                                const glowOpacity = opacity * (0.15 / 0.4) * Math.pow((glowIterations - g) / glowIterations, 2); 
+                                ctx.beginPath(); 
+                                ctx.moveTo(dot1.x, dot1.y); 
+                                ctx.quadraticCurveTo(ctrlX, ctrlY, dot2.x, dot2.y); 
+                                ctx.lineWidth = config.lineWidth + g * 0.8; 
+                                ctx.strokeStyle = lineGradient; 
+                                ctx.globalAlpha = glowOpacity; 
+                                ctx.stroke(); 
+                            } 
+                            ctx.globalAlpha = 1; 
+                        } 
+                        ctx.beginPath(); 
+                        ctx.moveTo(dot1.x, dot1.y); 
+                        ctx.quadraticCurveTo(ctrlX, ctrlY, dot2.x, dot2.y); 
+                        ctx.strokeStyle = lineGradient; 
+                        ctx.lineWidth = config.lineWidth; 
+                        ctx.stroke(); 
+                    } 
+                } 
+            } 
+            ctx.globalCompositeOperation = 'source-over';
+
+            // --- Draw Dots ---
+            for (const dot of dots) { 
+                const radius = getPulsatingRadius(dot, time); 
+                if (config.glow) { 
+                    const glowSize = radius * 3; 
+                    const radialGradient = ctx.createRadialGradient(dot.x, dot.y, 0, dot.x, dot.y, glowSize); 
+                    let baseColor = dot.color; 
+                    if (baseColor.startsWith('#')) { 
+                        let bigint = parseInt(baseColor.slice(1), 16); 
+                        let r = (bigint >> 16) & 255, g = (bigint >> 8) & 255, b = bigint & 255; 
+                        baseColor = `rgb(${r}, ${g}, ${b})`; 
+                    } 
+                    let rgbaColorInner = baseColor.replace('rgb', 'rgba').replace(')', ', 0.5)'); 
+                    let rgbaColorOuter = baseColor.replace('rgb', 'rgba').replace(')', ', 0)'); 
+                    radialGradient.addColorStop(0, rgbaColorInner); 
+                    radialGradient.addColorStop(0.4, rgbaColorInner); 
+                    radialGradient.addColorStop(1, rgbaColorOuter); 
+                    ctx.beginPath(); 
+                    ctx.arc(dot.x, dot.y, glowSize, 0, Math.PI * 2); 
+                    ctx.fillStyle = radialGradient; 
+                    ctx.fill(); 
+                } 
+                ctx.beginPath(); 
+                ctx.arc(dot.x, dot.y, radius, 0, Math.PI * 2); 
+                ctx.fillStyle = dot.color; 
+                ctx.fill(); 
+            }
+
+            // --- Draw Sparks ---
+            if (config.sparksEnabled) {
+                drawSparks();
+            }
+            
+            // --- Draw Dust Particles ---
+            if (config.dustEnabled) {
+                drawDustParticles();
+            }
+        }
+
+        // --- Event Listeners and Controls ---
+        function setupMouseInteraction() {
+            canvas.addEventListener('mousemove', function(e) { 
+                const rect = canvas.getBoundingClientRect(); 
+                mouseX = e.clientX - rect.left; 
+                mouseY = e.clientY - rect.top; 
+            }); 
+            
+            canvas.addEventListener('mouseleave', function() { 
+                mouseX = null; 
+                mouseY = null; 
+            }); 
+            
+            canvas.addEventListener('click', function(e) { 
+                const rect = canvas.getBoundingClientRect(); 
+                const clickX = e.clientX - rect.left; 
+                const clickY = e.clientY - rect.top; 
+                
+                for (const dot of dots) { 
+                    const dx = dot.x - clickX; 
+                    const dy = dot.y - clickY; 
+                    const distance = Math.sqrt(dx * dx + dy * dy); 
+                    
+                    if (distance < 150 && distance > 0) { 
+                        const force = (1 - distance / 150) * 5 / dot.mass; 
+                        dot.vx += dx / distance * force; 
+                        dot.vy += dy / distance * force; 
+                    } 
+                } 
+            });
+        }
+
+        function setupControls() {
+            // Basic, Gravity, Parallax Controls
+            document.getElementById('dots').addEventListener('input', function() { 
+                config.numDots = parseInt(this.value); 
+                document.getElementById('dots-value').textContent = config.numDots; 
+                initDots(); 
+            });
+            
+            document.getElementById('distance').addEventListener('input', function() { 
+                config.maxLineDistance = parseInt(this.value); 
+                document.getElementById('distance-value').textContent = config.maxLineDistance; 
+            });
+            
+            document.getElementById('dotLineIntensity').addEventListener('input', function() { 
+                config.dotConnectionIntensity = parseFloat(this.value); 
+                document.getElementById('dotLineIntensity-value').textContent = config.dotConnectionIntensity.toFixed(2); 
+            });
+            
+            document.getElementById('speed').addEventListener('input', function() { 
+                config.speedFactor = parseFloat(this.value); 
+                document.getElementById('speed-value').textContent = config.speedFactor.toFixed(1); 
+            });
+            
+            document.getElementById('curve').addEventListener('input', function() { 
+                config.curveIntensity = parseFloat(this.value); 
+                document.getElementById('curve-value').textContent = config.curveIntensity.toFixed(1); 
+            });
+            
+            document.getElementById('physics').addEventListener('input', function() { 
+                const physicsIntensity = parseFloat(this.value); 
+                document.getElementById('physics-value').textContent = physicsIntensity.toFixed(1); 
+                config.friction = 0.95 + physicsIntensity * 0.04; 
+                config.collisionDamping = 0.5 + physicsIntensity * 0.4; 
+                config.windEffect = physicsIntensity * 0.002; 
+            });
+            
+            document.getElementById('randomness').addEventListener('input', function() { 
+                config.randomnessFactor = parseFloat(this.value); 
+                document.getElementById('randomness-value').textContent = config.randomnessFactor.toFixed(3); 
+            });
+            
+            document.getElementById('gravity').addEventListener('input', function() { 
+                config.nodeGravity = parseFloat(this.value); 
+                document.getElementById('gravity-value').textContent = config.nodeGravity.toFixed(3); 
+            });
+            
+            document.getElementById('gravityRes').addEventListener('input', function() { 
+                config.gravityFieldResolution = parseInt(this.value); 
+                document.getElementById('gravityRes-value').textContent = config.gravityFieldResolution; 
+                calculateGravityGrid(); 
+            });
+            
+            document.getElementById('gravityWarp').addEventListener('input', function() { 
+                config.gravityWarpScale = parseFloat(this.value); 
+                document.getElementById('gravityWarp-value').textContent = config.gravityWarpScale; 
+            });
+            
+            document.getElementById('gridCurve').addEventListener('input', function() { 
+                config.gravityGridCurveFactor = parseFloat(this.value); 
+                document.getElementById('gridCurve-value').textContent = config.gravityGridCurveFactor; 
+            });
+            
+            document.getElementById('parallaxFactor').addEventListener('input', function() { 
+                config.parallaxFactor = parseFloat(this.value); 
+                document.getElementById('parallaxFactor-value').textContent = config.parallaxFactor.toFixed(2); 
+                calculateGravityGrid(); 
+            });
+            
+            document.getElementById('parallaxAlpha').addEventListener('input', function() { 
+                config.parallaxAlphaFactor = parseFloat(this.value); 
+                document.getElementById('parallaxAlpha-value').textContent = config.parallaxAlphaFactor.toFixed(2); 
+            });
+            
+            document.getElementById('parallaxWidth').addEventListener('input', function() { 
+                config.parallaxLineWidthFactor = parseFloat(this.value); 
+                document.getElementById('parallaxWidth-value').textContent = config.parallaxLineWidthFactor.toFixed(2); 
+            });
+
+            // Effects Controls
+            document.getElementById('sparkIntensity').addEventListener('input', function() { 
+                config.sparkIntensity = parseInt(this.value); 
+                document.getElementById('sparkIntensity-value').textContent = config.sparkIntensity; 
+            });
+            
+            document.getElementById('motionBlur').addEventListener('input', function() { 
+                config.motionBlurFactor = parseFloat(this.value); 
+                document.getElementById('motionBlur-value').textContent = config.motionBlurFactor.toFixed(1); 
+            });
+            
+            // NEW Dust Controls
+            document.getElementById('dustAmount').addEventListener('input', function() {
+                config.numDustParticles = parseInt(this.value);
+                document.getElementById('dustAmount-value').textContent = config.numDustParticles;
+                initDustParticles();
+            });
+            
+            document.getElementById('dustSize').addEventListener('input', function() {
+                config.dustSize = parseFloat(this.value);
+                document.getElementById('dustSize-value').textContent = config.dustSize.toFixed(1);
+            });
+            
+            document.getElementById('dustSpeed').addEventListener('input', function() {
+                config.dustSpeed = parseFloat(this.value);
+                document.getElementById('dustSpeed-value').textContent = config.dustSpeed.toFixed(2);
+            });
+            
+            document.getElementById('dustOpacity').addEventListener('input', function() {
+                config.dustOpacity = parseFloat(this.value);
+                document.getElementById('dustOpacity-value').textContent = config.dustOpacity.toFixed(2);
+            });
+
+            // Toggles
+            document.getElementById('toggle-gravity-field').addEventListener('click', function() { 
+                config.gravityFieldVisible = !config.gravityFieldVisible; 
+                this.classList.toggle('active', config.gravityFieldVisible); 
+                this.textContent = config.gravityFieldVisible ? 'Hide Gravity Field' : 'Show Gravity Field'; 
+                if(config.gravityFieldVisible && gravityGridPointsClose.length === 0) calculateGravityGrid(); 
+            });
+            
+            document.getElementById('toggle-trails').addEventListener('click', function() { 
+                config.trailsVisible = !config.trailsVisible; 
+                this.classList.toggle('active', config.trailsVisible); 
+                this.textContent = config.trailsVisible ? 'Hide Trails' : 'Show Trails'; 
+            });
+            
+            document.getElementById('toggle-sparks').addEventListener('click', function() { 
+                config.sparksEnabled = !config.sparksEnabled; 
+                this.classList.toggle('active', config.sparksEnabled); 
+                this.textContent = config.sparksEnabled ? 'Hide Sparks' : 'Show Sparks'; 
+            });
+            
+            document.getElementById('toggle-blur').addEventListener('click', function() { 
+                config.motionBlurEnabled = !config.motionBlurEnabled; 
+                this.classList.toggle('active', config.motionBlurEnabled); 
+                this.textContent = config.motionBlurEnabled ? 'Disable Motion Blur' : 'Enable Motion Blur'; 
+            });
+            
+            // NEW Dust Toggle
+            document.getElementById('toggle-dust').addEventListener('click', function() {
+                config.dustEnabled = !config.dustEnabled;
+                this.classList.toggle('active', config.dustEnabled);
+                this.textContent = config.dustEnabled ? 'Hide Dust' : 'Show Dust';
+                if (config.dustEnabled && dustParticles.length === 0) {
+                    initDustParticles();
+                }
+            });
+
+            // Color Schemes
+            const schemeElements = document.querySelectorAll('.color-scheme');
+            schemeElements.forEach(el => { 
+                el.addEventListener('click', function() { 
+                    schemeElements.forEach(s => s.classList.remove('active')); 
+                    this.classList.add('active'); 
+                    config.colorScheme = this.getAttribute('data-scheme'); 
+                    canvas.style.backgroundColor = colorSchemes[config.colorScheme].background; 
+                    initDots(); 
+                }); 
+            });
+
+            // Initialize display values
+            document.getElementById('dots-value').textContent = config.numDots;
+            document.getElementById('distance-value').textContent = config.maxLineDistance;
+            document.getElementById('dotLineIntensity-value').textContent = config.dotConnectionIntensity.toFixed(2);
+            document.getElementById('speed-value').textContent = config.speedFactor.toFixed(1);
+            document.getElementById('curve-value').textContent = config.curveIntensity.toFixed(1);
+            document.getElementById('physics-value').textContent = "0.5";
+            document.getElementById('randomness-value').textContent = config.randomnessFactor.toFixed(3);
+            document.getElementById('gravity-value').textContent = config.nodeGravity.toFixed(3);
+            document.getElementById('gravityRes-value').textContent = config.gravityFieldResolution;
+            document.getElementById('gravityWarp-value').textContent = config.gravityWarpScale;
+            document.getElementById('gridCurve-value').textContent = config.gravityGridCurveFactor;
+            document.getElementById('parallaxFactor-value').textContent = config.parallaxFactor.toFixed(2);
+            document.getElementById('parallaxAlpha-value').textContent = config.parallaxAlphaFactor.toFixed(2);
+            document.getElementById('parallaxWidth-value').textContent = config.parallaxLineWidthFactor.toFixed(2);
+            document.getElementById('sparkIntensity-value').textContent = config.sparkIntensity;
+            document.getElementById('motionBlur-value').textContent = config.motionBlurFactor.toFixed(1);
+            
+            // NEW Initialize dust display values
+            document.getElementById('dustAmount-value').textContent = config.numDustParticles;
+            document.getElementById('dustSize-value').textContent = config.dustSize.toFixed(1);
+            document.getElementById('dustSpeed-value').textContent = config.dustSpeed.toFixed(2);
+            document.getElementById('dustOpacity-value').textContent = config.dustOpacity.toFixed(2);
+        }
+
+        // --- Main Execution ---
+        function animate() {
+            updateDots();
+            updateSparks(); // Update spark particles
+            
+            // Update dust particles if enabled
+            if (config.dustEnabled) {
+                updateDustParticles();
+            }
+            
+            drawDots();     // Includes drawing dust and sparks
+            requestAnimationFrame(animate);
+        }
+        
+        function init() {
+            resizeCanvas();
+            initDots();
+            setupControls();
+            setupMouseInteraction();
+            animate();
+        }
+        
+        window.addEventListener('resize', resizeCanvas);
+        init();
+    </script>
+</body>
+</html>

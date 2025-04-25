@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connected Dots & Inward Gravity Field</title>
+    <style>
+        body { margin: 0; overflow: hidden; display: flex; height: 100vh; font-family: 'Arial', sans-serif; background-color: #000; /* Base background */ }
+        canvas { display: block; /* background-color set dynamically by JS */ }
+        .controls { position: absolute; bottom: 20px; left: 20px; background-color: rgba(0, 0, 0, 0.65); padding: 10px 15px; border-radius: 8px; color: rgba(255, 255, 255, 0.9); font-size: 14px; transition: opacity 0.3s; opacity: 0.5; z-index: 10; max-height: calc(100vh - 60px); overflow-y: auto; }
+        .controls:hover { opacity: 1; }
+        .controls .slider-container { margin: 8px 0; display: flex; align-items: center; }
+        .controls label { width: 140px; display: inline-block; flex-shrink: 0; }
+        .controls input[type="range"] { width: 120px; flex-grow: 1; min-width: 80px; }
+        .controls .value { width: 45px; text-align: right; margin-left: 10px; flex-shrink: 0; }
+        .color-schemes { margin-top: 10px; display: flex; gap: 8px; }
+        .color-scheme { width: 25px; height: 25px; border-radius: 50%; cursor: pointer; transition: transform 0.2s; border: 2px solid transparent; }
+        .color-scheme:hover { transform: scale(1.1); }
+        .color-scheme.active { border-color: white; }
+        .control-options { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 8px; }
+        .control-option { background-color: rgba(255, 255, 255, 0.1); padding: 5px 10px; border-radius: 5px; cursor: pointer; transition: all 0.2s; }
+        .control-option:hover { background-color: rgba(255, 255, 255, 0.2); }
+        .control-option.active { background-color: rgba(255, 255, 255, 0.4); }
+    </style>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+
+    <div class="controls">
+        <!-- Node/Connection/Physics sliders -->
+        <div class="slider-container"><label for="dots">Nodes:</label><input type="range" id="dots" min="20" max="150" value="60"><span class="value" id="dots-value">60</span></div>
+        <div class="slider-container"><label for="distance">Connection Range:</label><input type="range" id="distance" min="80" max="250" value="150"><span class="value" id="distance-value">150</span></div>
+        <div class="slider-container">
+            <label for="dotLineIntensity">Dot Line Intensity:</label>
+            <input type="range" id="dotLineIntensity" min="0" max="1.0" step="0.05" value="0.4">
+            <span class="value" id="dotLineIntensity-value">0.40</span>
+        </div>
+        <div class="slider-container"><label for="speed">Movement Speed:</label><input type="range" id="speed" min="0.2" max="2.0" step="0.1" value="0.8"><span class="value" id="speed-value">0.8</span></div>
+        <div class="slider-container"><label for="curve">Curve Intensity:</label><input type="range" id="curve" min="0.1" max="1.0" step="0.1" value="0.5"><span class="value" id="curve-value">0.5</span></div>
+        <div class="slider-container"><label for="physics">Physics Intensity:</label><input type="range" id="physics" min="0" max="1.0" step="0.1" value="0.5"><span class="value" id="physics-value">0.5</span></div>
+        <div class="slider-container"><label for="randomness">Randomness:</label><input type="range" id="randomness" min="0" max="1.0" step="0.01" value="0.1"><span class="value" id="randomness-value">0.100</span></div>
+        <!-- Gravity sliders -->
+        <div class="slider-container"><label for="gravity">Node Gravity:</label><input type="range" id="gravity" min="0" max="2.0" step="0.02" value="0.8"><span class="value" id="gravity-value">0.800</span></div>
+        <div class="slider-container"><label for="gravityRes">Gravity Res:</label><input type="range" id="gravityRes" min="5" max="40" step="1" value="15"><span class="value" id="gravityRes-value">15</span></div>
+        <div class="slider-container"><label for="gravityWarp">Gravity Warp:</label><input type="range" id="gravityWarp" min="0" max="8000" step="100" value="2500"><span class="value" id="gravityWarp-value">2500</span></div>
+        <div class="slider-container"><label for="gridCurve">Grid Curve:</label><input type="range" id="gridCurve" min="0" max="50" step="1" value="15"><span class="value" id="gridCurve-value">15</span></div>
+        <!-- Toggles -->
+        <div class="control-options">
+            <div class="control-option active" id="toggle-gravity-field">Hide Gravity Field</div>
+            <div class="control-option" id="toggle-trails">Show Trails</div>
+        </div>
+        <!-- Color schemes -->
+        <div class="color-schemes">
+            <div class="color-scheme active" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);" data-scheme="blue"></div>
+            <div class="color-scheme" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);" data-scheme="pink"></div>
+            <div class="color-scheme" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);" data-scheme="green"></div>
+            <div class="color-scheme" style="background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);" data-scheme="golden"></div>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+
+        // Color schemes
+        const colorSchemes = {
+            blue: { background: '#050520', dots: [ { color: '#4facfe', size: 1 }, { color: '#00f2fe', size: 1.5 }, { color: '#ffffff', size: 2 } ], lines: { color1: 'rgba(79, 172, 254, ', color2: 'rgba(0, 242, 254, ' }, gravityField: { lineColor: 'rgba(100, 150, 255, ' }, trail: { color: 'rgba(0, 242, 254, 0.15)' } },
+            pink: { background: '#0a0a18', dots: [ { color: '#f093fb', size: 1 }, { color: '#f5576c', size: 1.5 }, { color: '#ffffff', size: 2 } ], lines: { color1: 'rgba(240, 147, 251, ', color2: 'rgba(245, 87, 108, ' }, gravityField: { lineColor: 'rgba(255, 150, 200, ' }, trail: { color: 'rgba(245, 87, 108, 0.15)' } },
+            green: { background: '#0a1a15', dots: [ { color: '#43e97b', size: 1 }, { color: '#38f9d7', size: 1.5 }, { color: '#ffffff', size: 2 } ], lines: { color1: 'rgba(67, 233, 123, ', color2: 'rgba(56, 249, 215, ' }, gravityField: { lineColor: 'rgba(100, 220, 150, ' }, trail: { color: 'rgba(56, 249, 215, 0.15)' } },
+            golden: { background: '#151008', dots: [ { color: '#f6d365', size: 1 }, { color: '#fda085', size: 1.5 }, { color: '#ffffff', size: 2 } ], lines: { color1: 'rgba(246, 211, 101, ', color2: 'rgba(253, 160, 133, ' }, gravityField: { lineColor: 'rgba(255, 200, 100, ' }, trail: { color: 'rgba(253, 160, 133, 0.15)' } }
+        };
+
+        // Configuration
+        const config = {
+            numDots: 60, dotRadius: 2, /* lineOpacityBase removed */ lineWidth: 0.7,
+            dotConnectionIntensity: 0.4, // Base intensity for lines between dots
+            maxLineDistance: 150, speedFactor: 0.8, bounce: true, curveIntensity: 0.5,
+            colorScheme: 'blue',
+            particleTypes: [ { size: 0.618, frequency: 0.618, mass: 0.618 }, { size: 1.0, frequency: 0.236, mass: 1.0 }, { size: 1.618, frequency: 0.146, mass: 2.618 } ],
+            glow: true, mouseFactor: 0.08, nodeGravity: 0.8,
+            friction: 0.97, collisionDamping: 0.8, windEffect: 0.001,
+            gravityFieldVisible: true,
+            trailsVisible: false, trailLength: 50, randomnessFactor: 0.1,
+            gravityFieldResolution: 15,
+            gravityWarpScale: 2500,
+            gravityFieldMaxMagnitude: 0.1,
+            gravityGridCurveFactor: 15
+        };
+
+        // --- Global Variables ---
+        let mouseX = null, mouseY = null, mouseRadius = 200;
+        let dots = [];
+        let gravityGridPoints = [];
+
+        // --- Initialization & Canvas ---
+        function resizeCanvas() {
+            canvas.width = window.innerWidth; canvas.height = window.innerHeight; if (config.gravityFieldVisible) calculateGravityGrid();
+        }
+        function initDots() {
+            dots = []; for (let i = 0; i < config.numDots; i++) { let typeIndex = 0; const rand = Math.random(); let cumulative = 0; for (let t = 0; t < config.particleTypes.length; t++) { cumulative += config.particleTypes[t].frequency; if (rand < cumulative) { typeIndex = t; break; } } const scheme = colorSchemes[config.colorScheme]; const dotColor = scheme.dots[typeIndex].color; const dotSize = scheme.dots[typeIndex].size * config.dotRadius; const dotMass = config.particleTypes[typeIndex].mass; dots.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, vx: (Math.random() - 0.5) * config.speedFactor, vy: (Math.random() - 0.5) * config.speedFactor, radius: dotSize, mass: dotMass, color: dotColor, type: typeIndex, phase: Math.random() * Math.PI * 2, trail: [] }); } if (config.gravityFieldVisible) calculateGravityGrid();
+        }
+
+        // --- Physics and Updates ---
+        function getPulsatingRadius(dot, time) {
+            return dot.radius * (1 + 0.15 * Math.sin(time * 0.001 + dot.phase));
+        }
+        function updateDots() {
+            const time = Date.now(); const windAngle = time * 0.0001; const windForceX = Math.cos(windAngle) * config.windEffect; const windForceY = Math.sin(windAngle) * config.windEffect; let forces = Array(dots.length).fill().map(() => ({ fx: 0, fy: 0 })); for (let i = 0; i < dots.length; i++) { const dot1 = dots[i]; for (let j = 0; j < dots.length; j++) { if (i === j) continue; const dot2 = dots[j]; const dx = dot2.x - dot1.x; const dy = dot2.y - dot1.y; const distanceSquared = Math.max(dx * dx + dy * dy, (dot1.radius + dot2.radius) * (dot1.radius + dot2.radius)); const distance = Math.sqrt(distanceSquared); const gravForce = config.nodeGravity * dot2.mass / distanceSquared; forces[i].fx += gravForce * dx / distance; forces[i].fy += gravForce * dy / distance; } } for (let i = 0; i < dots.length; i++) { const dot = dots[i]; if (config.trailsVisible) { if (dot.trail.length >= config.trailLength) dot.trail.shift(); dot.trail.push({ x: dot.x, y: dot.y }); } else { dot.trail = []; } dot.vx += forces[i].fx; dot.vy += forces[i].fy; if (config.randomnessFactor > 0) { const randomAngle = Math.random() * Math.PI * 2; const randomForce = Math.random() * config.randomnessFactor * 0.05; dot.vx += Math.cos(randomAngle) * randomForce; dot.vy += Math.sin(randomAngle) * randomForce; } const phi = 1.618033988749895; const oscX = Math.sin(time * 0.0005 * (1/phi) + dot.phase) * 0.1; const oscY = Math.cos(time * 0.0005 * phi + dot.phase + 1) * 0.1; dot.vx += windForceX * (1 + 0.2 * Math.sin(time * 0.001 * (1/phi) + dot.phase * phi)); dot.vy += windForceY * (1 + 0.2 * Math.cos(time * 0.001 * phi + dot.phase * (1/phi))); if (mouseX !== null && mouseY !== null) { const mdx = dot.x - mouseX; const mdy = dot.y - mouseY; const mouseDistance = Math.sqrt(mdx * mdx + mdy * mdy); if (mouseDistance < mouseRadius && mouseDistance > 0) { const force = (1 - mouseDistance / mouseRadius) * config.mouseFactor * 50; dot.vx += mdx / mouseDistance * force / dot.mass; dot.vy += mdy / mouseDistance * force / dot.mass; } } for (let j = i + 1; j < dots.length; j++) { const otherDot = dots[j]; const cdx = otherDot.x - dot.x; const cdy = otherDot.y - dot.y; const distance = Math.sqrt(cdx * cdx + cdy * cdy); const minDistance = dot.radius + otherDot.radius; if (distance < minDistance) { const nx = cdx / distance; const ny = cdy / distance; const rvx = dot.vx - otherDot.vx; const rvy = dot.vy - otherDot.vy; const velocityAlongNormal = rvx * nx + rvy * ny; if (velocityAlongNormal < 0) { const impulseScalar = -(1 + config.collisionDamping) * velocityAlongNormal / (1/dot.mass + 1/otherDot.mass); dot.vx -= impulseScalar * nx / dot.mass; dot.vy -= impulseScalar * ny / dot.mass; otherDot.vx += impulseScalar * nx / otherDot.mass; otherDot.vy += impulseScalar * ny / otherDot.mass; const overlap = (minDistance - distance) / 2; const separationX = nx * overlap; const separationY = ny * overlap; dot.x -= separationX; dot.y -= separationY; otherDot.x += separationX; otherDot.y += separationY; } } } dot.x += dot.vx + oscX * config.speedFactor; dot.y += dot.vy + oscY * config.speedFactor; dot.vx *= config.friction; dot.vy *= config.friction; if (config.bounce) { if (dot.x < dot.radius) { dot.x = dot.radius; dot.vx = -dot.vx * config.collisionDamping; } else if (dot.x > canvas.width - dot.radius) { dot.x = canvas.width - dot.radius; dot.vx = -dot.vx * config.collisionDamping; } if (dot.y < dot.radius) { dot.y = dot.radius; dot.vy = -dot.vy * config.collisionDamping; } else if (dot.y > canvas.height - dot.radius) { dot.y = canvas.height - dot.radius; dot.vy = -dot.vy * config.collisionDamping; } } else { if (dot.x < -dot.radius) dot.x = canvas.width + dot.radius; if (dot.x > canvas.width + dot.radius) dot.x = -dot.radius; if (dot.y < -dot.radius) dot.y = canvas.height + dot.radius; if (dot.y > canvas.height + dot.radius) dot.y = -dot.radius; } if (Math.random() < 0.005 * (1/1.618)) { dot.vx += (Math.random() - 0.5) * 0.1 * config.speedFactor; dot.vy += (Math.random() - 0.5) * 0.1 * config.speedFactor; } const massSpeedFactor = Math.sqrt(dot.mass); const maxSpeed = config.speedFactor * (1.5 + 0.5 * massSpeedFactor); const speed = Math.sqrt(dot.vx * dot.vx + dot.vy * dot.vy); if (speed > maxSpeed) { dot.vx = (dot.vx / speed) * maxSpeed; dot.vy = (dot.vy / speed) * maxSpeed; } }
+            if (config.gravityFieldVisible) calculateGravityGrid();
+        }
+
+        // --- Gravity Field Calculation ---
+        function getGravityForceAt(px, py) {
+            let forceX = 0; let forceY = 0; const minPixelDistSq = 25 * 25; for (const dot of dots) { const dx = dot.x - px; const dy = dot.y - py; const distanceSquared = Math.max(dx * dx + dy * dy, minPixelDistSq); const distance = Math.sqrt(distanceSquared); const gravForce = config.nodeGravity * dot.mass / distanceSquared; forceX += gravForce * dx / distance; forceY += gravForce * dy / distance; } return { fx: forceX, fy: forceY, magnitude: Math.sqrt(forceX * forceX + forceY * forceY) };
+        }
+
+        // Calculate the positions of the INWARD warped grid points
+        function calculateGravityGrid() {
+            const gridSize = config.gravityFieldResolution;
+            const numPointsX = gridSize + 1;
+            const numPointsY = gridSize + 1;
+            const cellWidth = canvas.width / gridSize;
+            const cellHeight = canvas.height / gridSize;
+
+            gravityGridPoints = [];
+            let maxMag = 0;
+
+            for (let y = 0; y < numPointsY; y++) {
+                let row = [];
+                for (let x = 0; x < numPointsX; x++) {
+                    const idealX = x * cellWidth;
+                    const idealY = y * cellHeight;
+                    const force = getGravityForceAt(idealX, idealY);
+                    maxMag = Math.max(maxMag, force.magnitude);
+
+                    // *** CORRECTED (INWARD) WARP: Add force components ***
+                    const displacedX = idealX + force.fx * config.gravityWarpScale;
+                    const displacedY = idealY + force.fy * config.gravityWarpScale;
+                    // ***                                                ***
+
+                    row.push({ x: displacedX, y: displacedY, magnitude: force.magnitude });
+                }
+                gravityGridPoints.push(row);
+            }
+            config.gravityFieldMaxMagnitude = Math.max(config.gravityFieldMaxMagnitude * 0.9 + maxMag * 0.1, 0.001); // Smoothed update
+        }
+
+        // --- Drawing ---
+        function drawDots() {
+            const time = Date.now();
+            const scheme = colorSchemes[config.colorScheme];
+
+            canvas.style.backgroundColor = scheme.background;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // --- Draw Warped Gravity Field (CURVED Lines) ---
+            if (config.gravityFieldVisible && gravityGridPoints.length > 0) {
+                const baseLineColor = scheme.gravityField.lineColor; const numPointsY = gravityGridPoints.length; const numPointsX = gravityGridPoints[0].length; const curveFactor = config.gravityGridCurveFactor; ctx.lineCap = "round"; for (let y = 0; y < numPointsY; y++) { for (let x = 0; x < numPointsX; x++) { const p1 = gravityGridPoints[y][x]; const normalizedMagP1 = Math.min(p1.magnitude / (config.gravityFieldMaxMagnitude + 0.0001), 1.0); const alpha = Math.pow(normalizedMagP1, 0.4) * 0.9 + 0.1; const lineWidth = Math.pow(normalizedMagP1, 0.6) * 3.0 + 0.5; if (x + 1 < numPointsX) { const p2 = gravityGridPoints[y][x+1]; const normalizedMagP2 = Math.min(p2.magnitude / (config.gravityFieldMaxMagnitude + 0.0001), 1.0); const avgNormMag = (normalizedMagP1 + normalizedMagP2) / 2; const midX = (p1.x + p2.x) / 2; const midY = (p1.y + p2.y) / 2; const vecX = p2.x - p1.x; const vecY = p2.y - p1.y; let perpX = -vecY; let perpY = vecX; const len = Math.sqrt(perpX*perpX + perpY*perpY); if (len > 0) { perpX /= len; perpY /= len; } const offset = avgNormMag * curveFactor; const ctrlX = midX + perpX * offset; const ctrlY = midY + perpY * offset; ctx.beginPath(); ctx.moveTo(p1.x, p1.y); ctx.quadraticCurveTo(ctrlX, ctrlY, p2.x, p2.y); ctx.lineWidth = lineWidth; ctx.strokeStyle = baseLineColor + alpha + ')'; ctx.stroke(); } if (y + 1 < numPointsY) { const p3 = gravityGridPoints[y+1][x]; const normalizedMagP3 = Math.min(p3.magnitude / (config.gravityFieldMaxMagnitude + 0.0001), 1.0); const avgNormMag = (normalizedMagP1 + normalizedMagP3) / 2; const midX = (p1.x + p3.x) / 2; const midY = (p1.y + p3.y) / 2; const vecX = p3.x - p1.x; const vecY = p3.y - p1.y; let perpX = -vecY; let perpY = vecX; const len = Math.sqrt(perpX*perpX + perpY*perpY); if (len > 0) { perpX /= len; perpY /= len; } const offset = avgNormMag * curveFactor; const ctrlX = midX + perpX * offset; const ctrlY = midY + perpY * offset; ctx.beginPath(); ctx.moveTo(p1.x, p1.y); ctx.quadraticCurveTo(ctrlX, ctrlY, p3.x, p3.y); ctx.lineWidth = lineWidth; ctx.strokeStyle = baseLineColor + alpha + ')'; ctx.stroke(); } } } ctx.lineCap = "butt";
+            }
+
+            // --- Draw Trails ---
+            if (config.trailsVisible) { ctx.lineCap = "round"; for (let i = 0; i < dots.length; i++) { const dot = dots[i]; if (dot.trail.length > 1) { ctx.beginPath(); ctx.moveTo(dot.trail[0].x, dot.trail[0].y); for (let t = 1; t < dot.trail.length; t++) { const midX = (dot.trail[t-1].x + dot.trail[t].x) / 2; const midY = (dot.trail[t-1].y + dot.trail[t].y) / 2; ctx.quadraticCurveTo(dot.trail[t-1].x, dot.trail[t-1].y, midX, midY); } ctx.lineTo(dot.trail[dot.trail.length - 1].x, dot.trail[dot.trail.length - 1].y); const trailGradient = ctx.createLinearGradient(dot.trail[0].x, dot.trail[0].y, dot.trail[dot.trail.length - 1].x, dot.trail[dot.trail.length - 1].y); const baseColor = scheme.trail.color.substring(0, scheme.trail.color.lastIndexOf(',') + 1); trailGradient.addColorStop(0, baseColor + " 0)"); trailGradient.addColorStop(1, scheme.trail.color); ctx.strokeStyle = trailGradient; ctx.lineWidth = dot.radius * 0.7; ctx.stroke(); } } ctx.lineCap = "butt"; }
+
+            // --- Draw Connecting Lines (Dots) ---
+            ctx.globalCompositeOperation = 'lighter';
+            for (let i = 0; i < dots.length; i++) {
+                const dot1 = dots[i];
+                for (let j = i + 1; j < dots.length; j++) {
+                    const dot2 = dots[j];
+                    const dx = dot1.x - dot2.x;
+                    const dy = dot1.y - dot2.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    if (distance <= config.maxLineDistance) {
+                        const opacity = config.dotConnectionIntensity * Math.pow(1 - distance / config.maxLineDistance, 2); // Use new config
+                        const lineGradient = ctx.createLinearGradient(dot1.x, dot1.y, dot2.x, dot2.y);
+                        lineGradient.addColorStop(0, scheme.lines.color1 + opacity + ')');
+                        lineGradient.addColorStop(1, scheme.lines.color2 + opacity + ')');
+                        const midX = (dot1.x + dot2.x) / 2; const midY = (dot1.y + dot2.y) / 2;
+                        const perpX = -dy * config.curveIntensity; const perpY = dx * config.curveIntensity;
+                        const animationFactor = Math.sin(time * 0.001 + dot1.phase + dot2.phase) * 0.3;
+                        const ctrlX = midX + perpX * (1 + animationFactor); const ctrlY = midY + perpY * (1 + animationFactor);
+                        if (config.glow && distance < config.maxLineDistance * 0.6) {
+                            const glowIntensity = 1 - distance / (config.maxLineDistance * 0.6);
+                            const glowIterations = Math.floor(3 * glowIntensity);
+                            for (let g = 0; g < glowIterations; g++) {
+                                const glowOpacity = opacity * (0.15 / 0.4) * Math.pow((glowIterations - g) / glowIterations, 2); // Scale glow relative to base intensity
+                                ctx.beginPath(); ctx.moveTo(dot1.x, dot1.y); ctx.quadraticCurveTo(ctrlX, ctrlY, dot2.x, dot2.y); ctx.lineWidth = config.lineWidth + g * 0.8; ctx.strokeStyle = lineGradient; ctx.globalAlpha = glowOpacity; ctx.stroke();
+                            }
+                            ctx.globalAlpha = 1;
+                        }
+                        ctx.beginPath(); ctx.moveTo(dot1.x, dot1.y); ctx.quadraticCurveTo(ctrlX, ctrlY, dot2.x, dot2.y); ctx.strokeStyle = lineGradient; ctx.lineWidth = config.lineWidth; ctx.stroke();
+                    }
+                }
+            }
+            ctx.globalCompositeOperation = 'source-over';
+
+            // --- Draw Dots ---
+            for (const dot of dots) { const radius = getPulsatingRadius(dot, time); if (config.glow) { const glowSize = radius * 3; const radialGradient = ctx.createRadialGradient(dot.x, dot.y, 0, dot.x, dot.y, glowSize); let baseColor = dot.color; if (baseColor.startsWith('#')) { let bigint = parseInt(baseColor.slice(1), 16); let r = (bigint >> 16) & 255, g = (bigint >> 8) & 255, b = bigint & 255; baseColor = `rgb(${r}, ${g}, ${b})`; } let rgbaColorInner = baseColor.replace('rgb', 'rgba').replace(')', ', 0.5)'); let rgbaColorOuter = baseColor.replace('rgb', 'rgba').replace(')', ', 0)'); radialGradient.addColorStop(0, rgbaColorInner); radialGradient.addColorStop(0.4, rgbaColorInner); radialGradient.addColorStop(1, rgbaColorOuter); ctx.beginPath(); ctx.arc(dot.x, dot.y, glowSize, 0, Math.PI * 2); ctx.fillStyle = radialGradient; ctx.fill(); } ctx.beginPath(); ctx.arc(dot.x, dot.y, radius, 0, Math.PI * 2); ctx.fillStyle = dot.color; ctx.fill(); }
+        }
+
+        // --- Event Listeners and Controls ---
+        function setupMouseInteraction() { canvas.addEventListener('mousemove', function(e) { const rect = canvas.getBoundingClientRect(); mouseX = e.clientX - rect.left; mouseY = e.clientY - rect.top; }); canvas.addEventListener('mouseleave', function() { mouseX = null; mouseY = null; }); canvas.addEventListener('click', function(e) { const rect = canvas.getBoundingClientRect(); const clickX = e.clientX - rect.left; const clickY = e.clientY - rect.top; for (const dot of dots) { const dx = dot.x - clickX; const dy = dot.y - clickY; const distance = Math.sqrt(dx * dx + dy * dy); if (distance < 150 && distance > 0) { const force = (1 - distance / 150) * 5 / dot.mass; dot.vx += dx / distance * force; dot.vy += dy / distance * force; } } }); }
+
+        function setupControls() {
+            // Basic Controls
+            document.getElementById('dots').addEventListener('input', function() { config.numDots = parseInt(this.value); document.getElementById('dots-value').textContent = config.numDots; initDots(); });
+            document.getElementById('distance').addEventListener('input', function() { config.maxLineDistance = parseInt(this.value); document.getElementById('distance-value').textContent = config.maxLineDistance; });
+            document.getElementById('dotLineIntensity').addEventListener('input', function() { config.dotConnectionIntensity = parseFloat(this.value); document.getElementById('dotLineIntensity-value').textContent = config.dotConnectionIntensity.toFixed(2); });
+            document.getElementById('speed').addEventListener('input', function() { config.speedFactor = parseFloat(this.value); document.getElementById('speed-value').textContent = config.speedFactor.toFixed(1); });
+            document.getElementById('curve').addEventListener('input', function() { config.curveIntensity = parseFloat(this.value); document.getElementById('curve-value').textContent = config.curveIntensity.toFixed(1); });
+            document.getElementById('physics').addEventListener('input', function() { const physicsIntensity = parseFloat(this.value); document.getElementById('physics-value').textContent = physicsIntensity.toFixed(1); config.friction = 0.95 + physicsIntensity * 0.04; config.collisionDamping = 0.5 + physicsIntensity * 0.4; config.windEffect = physicsIntensity * 0.002; });
+            document.getElementById('randomness').addEventListener('input', function() { config.randomnessFactor = parseFloat(this.value); document.getElementById('randomness-value').textContent = config.randomnessFactor.toFixed(3); });
+            // Gravity Controls
+            document.getElementById('gravity').addEventListener('input', function() { config.nodeGravity = parseFloat(this.value); document.getElementById('gravity-value').textContent = config.nodeGravity.toFixed(3); });
+            document.getElementById('gravityRes').addEventListener('input', function() { config.gravityFieldResolution = parseInt(this.value); document.getElementById('gravityRes-value').textContent = config.gravityFieldResolution; calculateGravityGrid(); });
+            document.getElementById('gravityWarp').addEventListener('input', function() { config.gravityWarpScale = parseFloat(this.value); document.getElementById('gravityWarp-value').textContent = config.gravityWarpScale; });
+            document.getElementById('gridCurve').addEventListener('input', function() { config.gravityGridCurveFactor = parseFloat(this.value); document.getElementById('gridCurve-value').textContent = config.gravityGridCurveFactor; });
+
+            // Toggles
+            document.getElementById('toggle-gravity-field').addEventListener('click', function() { config.gravityFieldVisible = !config.gravityFieldVisible; this.classList.toggle('active', config.gravityFieldVisible); this.textContent = config.gravityFieldVisible ? 'Hide Gravity Field' : 'Show Gravity Field'; if(config.gravityFieldVisible && gravityGridPoints.length === 0) calculateGravityGrid(); });
+            document.getElementById('toggle-trails').addEventListener('click', function() { config.trailsVisible = !config.trailsVisible; this.classList.toggle('active', config.trailsVisible); this.textContent = config.trailsVisible ? 'Hide Trails' : 'Show Trails'; });
+
+            // Color Schemes
+            const schemeElements = document.querySelectorAll('.color-scheme');
+            schemeElements.forEach(el => { el.addEventListener('click', function() { schemeElements.forEach(s => s.classList.remove('active')); this.classList.add('active'); config.colorScheme = this.getAttribute('data-scheme'); canvas.style.backgroundColor = colorSchemes[config.colorScheme].background; initDots(); }); });
+
+            // Initialize display values
+            document.getElementById('dots-value').textContent = config.numDots;
+            document.getElementById('distance-value').textContent = config.maxLineDistance;
+            document.getElementById('dotLineIntensity-value').textContent = config.dotConnectionIntensity.toFixed(2);
+            document.getElementById('speed-value').textContent = config.speedFactor.toFixed(1);
+            document.getElementById('curve-value').textContent = config.curveIntensity.toFixed(1);
+            document.getElementById('physics-value').textContent = "0.5";
+            document.getElementById('randomness-value').textContent = config.randomnessFactor.toFixed(3);
+            document.getElementById('gravity-value').textContent = config.nodeGravity.toFixed(3);
+            document.getElementById('gravityRes-value').textContent = config.gravityFieldResolution;
+            document.getElementById('gravityWarp-value').textContent = config.gravityWarpScale;
+            document.getElementById('gridCurve-value').textContent = config.gravityGridCurveFactor;
+        }
+
+        // --- Main Execution ---
+        function animate() { updateDots(); drawDots(); requestAnimationFrame(animate); }
+        function init() { resizeCanvas(); initDots(); setupControls(); setupMouseInteraction(); animate(); }
+        window.addEventListener('resize', resizeCanvas);
+        init();
+
+    </script>
+</body>
+</html>
