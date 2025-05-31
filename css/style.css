@@ -498,3 +498,276 @@ a.btn.btn-primary:active {
 .dark-mode .site-header {
     border-bottom-color: #444444;
 }
+
+/* ===== SCROLL ANIMATIONS ===== */
+
+/* Base animation classes */
+.scroll-animate {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.scroll-animate.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Staggered animation delays for multiple elements */
+.scroll-animate:nth-child(1) { transition-delay: 0.1s; }
+.scroll-animate:nth-child(2) { transition-delay: 0.2s; }
+.scroll-animate:nth-child(3) { transition-delay: 0.3s; }
+.scroll-animate:nth-child(4) { transition-delay: 0.4s; }
+.scroll-animate:nth-child(5) { transition-delay: 0.5s; }
+.scroll-animate:nth-child(6) { transition-delay: 0.6s; }
+
+/* Specific animation variants */
+.scroll-animate-fade {
+    opacity: 0;
+    transition: opacity 0.8s ease-out;
+}
+
+.scroll-animate-fade.animate-in {
+    opacity: 1;
+}
+
+.scroll-animate-slide-left {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.scroll-animate-slide-left.animate-in {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.scroll-animate-slide-right {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.scroll-animate-slide-right.animate-in {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.scroll-animate-scale {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.scroll-animate-scale.animate-in {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Hero section specific animations */
+.hero .scroll-animate {
+    transition-duration: 1s;
+}
+
+/* CV timeline animations */
+.cv-step {
+    transition: all 0.3s ease;
+}
+
+.cv-step.scroll-animate {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.cv-step.scroll-animate.animate-in {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* Card animations */
+.card.scroll-animate {
+    opacity: 0;
+    transform: translateY(30px) rotateX(10deg);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.card.scroll-animate.animate-in {
+    opacity: 1;
+    transform: translateY(0) rotateX(0deg);
+}
+
+/* Skills section animations */
+.skills-section .badge {
+    transition: all 0.3s ease;
+}
+
+.skills-section .scroll-animate .badge {
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.skills-section .scroll-animate.animate-in .badge {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Minimal icons animation */
+.minimal-icons .minimal-icon {
+    transition: all 0.3s ease;
+}
+
+.minimal-icons .scroll-animate {
+    opacity: 0;
+    transform: translateY(20px) scale(0.9);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.minimal-icons .scroll-animate.animate-in {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* Smooth scrolling for the entire page */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+    .scroll-animate,
+    .scroll-animate-fade,
+    .scroll-animate-slide-left,
+    .scroll-animate-slide-right,
+    .scroll-animate-scale {
+        transition: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+    
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+/* Page transition and project tile animations */
+
+/* Page header slide down animation */
+.scroll-animate-slide-down {
+    opacity: 0;
+    transform: translateY(-30px);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.scroll-animate-slide-down.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Page entrance animation */
+.page-header-animate {
+    animation: pageEnter 0.6s ease-out;
+}
+
+@keyframes pageEnter {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Project tiles staggered animation */
+.project-tile-animate {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.project-tile-animate.animate-in {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* Project card hover effects */
+.project-card {
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    border: 1px solid rgba(0,0,0,0.125);
+}
+
+.project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.15) !important;
+    border-color: rgba(0,123,255,0.3);
+}
+
+.dark-mode .project-card {
+    border-color: rgba(255,255,255,0.125);
+}
+
+.dark-mode .project-card:hover {
+    box-shadow: 0 12px 24px rgba(0,0,0,0.3) !important;
+    border-color: rgba(100,181,246,0.3);
+}
+
+/* Smooth navigation link transitions */
+.navbar-nav .nav-link {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.navbar-nav .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: #007bff;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.navbar-nav .nav-link:hover::after,
+.navbar-nav .nav-link.active::after {
+    width: 100%;
+}
+
+.dark-mode .navbar-nav .nav-link::after {
+    background-color: #64b5f6;
+}
+
+/* Projects grid container animation */
+.projects-grid {
+    animation: gridFadeIn 0.8s ease-out 0.3s both;
+}
+
+@keyframes gridFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .page-header-animate,
+    .project-tile-animate,
+    .project-card,
+    .navbar-nav .nav-link,
+    .projects-grid {
+        animation: none !important;
+        transition: none !important;
+    }
+    
+    .scroll-animate-slide-down {
+        opacity: 1;
+        transform: none;
+    }
+}

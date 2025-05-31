@@ -3,26 +3,26 @@ layout: default
 title: Home
 ---
 
-<div class="hero text-center my-5">
+<div class="hero text-center my-5 scroll-animate">
   <img src="{{ '/images/profile.jpg' | relative_url }}"
        alt="Nicolas Schneider"
-       class="rounded-circle img-fluid mb-4"
+       class="rounded-circle img-fluid mb-4 scroll-animate-scale"
        style="max-width:150px;">
-  <h1 class="display-4">I'm Nicolas Schneider</h1>
-  <p class="lead">Specialist in developing smart, ML-powered systems that improve operations and accelerate productivity.</p>
-  <a href="#projects" class="btn btn-primary btn-lg mx-2">My Projects</a>
-  <a href="#contact" class="btn btn-outline-primary btn-lg mx-2">Contact Me</a>
+  <h1 class="display-4 scroll-animate">I'm Nicolas Schneider</h1>
+  <p class="lead scroll-animate">Specialist in developing smart, ML-powered systems that improve operations and accelerate productivity.</p>
+  <a href="#projects" class="btn btn-primary btn-lg mx-2 scroll-animate">My Projects</a>
+  <a href="#contact" class="btn btn-outline-primary btn-lg mx-2 scroll-animate">Contact Me</a>
   </div>
   <!-- Minimalistic thematic icons -->
   <div class="minimal-icons d-flex justify-content-center align-items-center mb-4">
-    <div class="minimal-icon mx-3" title="Line Chart">
+    <div class="minimal-icon mx-3 scroll-animate" title="Line Chart">
       <svg viewBox="0 0 80 60" xmlns="http://www.w3.org/2000/svg">
         <polyline points="0,60 20,40 40,50 60,20 80,30" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/>
         <line x1="0" y1="0" x2="0" y2="60" stroke="currentColor" stroke-width="1"/>
         <line x1="0" y1="60" x2="80" y2="60" stroke="currentColor" stroke-width="1"/>
       </svg>
     </div>
-    <div class="minimal-icon mx-3" title="Neural Network">
+    <div class="minimal-icon mx-3 scroll-animate" title="Neural Network">
       <svg viewBox="0 0 80 60" xmlns="http://www.w3.org/2000/svg">
         <circle cx="15" cy="15" r="5" stroke="currentColor" stroke-width="2" fill="none"/>
         <circle cx="15" cy="45" r="5" stroke="currentColor" stroke-width="2" fill="none"/>
@@ -35,7 +35,7 @@ title: Home
         <line x1="45" y1="30" x2="60" y2="45" stroke="currentColor" stroke-width="1"/>
       </svg>
     </div>
-    <div class="minimal-icon mx-3" title="Data Matrix">
+    <div class="minimal-icon mx-3 scroll-animate" title="Data Matrix">
       <svg viewBox="0 0 80 60" xmlns="http://www.w3.org/2000/svg">
         <rect x="5" y="5" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1"/>
         <rect x="30" y="5" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1"/>
@@ -48,11 +48,11 @@ title: Home
   </div>
   <hr class="my-4">
 <section id="projects" class="my-5">
-  <h2 class="mb-4">Featured Projects</h2>
+  <h2 class="mb-4 scroll-animate-slide-left">Featured Projects</h2>
   <div class="row">
     {% for project in site.projects limit: 3 %}
       <div class="col-md-4 mb-4">
-        <div class="card h-100 shadow-sm">
+        <div class="card h-100 shadow-sm scroll-animate project-card">
           <div class="card-body d-flex flex-column">
             <h5 class="card-title">
               <a href="{{ project.url | relative_url }}" class="stretched-link text-decoration-none">{{ project.title }}</a>
@@ -66,7 +66,7 @@ title: Home
       </div>
     {% endfor %}
   </div>
-  <div class="text-center">
+  <div class="text-center scroll-animate">
     <a href="{{ '/projects/' | relative_url }}" class="btn btn-outline-secondary">View All Projects</a>
   </div>
   <!-- CV Detail Modals -->
@@ -180,46 +180,46 @@ title: Home
 <hr class="my-4">
 <!-- CV Timeline Section -->
 <section id="cv" class="my-5">
-  <h2 class="text-center mb-4">My Journey</h2>
+  <h2 class="text-center mb-4 scroll-animate-slide-right">My Journey</h2>
   <!-- Intro for CV section -->
-  <div class="cv-intro text-center mx-auto mb-4" style="max-width: 600px;">
-    <p>Hi, I’m Nicolas Schneider — a Data Scientist and Developer with a strong foundation in mathematics, machine learning, and large language models. I enjoy turning complex problems into practical, scalable tools that deliver real-world impact.</p>
-    <p>With over two years of hands-on experience, I’ve applied Python and LLMs to solve challenges across diverse domains. I’m driven by curiosity and focused on building solutions that are both technically sound and operationally valuable.</p>
+  <div class="cv-intro text-center mx-auto mb-4 scroll-animate-fade" style="max-width: 600px;">
+    <p>Hi, I'm Nicolas Schneider — a Data Scientist and Developer with a strong foundation in mathematics, machine learning, and large language models. I enjoy turning complex problems into practical, scalable tools that deliver real-world impact.</p>
+    <p>With over two years of hands-on experience, I've applied Python and LLMs to solve challenges across diverse domains. I'm driven by curiosity and focused on building solutions that are both technically sound and operationally valuable.</p>
   </div>
     <div class="cv-timeline position-relative d-flex justify-content-between align-items-start mx-auto" style="max-width: 960px;">
     <!-- Timeline entries clickable to reveal more details -->
-    <div class="cv-step text-center" role="button" data-bs-toggle="modal" data-bs-target="#cvModal-bsc" aria-label="B.Sc. in Computer Science details">
+    <div class="cv-step text-center scroll-animate" role="button" data-bs-toggle="modal" data-bs-target="#cvModal-bsc" aria-label="B.Sc. in Computer Science details">
       <div class="cv-icon">🎓</div>
       <h5>09.2019 – 05.2023</h5>
       <p>B.Sc. in Applied Mathematics at University of Applied Sciences Bielefeld<br>Grade: 2.3<br></p>
     </div>
-    <div class="cv-step text-center" role="button" data-bs-toggle="modal" data-bs-target="#cvModal-interviewer" aria-label="Interviewer at SOKO Institut details">
+    <div class="cv-step text-center scroll-animate" role="button" data-bs-toggle="modal" data-bs-target="#cvModal-interviewer" aria-label="Interviewer at SOKO Institut details">
       <div class="cv-icon">🗣️</div>
       <h5>08.2020 – 05.2021</h5>
       <p>Interviewer<br>SOKO Institut</p>
     </div>
-    <div class="cv-step text-center" role="button" data-bs-toggle="modal" data-bs-target="#cvModal-master" aria-label="Master Optimization and Simulation details">
+    <div class="cv-step text-center scroll-animate" role="button" data-bs-toggle="modal" data-bs-target="#cvModal-master" aria-label="Master Optimization and Simulation details">
       <div class="cv-icon">🎓</div>
       <h5>03.2023 – Present</h5>
       <p>M.Sc. in Optimization and Simulation at University of Applied Sciences and Arts Bielefeld</p>
     </div>
-    <div class="cv-step text-center" role="button" data-bs-toggle="modal" data-bs-target="#cvModal-diamant" aria-label="Working Student/Data Scientist at Diamant Software details">
+    <div class="cv-step text-center scroll-animate" role="button" data-bs-toggle="modal" data-bs-target="#cvModal-diamant" aria-label="Working Student/Data Scientist at Diamant Software details">
       <div class="cv-icon">💼</div>
       <h5>01.02.2023 – 31.08.2024</h5>
       <p>Working Student / Data Scientist<br>Diamant Software</p>
     </div>
-    <div class="cv-step text-center" role="button" data-bs-toggle="modal" data-bs-target="#cvModal-reply" aria-label="Working Student/Data Analyst at 4brands Reply details">
+    <div class="cv-step text-center scroll-animate" role="button" data-bs-toggle="modal" data-bs-target="#cvModal-reply" aria-label="Working Student/Data Analyst at 4brands Reply details">
       <div class="cv-icon">📊</div>
       <h5>15.10.2024 – Present</h5>
       <p>Working Student / Data Analyst<br>4brands Reply</p>
     </div>
-    <div class="cv-step text-center" role="button" data-bs-toggle="modal" data-bs-target="#cvModal-ipt" aria-label="Master Student & Scientist at Fraunhofer IPT details">
+    <div class="cv-step text-center scroll-animate" role="button" data-bs-toggle="modal" data-bs-target="#cvModal-ipt" aria-label="Master Student & Scientist at Fraunhofer IPT details">
       <div class="cv-icon">🔬</div>
       <h5>15.11.2024 – Present</h5>
       <p>Master Student & Scientist<br>Fraunhofer Institute for Production Technology IPT</p>
     </div>
   </div>
-  <div class="text-center mt-4">
+  <div class="text-center mt-4 scroll-animate">
     <a href="{{ '/CV/CV.pdf' | relative_url }}" class="btn btn-outline-primary btn-lg" target="_blank" download>
       Download Full CV
     </a>
@@ -228,11 +228,11 @@ title: Home
   <hr class="my-4">
   <!-- Skills Section -->
   <section id="skills" class="skills-section my-5">
-    <h2 class="text-center mb-4">Skills</h2>
+    <h2 class="text-center mb-4 scroll-animate-slide-left">Skills</h2>
     <div class="row">
       <div class="col-md-6">
-        <h5 class="mb-3">Technical Skills</h5>
-        <ul class="list-unstyled d-flex flex-wrap justify-content-center">
+        <h5 class="mb-3 scroll-animate">Technical Skills</h5>
+        <ul class="list-unstyled d-flex flex-wrap justify-content-center scroll-animate">
           <li class="m-1"><span class="badge bg-primary">Python</span></li>
           <li class="m-1"><span class="badge bg-primary">Matlab</span></li>
           <li class="m-1"><span class="badge bg-primary">C++</span></li>
@@ -251,8 +251,8 @@ title: Home
         </ul>
       </div>
       <div class="col-md-6">
-        <h5 class="mb-3">Soft Skills</h5>
-        <ul class="list-unstyled d-flex flex-wrap justify-content-center">
+        <h5 class="mb-3 scroll-animate">Soft Skills</h5>
+        <ul class="list-unstyled d-flex flex-wrap justify-content-center scroll-animate">
           <li class="m-1"><span class="badge bg-secondary">Communication</span></li>
           <li class="m-1"><span class="badge bg-secondary">Teamwork</span></li>
           <li class="m-1"><span class="badge bg-secondary">Problem Solving</span></li>
@@ -265,11 +265,11 @@ title: Home
   </section>
   <hr class="my-4">
   <section id="blog" class="my-5">
-  <h2 class="mb-4">Latest Blog Posts</h2>
+  <h2 class="mb-4 scroll-animate-slide-right">Latest Blog Posts</h2>
   <div class="row">
     {% for post in site.posts limit: 4 %}
       <div class="col-md-3 mb-4">
-        <div class="card h-100 shadow-sm">
+        <div class="card h-100 shadow-sm scroll-animate">
           <div class="card-body d-flex flex-column">
             <h5 class="card-title">
               <a href="{{ post.url | relative_url }}" class="stretched-link text-decoration-none">{{ post.title }}</a>
@@ -281,13 +281,13 @@ title: Home
       </div>
     {% endfor %}
   </div>
-  <div class="text-center">
+  <div class="text-center scroll-animate">
     <a href="{{ '/blog/' | relative_url }}" class="btn btn-outline-secondary">View All Posts</a>
   </div>
 </section>
 <hr class="my-4">
 <section id="contact" class="my-5">
-  <h2>Contact</h2>
-  <p>Email: <a href="mailto:{{ site.email }}">{{ site.email }}</a></p>
-  <p>Find me on <a href="https://github.com/{{ site.github_username }}" target="_blank">GitHub</a> and <a href="https://www.linkedin.com/in/nicolas-schneider1/" target="_blank">LinkedIn</a>.</p>
+  <h2 class="scroll-animate-slide-left">Contact</h2>
+  <p class="scroll-animate">Email: <a href="mailto:{{ site.email }}">{{ site.email }}</a></p>
+  <p class="scroll-animate">Find me on <a href="https://github.com/{{ site.github_username }}" target="_blank">GitHub</a> and <a href="https://www.linkedin.com/in/nicolas-schneider1/" target="_blank">LinkedIn</a>.</p>
 </section>
