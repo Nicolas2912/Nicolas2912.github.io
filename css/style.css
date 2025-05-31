@@ -771,3 +771,49 @@ html {
         transform: none;
     }
 }
+
+/* Hero highlights styling */
+.hero-highlights {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hero-highlights .badge {
+  font-size: 1rem;
+  padding: 0.5rem;
+  border-radius: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-highlights small {
+  font-size: 0.9rem;
+  color: #666;
+  font-weight: 500;
+}
+
+.dark-mode .hero-highlights small {
+  color: #ccc;
+}
+
+.hero-highlights .col-md-4 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: left;
+  padding: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .hero-highlights .col-md-4 {
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .hero-highlights small {
+    font-size: 0.85rem;
+  }
+}
