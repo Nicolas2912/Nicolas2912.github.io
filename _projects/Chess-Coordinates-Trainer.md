@@ -4,7 +4,7 @@ title:       "Chess Coordinates Trainer"
 summary:     "An advanced, interactive chess coordinates training application with precise statistics, timing, and performance tracking, built in Python and Tkinter."
 date:        2025-04-21
 permalink:   /projects/chess-coordinates-trainer/
-github_repo: https://github.com/yourusername/chess-coordinates-trainer
+github_repo: https://github.com/Nicolas2912/ChessCoordinateTraining.git
 ---
 
 ## Overview
@@ -32,8 +32,8 @@ with Python and Tkinter, it features:
 
 1. Clone the repo  
     ```bash
-    git clone https://github.com/yourusername/chess-coordinates-trainer.git
-    cd chess-coordinates-trainer
+    git clone https://github.com/Nicolas2912/ChessCoordinateTraining.git
+    cd ChessCoordinateTraining
     ```
 
 2. Install dependencies
@@ -116,3 +116,10 @@ scenarios
 * Add a database to store user progress and statistics also for multiple users. 
 * Implement leaderboard and social sharing features for gamification
 * Enhance data export (CSV/Excel) and introduce user profiles
+
+## Screenshots
+
+![ChessBoard](/images/ChessBoardCoordinatesTrainer/board-with-coords.png)
+![FullUI](/images/ChessBoardCoordinatesTrainer/full-ui.png)
+
+

@@ -1,0 +1,104 @@
+body.homepage-animation {
+    margin: 0; /* Reset margin */
+    overflow: hidden; /* Prevent scrollbars */
+    /* Background is set dynamically via canvas style in JS */
+}
+
+canvas {
+    display: block; /* background-color set dynamically by JS */
+    position: fixed; /* Make canvas cover the whole screen */
+    top: 0;
+    left: 0;
+    z-index: -1; /* Place it behind other content */
+}
+
+.controls {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    background-color: rgba(0, 0, 0, 0.65);
+    padding: 10px 15px;
+    border-radius: 8px;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 14px;
+    transition: opacity 0.3s;
+    opacity: 0.5;
+    z-index: 10;
+    max-height: calc(100vh - 60px);
+    overflow-y: auto;
+}
+
+.controls:hover {
+    opacity: 1;
+}
+
+.controls .slider-container {
+    margin: 8px 0;
+    display: flex;
+    align-items: center;
+}
+
+.controls label {
+    width: 140px;
+    display: inline-block;
+    flex-shrink: 0;
+}
+
+.controls input[type="range"] {
+    width: 120px;
+    flex-grow: 1;
+    min-width: 80px;
+}
+
+.controls .value {
+    width: 45px;
+    text-align: right;
+    margin-left: 10px;
+    flex-shrink: 0;
+}
+
+.color-schemes {
+    margin-top: 10px;
+    display: flex;
+    gap: 8px;
+}
+
+.color-scheme {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.2s;
+    border: 2px solid transparent;
+}
+
+.color-scheme:hover {
+    transform: scale(1.1);
+}
+
+.color-scheme.active {
+    border-color: white;
+}
+
+.control-options {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.control-option {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.control-option:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.control-option.active {
+    background-color: rgba(255, 255, 255, 0.4);
+}

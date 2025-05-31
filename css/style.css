@@ -1,18 +1,29 @@
 .skills-section .badge.bg-secondary {
     background-color: #777 !important;
 }
-/* Particle background canvas */
-#particle-canvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    pointer-events: none;
-}
 /* Add your custom CSS here */
 /* This will apply on top of the default Minima theme styles */
+
+/* Connected dots background for homepage dark mode */
+#particles-js {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  /* Place particles above page background but behind content */
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Ensure particles canvas occupies full container */
+#particles-js canvas {
+  width: 100% !important;
+  height: 100% !important;
+  /* Allow clicks/hover to pass through canvas itself */
+  pointer-events: none;
+}
 
 /* Page body: padded container and typography */
 body {
@@ -90,6 +101,7 @@ html.dark-mode {
 .dark-mode .site-header {
     border-bottom-color: #444444;
 }
+
 /* Minimalistic thematic icons styling */
 .minimal-icons .minimal-icon svg {
     width: 80px;
