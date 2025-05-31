@@ -2,11 +2,38 @@
 title: Nicolas Schneider - Data Scientist / Developer
 email: schneidernicolas90@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
-  This is where you write a short description of your site.
-  Something about your skills, interests, and what the site contains.
+  Data Scientist and ML Engineer specializing in LLM integration, computer vision, and optimization algorithms. 
+  I build production-ready ML systems that bridge research and real-world applications, with expertise in 
+  PyTorch, transformers, and multimodal data processing.
 baseurl: "" # the subpath of your site is empty for a user site (username.github.io)
 url: "https://nicolas2912.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  Nicolas2912 # optional
+
+# SEO and Social Media
+author: Nicolas Schneider
+twitter:
+  username: # Add your Twitter handle if you have one
+  card: summary_large_image
+
+# Open Graph / Social Media defaults
+social:
+  name: Nicolas Schneider
+  links:
+    - https://github.com/Nicolas2912
+    - https://www.linkedin.com/in/nicolas-schneider1/
+
+# Default image for social sharing (add this image to your images folder)
+logo: /images/profile.jpg
+social_image: /images/profile.jpg
+
+# SEO plugin settings
+plugins:
+  - jekyll-seo-tag
+  - jekyll-feed
+
+# Additional SEO settings
+lang: en_US
+timezone: Europe/Berlin
 
 # Build settings
 theme: minima # A simple default Jekyll theme

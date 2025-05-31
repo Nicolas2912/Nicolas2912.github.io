@@ -1,6 +1,8 @@
 ---
 layout: default
 title: Home
+description: "Data Scientist & ML Engineer specializing in LLM integration, computer vision, and optimization algorithms. Building production-ready ML systems with PyTorch, transformers, and multimodal data processing."
+image: /images/profile.jpg
 ---
 
 <div class="hero text-center my-5 scroll-animate">
@@ -9,40 +11,137 @@ title: Home
        class="rounded-circle img-fluid mb-4 scroll-animate-scale"
        style="max-width:150px;">
   <h1 class="display-4 scroll-animate">I'm Nicolas Schneider</h1>
-  <p class="lead scroll-animate">Specialist in developing smart, ML-powered systems that improve operations and accelerate productivity.</p>
-  <a href="#projects" class="btn btn-primary btn-lg mx-2 scroll-animate">My Projects</a>
-  <a href="#contact" class="btn btn-outline-primary btn-lg mx-2 scroll-animate">Contact Me</a>
+  <p class="lead scroll-animate">I build production-ready ML systems that bridge the gap between research and real-world impact. From optimizing neural networks with C++ backends to developing LLM-powered data integration pipelines, I turn complex algorithms into scalable solutions that solve actual business problems.</p>
+  <div class="hero-highlights mb-4 scroll-animate">
+    <div class="row justify-content-center">
+      <div class="col-md-4 mb-2">
+        <span class="badge bg-primary me-2">🤖</span>
+        <small>LLM integration & multimodal data processing</small>
+      </div>
+      <div class="col-md-4 mb-2">
+        <span class="badge bg-success me-2">🧠</span>
+        <small>Custom neural networks & computer vision models</small>
+      </div>
+      <div class="col-md-4 mb-2">
+        <span class="badge bg-info me-2">📊</span>
+        <small>End-to-end ML pipelines with real-time analytics</small>
+      </div>
+    </div>
+  </div>
+  <a href="#projects" class="btn btn-primary btn-lg mx-2 scroll-animate">See My Work</a>
+  <a href="#contact" class="btn btn-outline-primary btn-lg mx-2 scroll-animate">Let's Connect</a>
   </div>
   <!-- Minimalistic thematic icons -->
   <div class="minimal-icons d-flex justify-content-center align-items-center mb-4">
-    <div class="minimal-icon mx-3 scroll-animate" title="Line Chart">
+    <div class="minimal-icon mx-3 scroll-animate" title="Data Analytics & Visualization">
       <svg viewBox="0 0 80 60" xmlns="http://www.w3.org/2000/svg">
-        <polyline points="0,60 20,40 40,50 60,20 80,30" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/>
-        <line x1="0" y1="0" x2="0" y2="60" stroke="currentColor" stroke-width="1"/>
-        <line x1="0" y1="60" x2="80" y2="60" stroke="currentColor" stroke-width="1"/>
+        <!-- Chart axes -->
+        <line x1="12" y1="8" x2="12" y2="52" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="12" y1="52" x2="72" y2="52" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        
+        <!-- Grid lines (subtle) -->
+        <line x1="12" y1="42" x2="72" y2="42" stroke="currentColor" stroke-width="0.5" opacity="0.3"/>
+        <line x1="12" y1="32" x2="72" y2="32" stroke="currentColor" stroke-width="0.5" opacity="0.3"/>
+        <line x1="12" y1="22" x2="72" y2="22" stroke="currentColor" stroke-width="0.5" opacity="0.3"/>
+        
+        <!-- Data line with smooth curve -->
+        <path d="M 18,45 Q 28,38 35,35 T 50,25 Q 58,20 65,18" 
+              stroke="currentColor" stroke-width="2.5" fill="none" 
+              stroke-linecap="round" stroke-linejoin="round"/>
+        
+        <!-- Data points -->
+        <circle cx="18" cy="45" r="2.5" fill="currentColor"/>
+        <circle cx="35" cy="35" r="2.5" fill="currentColor"/>
+        <circle cx="50" cy="25" r="2.5" fill="currentColor"/>
+        <circle cx="65" cy="18" r="2.5" fill="currentColor"/>
+        
+        <!-- Axis labels (minimal) -->
+        <line x1="8" y1="52" x2="10" y2="52" stroke="currentColor" stroke-width="1"/>
+        <line x1="12" y1="54" x2="12" y2="56" stroke="currentColor" stroke-width="1"/>
       </svg>
     </div>
-    <div class="minimal-icon mx-3 scroll-animate" title="Neural Network">
+    <div class="minimal-icon mx-3 scroll-animate" title="Machine Learning & AI">
       <svg viewBox="0 0 80 60" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="15" cy="15" r="5" stroke="currentColor" stroke-width="2" fill="none"/>
-        <circle cx="15" cy="45" r="5" stroke="currentColor" stroke-width="2" fill="none"/>
-        <circle cx="40" cy="30" r="5" stroke="currentColor" stroke-width="2" fill="none"/>
-        <circle cx="65" cy="15" r="5" stroke="currentColor" stroke-width="2" fill="none"/>
-        <circle cx="65" cy="45" r="5" stroke="currentColor" stroke-width="2" fill="none"/>
-        <line x1="20" y1="15" x2="35" y2="30" stroke="currentColor" stroke-width="1"/>
-        <line x1="20" y1="45" x2="35" y2="30" stroke="currentColor" stroke-width="1"/>
-        <line x1="45" y1="30" x2="60" y2="15" stroke="currentColor" stroke-width="1"/>
-        <line x1="45" y1="30" x2="60" y2="45" stroke="currentColor" stroke-width="1"/>
+        <!-- Input layer -->
+        <circle cx="15" cy="20" r="4" stroke="currentColor" stroke-width="1.5" fill="none"/>
+        <circle cx="15" cy="30" r="4" stroke="currentColor" stroke-width="1.5" fill="none"/>
+        <circle cx="15" cy="40" r="4" stroke="currentColor" stroke-width="1.5" fill="none"/>
+        
+        <!-- Hidden layer -->
+        <circle cx="40" cy="15" r="4" stroke="currentColor" stroke-width="1.5" fill="none"/>
+        <circle cx="40" cy="25" r="4" stroke="currentColor" stroke-width="1.5" fill="none"/>
+        <circle cx="40" cy="35" r="4" stroke="currentColor" stroke-width="1.5" fill="none"/>
+        <circle cx="40" cy="45" r="4" stroke="currentColor" stroke-width="1.5" fill="none"/>
+        
+        <!-- Output layer -->
+        <circle cx="65" cy="25" r="4" stroke="currentColor" stroke-width="1.5" fill="none"/>
+        <circle cx="65" cy="35" r="4" stroke="currentColor" stroke-width="1.5" fill="none"/>
+        
+        <!-- Connections (weighted) -->
+        <line x1="19" y1="20" x2="36" y2="15" stroke="currentColor" stroke-width="1" opacity="0.6"/>
+        <line x1="19" y1="20" x2="36" y2="25" stroke="currentColor" stroke-width="1.5" opacity="0.8"/>
+        <line x1="19" y1="30" x2="36" y2="25" stroke="currentColor" stroke-width="2" opacity="1"/>
+        <line x1="19" y1="30" x2="36" y2="35" stroke="currentColor" stroke-width="1.5" opacity="0.8"/>
+        <line x1="19" y1="40" x2="36" y2="35" stroke="currentColor" stroke-width="1" opacity="0.6"/>
+        <line x1="19" y1="40" x2="36" y2="45" stroke="currentColor" stroke-width="1" opacity="0.6"/>
+        
+        <line x1="44" y1="15" x2="61" y2="25" stroke="currentColor" stroke-width="1" opacity="0.6"/>
+        <line x1="44" y1="25" x2="61" y2="25" stroke="currentColor" stroke-width="2" opacity="1"/>
+        <line x1="44" y1="35" x2="61" y2="35" stroke="currentColor" stroke-width="2" opacity="1"/>
+        <line x1="44" y1="45" x2="61" y2="35" stroke="currentColor" stroke-width="1" opacity="0.6"/>
+        
+        <!-- Activation indicators -->
+        <circle cx="40" cy="25" r="2" fill="currentColor" opacity="0.7"/>
+        <circle cx="65" cy="30" r="2" fill="currentColor" opacity="0.7"/>
       </svg>
     </div>
-    <div class="minimal-icon mx-3 scroll-animate" title="Data Matrix">
+    <div class="minimal-icon mx-3 scroll-animate" title="Data Processing & Optimization">
       <svg viewBox="0 0 80 60" xmlns="http://www.w3.org/2000/svg">
-        <rect x="5" y="5" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1"/>
-        <rect x="30" y="5" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1"/>
-        <rect x="55" y="5" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1"/>
-        <rect x="5" y="35" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1"/>
-        <rect x="30" y="35" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1"/>
-        <rect x="55" y="35" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1"/>
+        <!-- Data matrix representation -->
+        <g stroke="currentColor" stroke-width="1.5" fill="none">
+          <!-- Matrix structure -->
+          <rect x="10" y="10" width="18" height="18" rx="2"/>
+          <rect x="31" y="10" width="18" height="18" rx="2"/>
+          <rect x="52" y="10" width="18" height="18" rx="2"/>
+          <rect x="10" y="32" width="18" height="18" rx="2"/>
+          <rect x="31" y="32" width="18" height="18" rx="2"/>
+          <rect x="52" y="32" width="18" height="18" rx="2"/>
+        </g>
+        
+        <!-- Data visualization inside cells -->
+        <g fill="currentColor" opacity="0.6">
+          <!-- Different data densities -->
+          <rect x="13" y="13" width="3" height="12" rx="1"/>
+          <rect x="18" y="16" width="3" height="9" rx="1"/>
+          <rect x="23" y="14" width="3" height="11" rx="1"/>
+          
+          <circle cx="40" cy="19" r="2"/>
+          <circle cx="45" cy="16" r="1.5"/>
+          <circle cx="38" cy="23" r="1"/>
+          
+          <rect x="55" y="13" width="12" height="2" rx="1"/>
+          <rect x="55" y="17" width="8" height="2" rx="1"/>
+          <rect x="55" y="21" width="10" height="2" rx="1"/>
+          
+          <path d="M 13,35 L 18,42 L 23,38 L 25,45" stroke="currentColor" stroke-width="1.5" fill="none"/>
+          
+          <rect x="34" y="35" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1" opacity="0.4"/>
+          <rect x="36" y="37" width="8" height="8" fill="currentColor" opacity="0.3"/>
+          
+          <g stroke="currentColor" stroke-width="1" opacity="0.5">
+            <line x1="55" y1="35" x2="67" y2="47"/>
+            <line x1="55" y1="47" x2="67" y2="35"/>
+            <circle cx="61" cy="41" r="4" fill="none"/>
+          </g>
+        </g>
+        
+        <!-- Connection indicators -->
+        <g stroke="currentColor" stroke-width="1" opacity="0.4">
+          <line x1="28" y1="19" x2="31" y2="19"/>
+          <line x1="49" y1="19" x2="52" y2="19"/>
+          <line x1="28" y1="41" x2="31" y2="41"/>
+          <line x1="49" y1="41" x2="52" y2="41"/>
+        </g>
       </svg>
     </div>
   </div>
@@ -228,38 +327,109 @@ title: Home
   <hr class="my-4">
   <!-- Skills Section -->
   <section id="skills" class="skills-section my-5">
-    <h2 class="text-center mb-4 scroll-animate-slide-left">Skills</h2>
-    <div class="row">
-      <div class="col-md-6">
-        <h5 class="mb-3 scroll-animate">Technical Skills</h5>
-        <ul class="list-unstyled d-flex flex-wrap justify-content-center scroll-animate">
-          <li class="m-1"><span class="badge bg-primary">Python</span></li>
-          <li class="m-1"><span class="badge bg-primary">Matlab</span></li>
-          <li class="m-1"><span class="badge bg-primary">C++</span></li>
-          <li class="m-1"><span class="badge bg-primary">React</span></li>
-          <li class="m-1"><span class="badge bg-primary">NodeJs</span></li>
-          <li class="m-1"><span class="badge bg-primary">Git</span></li>
-          <li class="m-1"><span class="badge bg-primary">MS Office</span></li>
-          <li class="m-1"><span class="badge bg-primary">SQL</span></li>
-          <li class="m-1"><span class="badge bg-primary">Elasticsearch</span></li>
-          <li class="m-1"><span class="badge bg-primary">PyTorch</span></li>
-          <li class="m-1"><span class="badge bg-primary">Pandas</span></li>
-          <li class="m-1"><span class="badge bg-primary">Transformers</span></li>
-          <li class="m-1"><span class="badge bg-primary">LlamaIndex</span></li>
-          <li class="m-1"><span class="badge bg-primary">RAG</span></li>
-          <li class="m-1"><span class="badge bg-primary">LLMs</span></li>
-        </ul>
+    <h2 class="text-center mb-4 scroll-animate-slide-left">Skills & Expertise</h2>
+    <div class="row g-4">
+      <!-- Programming Languages -->
+      <div class="col-lg-4 col-md-6">
+        <div class="skill-category h-100">
+          <div class="skill-category-header mb-3 scroll-animate">
+            <div class="skill-icon">💻</div>
+            <h5 class="mb-0">Programming Languages</h5>
+          </div>
+          <ul class="list-unstyled d-flex flex-wrap scroll-animate">
+            <li class="m-1"><span class="badge bg-primary">Python</span></li>
+            <li class="m-1"><span class="badge bg-primary">C++</span></li>
+            <li class="m-1"><span class="badge bg-primary">Matlab</span></li>
+            <li class="m-1"><span class="badge bg-primary">SQL</span></li>
+            <li class="m-1"><span class="badge bg-primary">JavaScript</span></li>
+          </ul>
+        </div>
       </div>
-      <div class="col-md-6">
-        <h5 class="mb-3 scroll-animate">Soft Skills</h5>
-        <ul class="list-unstyled d-flex flex-wrap justify-content-center scroll-animate">
-          <li class="m-1"><span class="badge bg-secondary">Communication</span></li>
-          <li class="m-1"><span class="badge bg-secondary">Teamwork</span></li>
-          <li class="m-1"><span class="badge bg-secondary">Problem Solving</span></li>
-          <li class="m-1"><span class="badge bg-secondary">Adaptability</span></li>
-          <li class="m-1"><span class="badge bg-secondary">Curiousity</span></li>
-          <li class="m-1"><span class="badge bg-secondary">Open Mindedness</span></li>
-        </ul>
+
+      <!-- ML/AI Frameworks -->
+      <div class="col-lg-4 col-md-6">
+        <div class="skill-category h-100">
+          <div class="skill-category-header mb-3 scroll-animate">
+            <div class="skill-icon">🤖</div>
+            <h5 class="mb-0">ML/AI Frameworks</h5>
+          </div>
+          <ul class="list-unstyled d-flex flex-wrap scroll-animate">
+            <li class="m-1"><span class="badge bg-success">PyTorch</span></li>
+            <li class="m-1"><span class="badge bg-success">Transformers</span></li>
+            <li class="m-1"><span class="badge bg-success">LlamaIndex</span></li>
+            <li class="m-1"><span class="badge bg-success">RAG</span></li>
+            <li class="m-1"><span class="badge bg-success">LLMs</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Data & Analytics -->
+      <div class="col-lg-4 col-md-6">
+        <div class="skill-category h-100">
+          <div class="skill-category-header mb-3 scroll-animate">
+            <div class="skill-icon">📊</div>
+            <h5 class="mb-0">Data & Analytics</h5>
+          </div>
+          <ul class="list-unstyled d-flex flex-wrap scroll-animate">
+            <li class="m-1"><span class="badge bg-info">Pandas</span></li>
+            <li class="m-1"><span class="badge bg-info">NumPy</span></li>
+            <li class="m-1"><span class="badge bg-info">Scikit-learn</span></li>
+            <li class="m-1"><span class="badge bg-info">Matplotlib</span></li>
+            <li class="m-1"><span class="badge bg-info">Seaborn</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Web Development -->
+      <div class="col-lg-4 col-md-6">
+        <div class="skill-category h-100">
+          <div class="skill-category-header mb-3 scroll-animate">
+            <div class="skill-icon">🌐</div>
+            <h5 class="mb-0">Web Development</h5>
+          </div>
+          <ul class="list-unstyled d-flex flex-wrap scroll-animate">
+            <li class="m-1"><span class="badge bg-warning text-dark">React</span></li>
+            <li class="m-1"><span class="badge bg-warning text-dark">Node.js</span></li>
+            <li class="m-1"><span class="badge bg-warning text-dark">HTML/CSS</span></li>
+            <li class="m-1"><span class="badge bg-warning text-dark">Bootstrap</span></li>
+            <li class="m-1"><span class="badge bg-warning text-dark">Jekyll</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Tools & Platforms -->
+      <div class="col-lg-4 col-md-6">
+        <div class="skill-category h-100">
+          <div class="skill-category-header mb-3 scroll-animate">
+            <div class="skill-icon">🛠️</div>
+            <h5 class="mb-0">Tools & Platforms</h5>
+          </div>
+          <ul class="list-unstyled d-flex flex-wrap scroll-animate">
+            <li class="m-1"><span class="badge bg-dark">Git</span></li>
+            <li class="m-1"><span class="badge bg-dark">Elasticsearch</span></li>
+            <li class="m-1"><span class="badge bg-dark">Salesforce</span></li>
+            <li class="m-1"><span class="badge bg-dark">Azure</span></li>
+            <li class="m-1"><span class="badge bg-dark">Docker</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Soft Skills -->
+      <div class="col-lg-4 col-md-6">
+        <div class="skill-category h-100">
+          <div class="skill-category-header mb-3 scroll-animate">
+            <div class="skill-icon">🎯</div>
+            <h5 class="mb-0">Core Competencies</h5>
+          </div>
+          <ul class="list-unstyled d-flex flex-wrap scroll-animate">
+            <li class="m-1"><span class="badge bg-secondary">Problem Solving</span></li>
+            <li class="m-1"><span class="badge bg-secondary">Research</span></li>
+            <li class="m-1"><span class="badge bg-secondary">Communication</span></li>
+            <li class="m-1"><span class="badge bg-secondary">Teamwork</span></li>
+            <li class="m-1"><span class="badge bg-secondary">Adaptability</span></li>
+            <li class="m-1"><span class="badge bg-secondary">Critical Thinking</span></li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
