@@ -22,7 +22,7 @@ This project brings together high-performance C++ computing with a modern web ap
 ### Backend Server
 - **Runtime**: Node.js
 - **Framework**: Express for REST API endpoints
-- **Communication**: 
+- **Communication**:
   - WebSocket (ws) for live data streaming
   - child_process.spawn for C++ binary execution
 - **Features**: Bridges C++ computations with frontend, streams real-time training data
@@ -114,33 +114,33 @@ npm start
 
 ### C++ Engine (`cpp/`)
 
-- **`linear_regression.h/.cpp`**: 
+- **`linear_regression.h/.cpp`**:
   - Implements linear regression using the normal equation
   - Computes performance metrics (MSE, R²)
 
-- **`neural_network.h/.cpp`**: 
+- **`neural_network.h/.cpp`**:
   - Defines feedforward neural network architecture
   - Implements sigmoid activation functions
   - Performs training via gradient descent optimization
 
-- **`main_server.cpp`**: 
+- **`main_server.cpp`**:
   - Provides CLI interface for training commands
   - Handles data streaming to Node.js backend
 
-- **`Makefile`**: 
+- **`Makefile`**:
   - Builds C++ modules into executable binaries
   - Configures optimization and parallel support
 
 ### Backend Server (`server/`)
 
-- **`server.js`**: 
+- **`server.js`**:
   - Manages REST API endpoints
   - Executes C++ subprocesses
   - Parses computation output
   - Streams data via WebSockets
   - Handles cross-platform execution differences
 
-- **Dependencies**: 
+- **Dependencies**:
   - cors for cross-origin requests
   - ws for WebSocket communication
 
@@ -351,5 +351,7 @@ accuracy.
 
 ## Screenshots
 
-![UI-whitemode](/images/CPP-LinearRegression-ML/UI-whitemode.png)
-![UI-darkmode](/images/CPP-LinearRegression-ML/UI-darkmode.png)
+![UI-whitemode](/images/CPP-LinearRegression-ML/LR-card.png)
+![UI-whitemode](/images/CPP-LinearRegression-ML/NN-card.png)
+![UI-whitemode](/images/CPP-LinearRegression-ML/modeloverlay-card.png)
+![UI-whitemode](/images/CPP-LinearRegression-ML/network-blueprint-card.png)
