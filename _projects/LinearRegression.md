@@ -11,6 +11,9 @@ github_repo: https://github.com/Nicolas2912/cpp-ml-react
 
 This project brings together high-performance C++ computing with a modern web application, making it ideal for both education and rapid prototyping. It features analytical Linear Regression and a customizable Feedforward Neural Network, both implemented in C++11 and seamlessly integrated with a Node.js/Express backend. The frontend, built with React, utilizes REST APIs and WebSockets to provide dynamic visualizations of data points, regression lines, training losses, and predictions in real-time.
 
+![app-gif](/images/CPP-LinearRegression-ML/app.gif)
+
+
 ## Tech Stack
 
 ### C++ Engine
@@ -351,7 +354,9 @@ accuracy.
 
 ## Screenshots
 
-![UI-whitemode](/images/CPP-LinearRegression-ML/LR-card.png)
-![UI-whitemode](/images/CPP-LinearRegression-ML/NN-card.png)
-![UI-whitemode](/images/CPP-LinearRegression-ML/modeloverlay-card.png)
-![UI-whitemode](/images/CPP-LinearRegression-ML/network-blueprint-card.png)
+![LR-card](/images/CPP-LinearRegression-ML/LR-card.png)
+![NN-card](/images/CPP-LinearRegression-ML/NN-card.png)
+![Modeloverlay-card](/images/CPP-LinearRegression-ML/modeloverlay-card.png)
+![network-blueprint-ard](/images/CPP-LinearRegression-ML/network-blueprint-card.png)
+![UI-whitemode](/images/CPP-LinearRegression-ML/UI-whitemode_1.png)
+![UI-darkmode](/images/CPP-LinearRegression-ML/UI-darkmode_1.png)
