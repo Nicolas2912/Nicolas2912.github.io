@@ -1,139 +1,119 @@
 ---
 layout: post
-title: "Was passiert, wenn KI ihre eigenen Nachfolger baut?"
+title: "What happens when AI helps build the next AI?"
 date: 2026-09-06 09:00:00 +0200
-lang: de
-locale: de_DE
+lang: en
+locale: en_US
 permalink: /blog/ki-beschleunigt-ihre-eigene-entwicklung/
-description: "Samsungs zHBM lenkt den Blick auf eine größere Frage: Was passiert, wenn schnellere KI die Forschung an der nächsten KI beschleunigt?"
-excerpt: "Eine KI, die schneller antwortet, spart uns Wartezeit. Eine KI, die ihre Nachfolger schneller mitentwickelt, könnte den Takt ganzer Industrien verändern."
-tags: [KI, zHBM, Hardware, Forschung, Wirtschaft]
+description: "Faster chips could do more than speed up a chat. They could shorten the wait for the next generation of AI—and leave us less time to catch up."
+excerpt: "Suppose the next generation of AI arrives six months early because the current one helped build it. That's the speedup I want to understand."
+tags: [AI, zHBM, Hardware, Research, Economics]
 ---
 
-Eine KI, die meine E-Mails in einer Sekunde statt in zehn formuliert, ist praktisch. Eine KI, die dabei hilft, die nächste KI-Generation sechs Monate früher fertigzustellen, hätte eine andere Tragweite.
+Suppose the next generation of AI arrives six months early because the current one helped build it.
 
-Über den ersten Effekt reden wir ständig. Der zweite beschäftigt mich mehr.
+The model wrote some of the code, helped find a better training algorithm, or caught a hardware problem before anyone sent the design off for manufacturing. Nothing especially cinematic. Just enough useful work, in the right places, to bring the whole schedule forward.
 
-Der Anlass ist ausgerechnet eine Speicherarchitektur. Samsung hat im August 2026 ein Konzept namens zHBM vorgestellt: Speicher soll direkt über dem KI-Beschleuniger gestapelt werden. Kürzere Wege für Daten, höhere Bandbreite, bessere Energieeffizienz. So beschreibt Samsung die Richtung. Es handelt sich um ein Konzept mit Leistungszielen, nicht um einen veröffentlichten Benchmark für ein fertiges KI-System. [Samsung, 5. August 2026](https://news.samsung.com/global/samsung-unveils-next-gen-3d-memory-vision-at-fms-2026-charting-the-future-of-ai-infrastructure)
+Then its successor does the same.
 
-Das ist zunächst eine Nachricht für die Halbleiterbranche. Mich interessiert, was daraus werden könnte, wenn günstigere Rechenleistung zunehmend in Forschung fließt. Auch in die Forschung an KI selbst.
+That's the possibility I keep coming back to when I read about faster AI hardware. Saving a few seconds in a chat is easy to appreciate. Shortening the development cycle of the technology itself is harder to picture, and potentially much more consequential.
 
-**Wie viel von der Arbeit einer KI fließt in die Entwicklung ihres eigenen Nachfolgers?**
+A recent Samsung announcement brought this back to mind. In August 2026, the company presented zHBM, a memory concept that stacks high-bandwidth memory directly above an AI accelerator. The aim is to move data over shorter distances and improve bandwidth and energy efficiency. Samsung is describing a concept and performance targets here; those aren't measured results for a finished AI system. [Samsung's announcement](https://news.samsung.com/global/samsung-unveils-next-gen-3d-memory-vision-at-fms-2026-charting-the-future-of-ai-infrastructure)
 
-## Warum ein Speicherchip hier überhaupt eine Rolle spielt
+I wouldn't hang a prediction about the future on one memory roadmap. Still, it's a useful place to start.
 
-Rechenleistung allein reicht nicht. Ein KI-Beschleuniger muss seine Recheneinheiten auch mit Daten versorgen. Je nach Modell und Arbeitslast kann die Bewegung dieser Daten zum Engpass werden. Beim schrittweisen Erzeugen von Text spielen unter anderem Modellgewichte, der gespeicherte Kontext und die Zahl gleichzeitig bearbeiteter Anfragen eine Rolle.
+## The unglamorous problem of moving data
 
-High Bandwidth Memory, kurz HBM, stellt dafür viel Speicherbandbreite in unmittelbarer Nähe des Prozessors bereit. zHBM soll diese Verbindung noch enger machen. Die Idee ist plausibel: Weniger Weg zwischen Speicher und Recheneinheit kann Datenbewegung effizienter machen.
+A chip can have enormous computing capacity and still spend time waiting for the data it needs. How much this matters depends on the workload. Generating one answer, processing a large batch of requests, and training a model put different demands on the system.
 
-Daraus lässt sich aber keine seriöse Ansage wie „bald 5.000 Tokens pro Sekunde in jedem Chat“ ableiten. Speicherbandbreite ist keine Antwortgeschwindigkeit. Was beim Nutzer ankommt, hängt auch von Rechenleistung, Software, Modellgröße, Auslastung und Netzwerk ab. Und ein Server, der viele Anfragen gleichzeitig abarbeitet, ist etwas anderes als eine einzelne Unterhaltung, die besonders schnell läuft.
+HBM helps by putting a lot of memory bandwidth close to the processor. zHBM would take that proximity further. Shorter connections could make moving data cheaper in energy and time, leaving more of the system's capacity available for useful work.
 
-Die spannende Möglichkeit bleibt: Falls solche Architekturen die Kosten brauchbarer KI-Arbeit deutlich senken, könnten wir viel mehr davon einsetzen. Das muss sich allerdings am gesamten System zeigen, nicht nur an einer Komponente.
+The tempting next step is to turn a bandwidth figure into a claim about chat speed. Eight times this, ten times that, therefore thousands of tokens per second. I'd be careful. The model, software, context length, network, and load all matter. So does the distinction between serving a hundred people at once and making one person's answer arrive faster.
 
-## Niemand will eine Million Tokens lesen
+What would interest me is a sustained reduction in the cost of getting a difficult task right. Include the failed attempts. Include checking the result. Include the engineer who has to repair the damage when a plausible answer turns out to be wrong.
 
-Zusätzliche Geschwindigkeit könnte hinter einer kurzen Antwort verschwinden.
+If that cost falls enough, we can afford to try things that currently aren't worth the effort.
 
-Bei einem schwierigen Softwarefehler könnte ein System mehrere Ursachen untersuchen, einen Fehler reproduzieren, alternative Änderungen ausprobieren und die Ergebnisse testen. Für den Nutzer blieben vielleicht fünf Sätze und ein funktionierender Patch übrig.
+Take a stubborn software bug. Instead of following the first plausible explanation, a system could reproduce the failure, investigate several causes, try alternative fixes, and run the relevant tests. You might get a short explanation and a small patch. Most of the extra computation would be invisible.
 
-Das wäre ein sinnvoller Einsatz zusätzlicher Rechenzeit. Allerdings nur dann, wenn die Prüfung funktioniert. Zehn Agenten, die dieselbe falsche Annahme wiederholen, liefern zehnmal denselben Irrtum. Mehr Text ist noch keine zusätzliche Erkenntnis.
+I'd happily pay for that. I have much less use for a longer answer.
 
-Deshalb halte ich Tokens pro Sekunde allein für eine schwache Erfolgskennzahl. Mich würde interessieren: **Wie viele korrekt gelöste Aufgaben bekommen wir pro Euro, einschließlich Prüfung und Nacharbeit?**
+## There is already a small, concrete example
 
-Diese Frage ist weniger spektakulär als ein Geschwindigkeitsrekord. Für Unternehmen wäre sie wesentlich nützlicher.
+Google DeepMind's AlphaEvolve is worth looking at because the reported results are specific enough to examine.
 
-## Ein Stück dieser Rückkopplung gibt es schon
+According to Google, it found improvements in data-center scheduling, proposed a simplification to a TPU circuit, and sped up a computing kernel used in Gemini training. That last result came with two numbers: a 23% speedup for the affected kernel and roughly a 1% reduction in training time overall. [DeepMind's account](https://deepmind.google/blog/alphaevolve-a-gemini-powered-coding-agent-for-designing-advanced-algorithms/)
 
-Man muss dafür keine vollständig autonome Superintelligenz annehmen.
+Both numbers matter. Quoting only the first would give a misleading impression of the benefit. Dismissing the second would miss why a small improvement can be valuable when applied to an expensive process.
 
-Google DeepMind berichtet, dass AlphaEvolve Algorithmen für die Auslastung von Rechenzentren verbessert, eine Vereinfachung für eine TPU-Schaltung vorgeschlagen und einen Rechenkern im Gemini-Training beschleunigt hat. Bei Letzterem nennt Google 23 Prozent Beschleunigung des betroffenen Kernels, aber rund ein Prozent weniger Trainingszeit insgesamt. Diese Unterscheidung ist entscheidend: Ein großer lokaler Gewinn kann im Gesamtsystem deutlich kleiner ausfallen. [Google DeepMind, Mai 2025](https://deepmind.google/blog/alphaevolve-a-gemini-powered-coding-agent-for-designing-advanced-algorithms/)
+There is a fairly strict condition attached to this approach. Candidate solutions have to be evaluated automatically. The authors explicitly put tasks requiring manual experiments outside the scope of their work. [AlphaEvolve paper](https://arxiv.org/abs/2506.13131)
 
-Das zugehörige Paper beschreibt auch die Grenze des Ansatzes: Die vorgeschlagenen Lösungen müssen sich automatisch bewerten lassen. Aufgaben, die manuelle Experimente verlangen, liegen außerhalb dieses Rahmens. [AlphaEvolve-Paper](https://arxiv.org/abs/2506.13131)
+So we have an AI system contributing to some of the software and hardware work that supports AI development. People still choose the problems, establish the checks, and decide what gets used. It doesn't establish an autonomous cycle that keeps accelerating. But it gives the broader idea something firmer to stand on than a diagram with arrows pointing back to themselves.
 
-Trotzdem steckt darin etwas Bemerkenswertes. Ein KI-System hilft, Teile der Infrastruktur und Software zu verbessern, auf denen KI entwickelt wird. Menschen definieren weiterhin Probleme, Prüfverfahren und den Einsatz der Ergebnisse. Aber KI ist bereits an einigen Stellen Teil des Entwicklungsprozesses ihrer technischen Grundlagen.
+In my [earlier post on recursive self-improvement]({% post_url 2025-09-24-recursive-self-improvement %}), I focused on the distinction between automating research tasks and a system persistently improving its own capacity to improve. I still think that distinction matters. Economically, though, quite a lot could happen before we reach the stricter definition.
 
-Daraus könnte eine stärkere Rückkopplung entstehen:
+A research team doesn't need to hand over its entire job for AI assistance to change its schedule.
 
-> Bessere KI unterstützt Forschung und Engineering. Deren Ergebnisse ermöglichen bessere KI. Diese kann wiederum mehr zur nächsten Runde beitragen.
+## Watch the time between improvements
 
-Das ist noch kein Nachweis einer sich selbst beschleunigenden Gesamtentwicklung. Dafür müsste man über mehrere Generationen zeigen, dass der Kreislauf tatsächlich schneller wird. Es ist aber ein konkreter Grund, genauer hinzusehen.
+Imagine a comparable, independently checked advance taking twelve months, then nine, then six. Those are illustrative numbers, not a forecast. The interesting evidence would be whether earlier improvements actually helped make the later ones arrive sooner.
 
-## Die interessante Kurve misst Entwicklungszeit
+That is harder to establish than a higher benchmark score. You would need to account for spending, team size, changes in the difficulty of the task, and the work left out of the measurement. A shorter training run doesn't help much if preparing the data now takes twice as long.
 
-In meinem [früheren Beitrag über Recursive Self-Improvement]({% post_url 2025-09-24-recursive-self-improvement %}) ging es vor allem darum, echte Selbstverbesserung von Automatisierung zu unterscheiden. Hier interessiert mich die wirtschaftliche Wirkung, die schon entstehen könnte, bevor ein System seinen gesamten Entwicklungsprozess autonom beherrscht.
+Even the elementary maths can mislead. Adding twenty units each year is linear growth; adding twenty percent is exponential. Neither tells us whether “AI capability” can sensibly be represented by one number, or whether the trend will survive the next bottleneck.
 
-Angenommen, ein Team benötigt zwölf Monate für einen verlässlich messbaren Fortschritt. Mit KI-Unterstützung schafft es eine vergleichbare Verbesserung später in neun Monaten. Die nächste Runde dauert sechs. Das wäre Beschleunigung. Die Zahlen sind ein Gedankenexperiment, keine Prognose.
+For now, I'd watch development time and total cost alongside the quality of the result. Then I'd ask how much of the gain gets carried into the next round. A pattern that survives several generations would be much more persuasive than one unusually good demonstration.
 
-Die mathematische Grundidee ist einfach. Jedes Jahr 20 zusätzliche Leistungseinheiten wären lineares Wachstum. Jedes Jahr 20 Prozent mehr wären exponentielles Wachstum. Das wird gerne vermischt. Ob sich KI-Fähigkeit überhaupt sinnvoll in einer einzigen Zahl ausdrücken lässt, ist eine weitere offene Frage.
+There's another easy mistake here: multiplying an agent's ability by the number of copies we can run and calling the result research output.
 
-Für die Praxis würde ich deshalb drei Dinge beobachten:
+A hundred agents might explore a hundred useful possibilities. They might also converge on the same bad idea, rely on the same flawed source, or sit waiting for the same experiment. Parallel work helps when a problem can actually be divided and the answers can be checked. More instances don't remove a dependency between two steps.
 
-- Wird die Zeit bis zur nächsten **nachgewiesenen Verbesserung** kürzer?
-- Sinken die Gesamtkosten, einschließlich Experimenten, Fehlversuchen und Kontrolle?
-- Tragen die erreichten Verbesserungen messbar zur nächsten Entwicklungsrunde bei?
+And if faster hardware is what lets you run more agents, you can't necessarily count the hardware gain and the extra agents as separate multipliers. You may be counting the same benefit twice.
 
-Ein beeindruckender Benchmark beantwortet diese Fragen noch nicht. Eine über Jahre kürzer werdende Entwicklungsschleife wäre dagegen schwer zu ignorieren.
+## Eventually, someone has to make the chip
 
-## Mehr Agenten ergeben nicht automatisch mehr Forschung
+This is where the most dramatic versions of the argument lose me.
 
-Es ist verlockend, die Fähigkeit eines Agenten mit der Zahl seiner Kopien zu multiplizieren. Fünfmal besser, hundertmal mehr Instanzen: fünfhundertmal mehr Forschung.
+A promising design still needs fabrication, packaging, cooling, and tests on real hardware. Simulations can prevent mistakes, but they don't replace every measurement. Nor does a better design create an available factory slot.
 
-So einfach funktioniert Arbeit selten. Agenten können dieselben Ideen verfolgen, dieselben Fehler machen oder auf dasselbe knappe Labor warten. Manche Probleme lassen sich hervorragend aufteilen. Andere verlangen ein Ergebnis, bevor der nächste Schritt beginnen kann.
+I expect software to be the easier place for this feedback to accelerate. Changes can often be tried quickly, and some outcomes are straightforward to measure. Hardware has longer stretches where the limiting factor is something you cannot solve by generating another candidate.
 
-Auch Hardwareleistung und Agentenzahl darf man nicht gedankenlos miteinander multiplizieren. Wenn bessere Hardware bereits die zusätzlichen Agenten ermöglicht, zählt man denselben Vorteil womöglich zweimal.
+That doesn't make AI assistance irrelevant. Finding a thermal problem before fabrication could save a costly iteration. A better experiment could answer a question with fewer physical samples. The gain depends on whether that work lies on the critical path.
 
-Die größere Chance sehe ich bei Aufgaben, für die es viele unabhängig prüfbare Kandidaten gibt: Compileroptimierung, bestimmte mathematische Suchprobleme, Softwaretests oder Simulationen mit klaren Bewertungskriterien. Dort kann zusätzliche Suche wertvoll sein. Wie viel sie bringt, muss man messen.
+Robotics and automated labs might eventually extend the reach of the cycle. But there are several substantial engineering problems between “AI designs a robot” and “robots build the factories that produce more AI chips.” I don't want to hide all of them inside one arrow.
 
-Für eine offene Forschungsfrage ohne verlässliches Prüfverfahren hilft es dagegen wenig, eine Million überzeugend klingende Antworten zu erzeugen.
+It seems more plausible to me that progress would be uneven: quick gains in one area, a frustrating wait somewhere else, then another opening. zHBM could provide one of those openings. Or it could arrive late and prove too expensive for much of the market. The broader argument has to survive either outcome.
 
-## Die Fabrik wartet nicht auf den nächsten Token
+## Cheaper code would change what is worth building
 
-Selbst ein sehr guter Chipentwurf muss gefertigt, verpackt, gekühlt und getestet werden. Eine Simulation ersetzt nicht jede Messung am realen Bauteil. Ein besserer Entwurf baut noch keine zusätzliche Fabrik.
+My work involves CRM systems, data integration, and AI applications. That makes the software side of this feel much less abstract.
 
-Deshalb erwarte ich, dass sich eine solche Rückkopplung in Software leichter beschleunigen lässt als in Hardware. Code kann man oft rasch ändern und ausführen. Physische Experimente, Fertigung und Infrastruktur haben andere Taktzeiten.
+There are plenty of workflows for which a custom tool would be useful but hard to justify. Perhaps only a small team needs it. Perhaps it saves too little time to cover development and maintenance. Lowering those costs could make very specific software viable, including tools designed around a single person's way of working.
 
-KI könnte trotzdem helfen, unnötige Iterationen zu vermeiden: mehr Varianten vorab untersuchen, Schwachstellen früher erkennen, Versuche gezielter planen. Ob dadurch ein Hardwarezyklus erheblich kürzer wird, hängt davon ab, welcher Schritt ihn tatsächlich begrenzt.
+I can see why that puts pressure on some existing software businesses. I also think “an agent can build my CRM” skips over much of what a company is paying for.
 
-Robotik und automatisierte Labore könnten weitere Teile dieses Prozesses zugänglich machen. Daraus eine nahtlose Kette von „KI entwirft Roboter, Roboter bauen Chips, Chips erzeugen mehr KI“ abzuleiten, wäre heute jedoch ein Szenario mit vielen offenen Voraussetzungen.
+Who migrates the data? Who decides which users may change it? What happens when an upstream system sends an unexpected value, or an integration fails halfway through? A working interface is a start. Keeping the business process dependable is ongoing work.
 
-Vielleicht besteht der langfristige Effekt eher darin, schneller zur nächsten brauchbaren Technologie zu gelangen, wenn die bisherige an Grenzen stößt. Auch dieser Übergang kostet Zeit und kann scheitern.
+If implementation gets cheaper, I would expect understanding the customer's problem, handling those operational details, and earning trust to account for more of a product's value. Competition could become fiercer without making software companies unnecessary.
 
-## Was das für Softwareunternehmen bedeuten würde
+The same unevenness applies to research. Searching a space of programs with a reliable evaluator is a good candidate for extra computation. An open scientific question without a dependable test is a different proposition. A million answers that sound right still leave you with the problem of finding out which ones are true.
 
-Wenn verlässliche Entwicklungsarbeit günstiger wird, könnten sich Anwendungen für viel kleinere Zielgruppen lohnen. Ein interner Ablauf, für den sich bisher kein eigenes Werkzeug rechnet. Eine Fachanwendung für wenige Dutzend Nutzer. Vielleicht eine Lösung für eine einzige Person.
+## Less time to catch up
 
-Das könnte Teile des Softwaremarkts unter Druck setzen. Aber „ein Agent baut mir mein CRM“ beantwortet noch nicht, wer die Daten migriert, Berechtigungen sauber hält, Schnittstellen wartet und bei einem Ausfall Verantwortung übernimmt.
+A productive feedback cycle could make an early advantage more durable. The team already using AI well gains experience, improves its tools, and has more resources for the next attempt. A delay may cost several rounds of learning.
 
-Gerade bei Unternehmenssoftware ist das Produkt mehr als sein Quellcode. Der laufende Betrieb, das Verständnis der Fachprozesse und das Vertrauen der Nutzer gehören dazu.
+For Europe, I think the practical questions are quite concrete. Can a useful project get access to power and computing capacity? Are requirements clear enough to act on? Which checks reduce a real risk, and which delays simply leave a decision sitting in someone's queue?
 
-Meine Vermutung: Wenn Implementierung billiger wird, verschiebt sich der Wettbewerb stärker zu diesen Fragen. Wer versteht das Problem? Wer erreicht die Kunden? Wer kann zuverlässig liefern? Ein schneller gebautes Produkt braucht darauf weiterhin gute Antworten.
+I'm not suggesting we treat speed as the only objective. Poorly checked systems can create expensive problems of their own. But if development cycles shorten, institutions that take years to respond will have a harder job keeping up.
 
-## Warum Verzögerung teurer werden könnte
+So will people.
 
-Eine funktionierende Rückkopplung hätte auch eine strategische Konsequenz: Ein früher Vorsprung könnte die nächste Runde erleichtern. Wer bereits produktiv mit KI arbeitet, sammelt Erfahrung, verbessert Abläufe und kann die Gewinne erneut investieren.
+Suppose a change that might once have unfolded over fifteen years happens in five. Again, a thought experiment. Even without any grand “intelligence explosion,” that would give workers, companies, and public institutions much less time to adjust. Higher productivity would not automatically settle who benefits from it, either. Access to the tools and ownership of the infrastructure would matter enormously.
 
-Das betrifft Unternehmen ebenso wie Forschungsstandorte. Falls Entwicklungszyklen kürzer werden, kann eine lange Verzögerung mehrere Lernrunden kosten.
+This is the part I find difficult to shrug off. We don't need infinite growth for the transition to be disruptive. A substantial change in the pace would be enough.
 
-Für Europa würde ich daraus keine pauschale Forderung nach weniger Regulierung ableiten. Meine Frage wäre konkreter: Welche Anforderungen schaffen überprüfbare Sicherheit, und welche Prozesse lassen Projekte warten, ohne ein Risiko zu verringern?
+When the next memory announcement comes along, I'll still look at the bandwidth numbers. But I'll also be looking for evidence further down the chain: shorter experiments, cheaper validation, useful improvements reaching the next system sooner.
 
-Zuverlässige Energieversorgung, Zugang zu Rechenleistung, klare Regeln und handlungsfähige Teams wären in diesem Szenario besonders wertvoll. Die Herausforderung wäre, sorgfältige Prüfung mit kürzeren Umsetzungszeiten zu verbinden.
+The first sign might be fairly mundane. A team gets a result earlier than expected. Some of the time it saved goes into a better tool for the next project. Then that project finishes sooner too.
 
-## Wir müssten mit weniger Vorlauf zurechtkommen
-
-Mich überzeugt die Vorstellung einer unendlichen „Intelligenzexplosion“ nicht als Prognose. Eine Gleichung kann ins Unendliche laufen. Eine reale Lieferkette kann das nicht.
-
-Eine viel begrenztere Entwicklung wäre bereits einschneidend: Ein technischer Wandel, auf den sich Unternehmen und Beschäftigte sonst über fünfzehn Jahre einstellen könnten, vollzieht sich in fünf. Auch das ist ein Gedankenexperiment. Es zeigt aber, warum die Übergangsgeschwindigkeit genauso wichtig sein könnte wie die langfristige Produktivität.
-
-Menschen brauchen Zeit, um sich neu zu orientieren. Organisationen brauchen Zeit, um Verantwortung und Arbeitsabläufe anzupassen. Höhere Produktivität allein entscheidet außerdem nicht, wer von ihr profitiert. Breiter Zugang zu leistungsfähigen Werkzeugen und konzentrierter Besitz der Infrastruktur können sehr unterschiedliche Ergebnisse hervorbringen.
-
-Für mich liegt hier der eigentliche gesellschaftliche Streitpunkt: Wer kann mit diesen Systemen etwas aufbauen, wer kontrolliert die Voraussetzungen dafür, und wie viel Zeit bleibt für die Anpassung?
-
-## Worauf ich bei der nächsten Hardwareankündigung achte
-
-zHBM könnte ein wichtiger Baustein werden. Es könnte auch später kommen, teurer werden oder im Gesamtsystem weniger bewirken als erhofft. Die größere These hängt nicht an diesem einen Produktkonzept.
-
-Entscheidend wäre, ob Fortschritte bei Speicher, Algorithmen und Infrastruktur gemeinsam die Zeit zwischen brauchbaren Ergebnissen verkürzen. Und ob ein wachsender Teil dieser Ergebnisse wiederum den nächsten Fortschritt ermöglicht.
-
-Deshalb interessiert mich an schnellerer KI vor allem, wofür wir ihre zusätzliche Leistung einsetzen.
-
-**Wenn KI ihre Nachfolger schneller mitentwickelt, ist der kürzere Chat nur der sichtbare Nebeneffekt. Der größere Wandel wäre, wie viel Zukunft in ein einziges Jahr passt.**
+I'd want to know when that stops being an occasional success and starts becoming the normal way progress happens.
