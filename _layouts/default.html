@@ -16,33 +16,18 @@
     <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
     <script src="{{ '/js/scroll-animations.js' | relative_url }}"></script>
     <script src="{{ '/js/page-transitions.js' | relative_url }}"></script>
+    <script src="{{ '/js/theme.js' | relative_url }}"></script>
     <script>
-      (function() {
-        const toggle = document.getElementById('theme-toggle');
-        const root = document.documentElement;
-        const particlesContainer = document.getElementById('particles-js');
-        const stored = localStorage.getItem('theme');
-        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-        let particlesInstance = null;
-
-        function createParticles(theme) {
-          if (!particlesContainer) return;
-          const isDark = theme === 'dark';
-          // Fewer dots overall; lower opacity in both modes
-          const count = 40;
-          // Dot and line colors: white in dark, light blue in light
-          const color = isDark ? '#ffffff' : '#64b5f6';
-          // Reduced opacity: darker mode less opaque, light mode moderate opacity
-          const opacity = isDark ? 0.3 : 0.6;
-          const linkOpacity = isDark ? 0.2 : 0.6;
+      // Keep one particle canvas alive across theme changes.
+      if (document.getElementById('particles-js') && window.tsParticles) {
           const options = {
             particles: {
-              number: { value: count, density: { enable: true, area: 800 } },
-              color: { value: color },
+              number: { value: 40, density: { enable: true, area: 800 } },
+              color: { value: '#64b5f6' },
               shape: { type: 'circle' },
-              opacity: { value: opacity },
+              opacity: { value: 0.6 },
               size: { value: 3, random: true },
-              links: { enable: true, distance: 150, color: color, opacity: linkOpacity, width: 1 },
+              links: { enable: true, distance: 150, color: '#64b5f6', opacity: 0.6, width: 1 },
               move: { enable: true, speed: 1, outModes: { default: 'out' } }
             },
             interactivity: {
@@ -54,56 +39,14 @@
                 resize: true
               },
               modes: {
-                grab: { distance: 200, links: { opacity: linkOpacity } }
+                grab: { distance: 200, links: { opacity: 0.6 } }
               }
             },
             detectRetina: true
           };
-          tsParticles.load('particles-js', options).then(container => {
-            particlesInstance = container;
-          });
-          particlesContainer.style.display = 'block';
-        }
-
-        function refreshParticles(theme) {
-          if (particlesInstance) {
-            particlesInstance.destroy();
-            particlesInstance = null;
-          }
-          createParticles(theme);
-        }
-
-        function setDark() {
-          root.classList.add('dark-mode');
-          if (toggle) toggle.textContent = '☀️';
-          localStorage.setItem('theme', 'dark');
-          refreshParticles('dark');
-        }
-
-        function setLight() {
-          root.classList.remove('dark-mode');
-          if (toggle) toggle.textContent = '🌙';
-          localStorage.setItem('theme', 'light');
-          refreshParticles('light');
-        }
-
-        // Initial setup
-        if (stored === 'dark' || (!stored && prefersDark)) {
-          setDark();
-        } else {
-          setLight();
-        }
-
-        if (toggle) {
-          toggle.addEventListener('click', () => {
-            if (root.classList.contains('dark-mode')) {
-              setLight();
-            } else {
-              setDark();
-            }
-          });
-        }
-      })();
+        tsParticles.load('particles-js', options).catch(() => {});
+        document.getElementById('particles-js').style.display = 'block';
+      }
     </script>
     <script>
       document.addEventListener('DOMContentLoaded', function() {

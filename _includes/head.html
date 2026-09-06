@@ -10,6 +10,16 @@
   <!-- Jekyll SEO Plugin (generates meta description, Open Graph, Twitter Cards, etc.) -->
   {%- seo -%}
   
+  <!-- Apply the saved theme before styles paint, even when storage is unavailable. -->
+  <script>
+    (function () {
+      var theme;
+      try { theme = localStorage.getItem('theme'); } catch (error) {}
+      var dark = theme === 'dark' || (theme !== 'light' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      document.documentElement.classList.toggle('dark-mode', dark);
+    })();
+  </script>
+
   <!-- Stylesheets -->
   <link rel="stylesheet" href="{{ "/assets/main.css" | relative_url }}">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
