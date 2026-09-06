@@ -38,13 +38,6 @@
       return;
     }
 
-    const rect = toggle.getBoundingClientRect();
-    const x = rect.left + rect.width / 2;
-    const y = rect.top + rect.height / 2;
-    const radius = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
-    root.style.setProperty('--theme-x', `${x}px`);
-    root.style.setProperty('--theme-y', `${y}px`);
-    root.style.setProperty('--theme-radius', `${radius}px`);
     root.classList.add('theme-revealing');
 
     const transition = document.startViewTransition(applyTheme);
