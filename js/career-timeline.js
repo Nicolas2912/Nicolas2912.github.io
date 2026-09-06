@@ -1,0 +1,57 @@
+(function () {
+  const timeline = document.querySelector('.cv-timeline');
+  if (!timeline) return;
+  const ns = 'http://www.w3.org/2000/svg';
+  const svg = document.createElementNS(ns, 'svg');
+  svg.classList.add('cv-connections');
+  svg.setAttribute('aria-hidden', 'true');
+  svg.setAttribute('focusable', 'false');
+  timeline.prepend(svg);
+
+  function draw() {
+    const bounds = timeline.getBoundingClientRect();
+    const steps = [...timeline.querySelectorAll('.cv-step')].map(step => {
+      const icon = step.querySelector('.cv-icon').getBoundingClientRect();
+      return {
+        x: icon.left + icon.width / 2 - bounds.left,
+        y: icon.top + icon.height / 2 - bounds.top,
+        bottom: step.getBoundingClientRect().bottom - bounds.top
+      };
+    });
+    svg.setAttribute('viewBox', `0 0 ${bounds.width} ${bounds.height}`);
+    svg.replaceChildren();
+    const gap = 34;
+    steps.slice(0, -1).forEach((from, i) => {
+      const to = steps[i + 1];
+      const path = document.createElementNS(ns, 'path');
+      let d;
+      const tipX = to.x - gap;
+      const tipY = to.y;
+      if (Math.abs(from.y - to.y) < 2) {
+        d = `M ${from.x + gap} ${from.y} H ${tipX}`;
+      } else if (Math.abs(from.x - to.x) < 2) {
+        // A single-column layout uses a side rail, clear of dates and descriptions.
+        const rail = 10;
+        d = `M ${from.x - gap} ${from.y} H ${rail + 12} Q ${rail} ${from.y} ${rail} ${from.y + 12} V ${to.y - 12} Q ${rail} ${to.y} ${rail + 12} ${to.y} H ${tipX}`;
+      } else {
+        // Wrap to the next row through its whitespace, with rounded corners.
+        const left = 8;
+        const right = bounds.width - 8;
+        const mid = Math.max(...steps.filter(step => Math.abs(step.y - from.y) < 2).map(step => step.bottom)) + 16;
+        d = `M ${from.x + gap} ${from.y} H ${right - 12} Q ${right} ${from.y} ${right} ${from.y + 12} V ${mid - 12} Q ${right} ${mid} ${right - 12} ${mid} H ${left + 12} Q ${left} ${mid} ${left} ${mid + 12} V ${to.y - 12} Q ${left} ${to.y} ${left + 12} ${to.y} H ${tipX}`;
+      }
+      path.setAttribute('d', d);
+      svg.append(path);
+      const arrow = document.createElementNS(ns, 'path');
+      arrow.classList.add('cv-arrow');
+      arrow.setAttribute('d', `M ${tipX - 6} ${tipY - 4} L ${tipX} ${tipY} L ${tipX - 6} ${tipY + 4}`);
+      svg.append(arrow);
+    });
+  }
+
+  const observer = new ResizeObserver(draw);
+  observer.observe(timeline);
+  timeline.querySelectorAll('.cv-step').forEach(step => observer.observe(step));
+  if (document.fonts) document.fonts.ready.then(draw);
+  draw();
+})();
