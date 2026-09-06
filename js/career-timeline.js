@@ -6,6 +6,13 @@
   svg.classList.add('cv-connections');
   svg.setAttribute('aria-hidden', 'true');
   svg.setAttribute('focusable', 'false');
+  // Keep the drawing safe even if a browser still has the previous stylesheet.
+  svg.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;padding:0;pointer-events:none;overflow:visible;z-index:1';
+  svg.setAttribute('fill', 'none');
+  svg.setAttribute('stroke', '#438ed5');
+  svg.setAttribute('stroke-width', '1.5');
+  svg.setAttribute('stroke-linecap', 'round');
+  svg.setAttribute('stroke-linejoin', 'round');
   timeline.prepend(svg);
 
   function draw() {
