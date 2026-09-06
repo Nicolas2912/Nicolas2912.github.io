@@ -16,8 +16,8 @@ permalink: /blog/
           <h5 class="card-title">
             <a href="{{ post.url | relative_url }}" class="stretched-link text-decoration-none">{{ post.title }}</a>
           </h5>
-          <p class="card-text text-muted">{{ post.date | date_to_string }}</p>
-          <p class="card-text">{{ post.excerpt | strip_html | truncate: 120 }}</p>
+          <p class="card-text text-muted">{{ post.date | date_to_string }}{% if post.lang == 'de' %} · Deutsch{% endif %}</p>
+          <p class="card-text">{{ post.excerpt | strip_html | truncate: 220 }}</p>
         </div>
       </div>
     </div>

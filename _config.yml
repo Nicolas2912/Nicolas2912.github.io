@@ -1,10 +1,10 @@
 # Site settings
-title: Nicolas Schneider - Data Scientist / Developer
+title: Nicolas Schneider - Consultant | Data & AI
 email: schneidernicolas90@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
-  Data Scientist and ML Engineer specializing in LLM integration, computer vision, and optimization algorithms. 
-  I build production-ready ML systems that bridge research and real-world applications, with expertise in 
-  PyTorch, transformers, and multimodal data processing.
+  Consultant at 4brands Reply working on CRM, integration, analytics, and AI
+  with Salesforce Consumer Goods Cloud and Microsoft Azure/Fabric.
+  Projects and writing on machine learning, data integration, and AI infrastructure.
 baseurl: "" # the subpath of your site is empty for a user site (username.github.io)
 url: "https://nicolas2912.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  Nicolas2912 # optional
@@ -37,9 +37,6 @@ timezone: Europe/Berlin
 
 # Build settings
 theme: minima # A simple default Jekyll theme
-# Plugins
-plugins:
-  - jekyll-feed # Generates an Atom feed for your blog
 
 # Enable syntax highlighting for code blocks using Rouge
 markdown: kramdown

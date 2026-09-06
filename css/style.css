@@ -817,3 +817,34 @@ html {
     font-size: 0.85rem;
   }
 }
+/* Long-form articles use the same navigation and theme as the portfolio. */
+.blog-post {
+    max-width: 760px;
+    margin: 0 auto 4rem;
+    overflow-wrap: break-word;
+}
+.blog-post .post-title {
+    font-size: clamp(2rem, 5vw, 3.25rem);
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+    margin-bottom: 1.5rem;
+}
+.blog-post .post-meta { font-size: 0.95rem; opacity: 0.75; }
+.blog-post .post-header { margin-bottom: 2.5rem; }
+.blog-post .post-content { font-size: 1.15rem; line-height: 1.8; }
+.blog-post .post-content h2 { font-size: 1.65rem; margin: 2.75rem 0 1rem; }
+.blog-post .post-content p { margin-bottom: 1.35rem; }
+.blog-post .post-content blockquote {
+    border-left: 3px solid #3988c9;
+    padding: 0.5rem 1.25rem;
+    margin: 2rem 0;
+    color: inherit;
+    font-style: normal;
+    letter-spacing: normal;
+}
+.blog-post .post-content blockquote p { margin-bottom: 0; }
+.blog-post .post-content a { text-decoration: underline; text-underline-offset: 0.2em; }
+.blog-post .post-footer { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 3rem; }
+.cv-timeline::before { display: none; }
+
+.cv-step { max-width: none; flex: 0 0 auto; margin-bottom: 2rem; color: inherit; }

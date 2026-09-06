@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Home
-description: "Data Scientist & ML Engineer specializing in LLM integration, computer vision, and optimization algorithms. Building production-ready ML systems with PyTorch, transformers, and multimodal data processing."
+description: "Consultant at 4brands Reply, building CRM, integration, analytics, and AI solutions with Salesforce Consumer Goods Cloud and Microsoft Azure/Fabric."
 image: /images/profile.jpg
 ---
 
@@ -11,20 +11,20 @@ image: /images/profile.jpg
        class="rounded-circle img-fluid mb-4 scroll-animate-scale"
        style="max-width:150px;">
   <h1 class="display-4 scroll-animate">I'm Nicolas Schneider</h1>
-  <p class="lead scroll-animate">I build production-ready ML systems that bridge the gap between research and real-world impact. From optimizing neural networks with C++ backends to developing LLM-powered data integration pipelines, I turn complex algorithms into scalable solutions that solve actual business problems.</p>
+  <p class="lead scroll-animate">I’m a Consultant at 4brands Reply. I design and build CRM, integration, analytics, and AI solutions with Salesforce Consumer Goods Cloud and Microsoft Azure/Fabric. My background in applied mathematics and machine learning helps me connect the technical details with the problem a business needs to solve.</p>
   <div class="hero-highlights mb-4 scroll-animate">
     <div class="row justify-content-center">
       <div class="col-md-4 mb-2">
         <span class="badge bg-primary me-2">🤖</span>
-        <small>LLM integration & multimodal data processing</small>
+        <small>CRM & integration with Salesforce</small>
       </div>
       <div class="col-md-4 mb-2">
         <span class="badge bg-success me-2">🧠</span>
-        <small>Custom neural networks & computer vision models</small>
+        <small>Data & analytics with Azure/Fabric</small>
       </div>
       <div class="col-md-4 mb-2">
         <span class="badge bg-info me-2">📊</span>
-        <small>End-to-end ML pipelines with real-time analytics</small>
+        <small>AI, LLMs & multimodal data integration</small>
       </div>
     </div>
   </div>
@@ -146,6 +146,19 @@ image: /images/profile.jpg
     </div>
   </div>
   <hr class="my-4">
+{% assign latest_post = site.posts.first %}
+{% if latest_post %}
+<section class="my-5 scroll-animate" aria-labelledby="latest-article-heading">
+  <div class="card shadow-sm">
+    <div class="card-body p-4"{% if latest_post.lang %} lang="{{ latest_post.lang }}"{% endif %}>
+      <p class="text-muted mb-2">Latest article · {{ latest_post.date | date_to_string }}</p>
+      <h2 id="latest-article-heading"><a class="text-decoration-none" href="{{ latest_post.url | relative_url }}">{{ latest_post.title }}</a></h2>
+      <p>{{ latest_post.description | default: latest_post.excerpt | strip_html }}</p>
+      <a href="{{ latest_post.url | relative_url }}" class="btn btn-primary">Read article</a>
+    </div>
+  </div>
+</section>
+{% endif %}
 <section id="projects" class="my-5">
   <h2 class="mb-4 scroll-animate-slide-left">Featured Projects</h2>
   <div class="row">
@@ -209,7 +222,7 @@ image: /images/profile.jpg
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="cvModalLabel-master">M. Sc. Optimization and Simulation (03.2023 – Present)</h5>
+          <h5 class="modal-title" id="cvModalLabel-master">Master’s studies in Optimization and Simulation (started 03.2023)</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -227,7 +240,7 @@ image: /images/profile.jpg
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="cvModalLabel-diamant">Working Student / Data Scientist at Diamant Software (02.2023 – 08.2024)</h5>
+          <h5 class="modal-title" id="cvModalLabel-diamant">Working Student at Diamant Software (02.2023 – 08.2024)</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -240,17 +253,35 @@ image: /images/profile.jpg
       </div>
     </div>
   </div>
+  <div class="modal fade" id="cvModal-consultant" tabindex="-1" aria-labelledby="cvModalLabel-consultant" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered"><div class="modal-content">
+      <div class="modal-header"><h5 class="modal-title" id="cvModalLabel-consultant">Consultant at 4brands Reply (07.2025 – Present)</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+      <div class="modal-body"><ul><li>Design and implement CRM, integration, analytics, and AI solutions across Salesforce Consumer Goods Cloud and Microsoft Azure/Fabric.</li><li>Work across technical design and development, including Azure Data Factory and Azure SQL.</li></ul></div>
+    </div></div>
+  </div>
+  <div class="modal fade" id="cvModal-diamant-bachelor" tabindex="-1" aria-labelledby="cvModalLabel-diamant-bachelor" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered"><div class="modal-content">
+      <div class="modal-header"><h5 class="modal-title" id="cvModalLabel-diamant-bachelor">Bachelor’s Thesis at Diamant Software (11.2022 – 02.2023)</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+      <div class="modal-body"><ul><li>Compared relational database and Elasticsearch performance for storing and searching log files.</li><li>Built a Kibana dashboard to visualize log data and performance metrics.</li></ul></div>
+    </div></div>
+  </div>
+  <div class="modal fade" id="cvModal-diamant-intern" tabindex="-1" aria-labelledby="cvModalLabel-diamant-intern" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered"><div class="modal-content">
+      <div class="modal-header"><h5 class="modal-title" id="cvModalLabel-diamant-intern">Intern at Diamant Software (08.2022 – 10.2022)</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+      <div class="modal-body"><ul><li>Developed a log processing and storage tool for technical support using Elasticsearch.</li><li>Visualized log data with Kibana.</li></ul></div>
+    </div></div>
+  </div>
   <!-- 4brands Reply Details -->
   <div class="modal fade" id="cvModal-reply" tabindex="-1" aria-labelledby="cvModalLabel-reply" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="cvModalLabel-reply">Working Student / Data Analyst at 4brands Reply (10.2024 – 06.2025)</h5>
+          <h5 class="modal-title" id="cvModalLabel-reply">Working Student at 4brands Reply (10.2024 – 06.2025)</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <ul>
-            <li>Build an automated data processing pipeline between Azure SQL and Salesforce.</li>
+            <li>Built an automated data processing pipeline between Azure SQL and Salesforce.</li>
             <li>Automated processes in Salesforce using Flows and Apex.</li>
             <li>Developed custom dashboards in Salesforce for users using Lightning Web Components.</li>
           </ul>
@@ -263,13 +294,13 @@ image: /images/profile.jpg
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="cvModalLabel-ipt">Master's thesis Student & Scientist at Fraunhofer IPT (11.2024 – 05.2025)</h5>
+          <h5 class="modal-title" id="cvModalLabel-ipt">Working Student / Master’s Thesis at Fraunhofer IPT (11.2024 – 05.2025)</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <ul>
-            <li>Conduct research on (multimodal) data integration approaches for LLMs in industry context.</li>
-            <li>Designed and implemented RAG-based multimodal data integration strategies grounded in machine manual data</li>
+            <li>Researched multimodal data integration approaches for LLMs in industrial maintenance.</li>
+            <li>Designed and implemented RAG-based multimodal data integration strategies grounded in machine manual data.</li>
           </ul>
         </div>
       </div>
@@ -282,41 +313,55 @@ image: /images/profile.jpg
   <h2 class="text-center mb-4 scroll-animate-slide-right">My Journey</h2>
   <!-- Intro for CV section -->
   <div class="cv-intro text-center mx-auto mb-4 scroll-animate-fade" style="max-width: 600px;">
-    <p>Hi, I'm Nicolas Schneider — a Data Scientist and Developer with a strong foundation in mathematics, machine learning, and large language models. I enjoy turning complex problems into practical, scalable tools that deliver real-world impact.</p>
-    <p>With over two years of hands-on experience, I've applied Python and LLMs to solve challenges across diverse domains. I'm driven by curiosity and focused on building solutions that are both technically sound and operationally valuable.</p>
+    <p>Since July 2025, I’ve worked as a Consultant at 4brands Reply, following a working student role with the same team. My work combines CRM development, data integration, analytics, and AI.</p>
+    <p>Before that, I worked on language models at Diamant Software and researched multimodal data integration for industrial maintenance at Fraunhofer IPT. Alongside client work, I explore machine learning and optimization through my own projects.</p>
   </div>
-    <div class="cv-timeline position-relative d-flex justify-content-between align-items-start mx-auto" style="max-width: 960px;">
-    <!-- Timeline entries clickable to reveal more details -->
-    <div class="cv-step text-center scroll-animate" role="button" data-bs-toggle="modal" data-bs-target="#cvModal-bsc" aria-label="B.Sc. in Computer Science details">
-      <div class="cv-icon">🎓</div>
-      <h5>09.2019 – 05.2023</h5>
-      <p>B.Sc. in Applied Mathematics at University of Applied Sciences Bielefeld<br>Grade: 2.3<br></p>
-    </div>
-    <div class="cv-step text-center scroll-animate" role="button" data-bs-toggle="modal" data-bs-target="#cvModal-interviewer" aria-label="Interviewer at SOKO Institut details">
-      <div class="cv-icon">🗣️</div>
+  <div class="cv-timeline row mx-auto" style="max-width: 960px;">
+    <button type="button" class="cv-step col-md-4 col-sm-6 text-center scroll-animate border-0 bg-transparent" data-bs-toggle="modal" data-bs-target="#cvModal-consultant" aria-label="Consultant at 4brands Reply details">
+      <span class="cv-icon">💼</span>
+      <h5>07.2025 – Present</h5>
+      <p>Consultant<br>4brands Reply</p>
+    </button>
+    <button type="button" class="cv-step col-md-4 col-sm-6 text-center scroll-animate border-0 bg-transparent" data-bs-toggle="modal" data-bs-target="#cvModal-reply" aria-label="Working Student at 4brands Reply details">
+      <span class="cv-icon">📊</span>
+      <h5>10.2024 – 06.2025</h5>
+      <p>Working Student<br>4brands Reply</p>
+    </button>
+    <button type="button" class="cv-step col-md-4 col-sm-6 text-center scroll-animate border-0 bg-transparent" data-bs-toggle="modal" data-bs-target="#cvModal-ipt" aria-label="Working Student / Master’s Thesis at Fraunhofer IPT details">
+      <span class="cv-icon">🔬</span>
+      <h5>11.2024 – 05.2025</h5>
+      <p>Working Student / Master’s Thesis<br>Fraunhofer IPT</p>
+    </button>
+    <button type="button" class="cv-step col-md-4 col-sm-6 text-center scroll-animate border-0 bg-transparent" data-bs-toggle="modal" data-bs-target="#cvModal-diamant" aria-label="Working Student at Diamant Software details">
+      <span class="cv-icon">💼</span>
+      <h5>02.2023 – 08.2024</h5>
+      <p>Working Student<br>Diamant Software</p>
+    </button>
+    <button type="button" class="cv-step col-md-4 col-sm-6 text-center scroll-animate border-0 bg-transparent" data-bs-toggle="modal" data-bs-target="#cvModal-diamant-bachelor" aria-label="Bachelor’s Thesis at Diamant Software details">
+      <span class="cv-icon">📝</span>
+      <h5>11.2022 – 02.2023</h5>
+      <p>Bachelor’s Thesis<br>Diamant Software</p>
+    </button>
+    <button type="button" class="cv-step col-md-4 col-sm-6 text-center scroll-animate border-0 bg-transparent" data-bs-toggle="modal" data-bs-target="#cvModal-diamant-intern" aria-label="Intern at Diamant Software details">
+      <span class="cv-icon">💻</span>
+      <h5>08.2022 – 10.2022</h5>
+      <p>Intern<br>Diamant Software</p>
+    </button>
+    <button type="button" class="cv-step col-md-4 col-sm-6 text-center scroll-animate border-0 bg-transparent" data-bs-toggle="modal" data-bs-target="#cvModal-master" aria-label="Master’s studies in Optimization and Simulation at HSBI Bielefeld details">
+      <span class="cv-icon">🎓</span>
+      <h5>Started 03.2023</h5>
+      <p>Master’s studies in Optimization and Simulation<br>HSBI Bielefeld</p>
+    </button>
+    <button type="button" class="cv-step col-md-4 col-sm-6 text-center scroll-animate border-0 bg-transparent" data-bs-toggle="modal" data-bs-target="#cvModal-bsc" aria-label="B.Sc. in Applied Mathematics at FH Bielefeld · Grade: 2.3 details">
+      <span class="cv-icon">🎓</span>
+      <h5>09.2019 – 02.2023</h5>
+      <p>B.Sc. in Applied Mathematics<br>FH Bielefeld · Grade: 2.3</p>
+    </button>
+    <button type="button" class="cv-step col-md-4 col-sm-6 text-center scroll-animate border-0 bg-transparent" data-bs-toggle="modal" data-bs-target="#cvModal-interviewer" aria-label="Interviewer at SOKO Institut details">
+      <span class="cv-icon">🗣️</span>
       <h5>08.2020 – 05.2021</h5>
       <p>Interviewer<br>SOKO Institut</p>
-    </div>
-    <div class="cv-step text-center scroll-animate" role="button" data-bs-toggle="modal" data-bs-target="#cvModal-master" aria-label="Master Optimization and Simulation details">
-      <div class="cv-icon">🎓</div>
-      <h5>03.2023 – Present</h5>
-      <p>M.Sc. in Optimization and Simulation at University of Applied Sciences and Arts Bielefeld</p>
-    </div>
-    <div class="cv-step text-center scroll-animate" role="button" data-bs-toggle="modal" data-bs-target="#cvModal-diamant" aria-label="Working Student/Data Scientist at Diamant Software details">
-      <div class="cv-icon">💼</div>
-      <h5>01.02.2023 – 31.08.2024</h5>
-      <p>Working Student / Data Scientist<br>Diamant Software</p>
-    </div>
-    <div class="cv-step text-center scroll-animate" role="button" data-bs-toggle="modal" data-bs-target="#cvModal-reply" aria-label="Working Student/Data Analyst at 4brands Reply details">
-      <div class="cv-icon">📊</div>
-      <h5>15.10.2024 – 30.06.2025</h5>
-      <p>Working Student / Data Analyst<br>4brands Reply</p>
-    </div>
-    <div class="cv-step text-center scroll-animate" role="button" data-bs-toggle="modal" data-bs-target="#cvModal-ipt" aria-label="Maste's thesis Student & Scientist at Fraunhofer IPT details">
-      <div class="cv-icon">🔬</div>
-      <h5>15.11.2024 – 15.05.2025</h5>
-      <p>Master Student & Scientist<br>Fraunhofer Institute for Production Technology IPT</p>
-    </div>
+    </button>
   </div>
   <div class="text-center mt-4 scroll-animate">
     <a href="{{ '/CV/CV.pdf' | relative_url }}" class="btn btn-outline-primary btn-lg" target="_blank" download>
@@ -342,6 +387,7 @@ image: /images/profile.jpg
             <li class="m-1"><span class="badge bg-primary">C++</span></li>
             <li class="m-1"><span class="badge bg-primary">Matlab</span></li>
             <li class="m-1"><span class="badge bg-primary">SQL</span></li>
+            <li class="m-1"><span class="badge bg-primary">Apex</span></li>
           </ul>
         </div>
       </div>
@@ -407,8 +453,11 @@ image: /images/profile.jpg
           <ul class="list-unstyled d-flex flex-wrap scroll-animate">
             <li class="m-1"><span class="badge bg-dark">Git</span></li>
             <li class="m-1"><span class="badge bg-dark">Elasticsearch</span></li>
-            <li class="m-1"><span class="badge bg-dark">Salesforce</span></li>
-            <li class="m-1"><span class="badge bg-dark">Azure</span></li>
+            <li class="m-1"><span class="badge bg-dark">Salesforce Consumer Goods Cloud</span></li>
+            <li class="m-1"><span class="badge bg-dark">Microsoft Azure</span></li>
+            <li class="m-1"><span class="badge bg-dark">Microsoft Fabric</span></li>
+            <li class="m-1"><span class="badge bg-dark">Azure Data Factory</span></li>
+            <li class="m-1"><span class="badge bg-dark">Azure SQL</span></li>
             <li class="m-1"><span class="badge bg-dark">Docker</span></li>
           </ul>
         </div>

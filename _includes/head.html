@@ -6,17 +6,9 @@
   <!-- Enhanced SEO Meta Tags -->
   <meta name="robots" content="index, follow">
   <meta name="author" content="{{ site.author | default: site.title }}">
-  <link rel="canonical" href="{{ page.url | absolute_url }}">
   
   <!-- Jekyll SEO Plugin (generates meta description, Open Graph, Twitter Cards, etc.) -->
   {%- seo -%}
-  
-  <!-- Additional Open Graph enhancements -->
-  <meta property="og:site_name" content="{{ site.title }}">
-  <meta property="og:locale" content="{{ site.lang | default: 'en_US' }}">
-  
-  <!-- Twitter Card enhancements -->
-  <meta name="twitter:creator" content="@{{ site.twitter.username }}" {% unless site.twitter.username %}style="display:none"{% endunless %}>
   
   <!-- Stylesheets -->
   <link rel="stylesheet" href="{{ "/assets/main.css" | relative_url }}">
