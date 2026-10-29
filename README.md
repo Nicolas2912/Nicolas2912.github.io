@@ -52,6 +52,12 @@ Gemfile                # Ruby dependencies for GitHub Pages
 - **Scripts:** Scroll fade-ins live in `js/scroll-animations.js`, the theme toggle in `js/theme.js`, and the timeline connectors in `js/career-timeline.js`.
 - **Featured projects:** Set `featured: true` and `featured_order` in a project's front matter. `problem`, `approach`, `outcome`, `tech`, and `image` fill the project page header.
 
+## Languages (English / German)
+- English is the default; German pages live under `/de/`. The **EN/DE** switch in the navbar links each page to its counterpart.
+- Interface text (buttons, labels, homepage copy) is in `_data/i18n.yml`; the timeline, skills and "More work" entries in `_data/cv.yml`, `_data/skills.yml` and `_data/more_work.yml` hold both languages side by side.
+- German case studies, projects and posts are in `_work/de/`, `_projects/de/` and `_posts/de/` with the **same file name** as the English version and a `/de/...` permalink. That shared name is what links the two versions.
+- After changing `_config.yml`, restart `jekyll serve` (config changes aren't live-reloaded).
+
 ## Deployment
 This repository is ready for GitHub Pages. Push changes to the default branch and GitHub Pages will build and publish the site automatically. To produce a static build locally run:
 ```bash

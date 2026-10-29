@@ -1,0 +1,161 @@
+---
+layout: default
+---
+{%- include lang.html -%}
+{%- assign h = t.home -%}
+
+<section class="hero scroll-animate" aria-labelledby="hero-heading">
+  <div class="row align-items-center g-4 g-lg-5">
+    <div class="col-md-auto text-center">
+      <img src="{{ '/images/profile.jpg' | relative_url }}"
+           alt="{{ h.portrait_alt }}"
+           class="hero-portrait rounded-circle"
+           width="168" height="168">
+    </div>
+    <div class="col-md">
+      <p class="hero-eyebrow">{{ h.eyebrow }}</p>
+      <h1 id="hero-heading" class="hero-title">Nicolas Schneider</h1>
+      <p class="lead hero-lead">{{ h.lead }}</p>
+      <p class="hero-sub">{{ h.sub }}</p>
+      <ul class="hero-stats" aria-label="{{ h.stats_label }}">
+        {% for s in h.stats %}
+        <li><span class="metric-value">{{ s.value }}</span><span class="metric-label">{{ s.label }}</span></li>
+        {% endfor %}
+      </ul>
+      <div class="hero-actions">
+        <a href="#work" class="btn btn-primary">{{ h.btn_work }}</a>
+        <a href="{{ '/CV/CV.pdf' | relative_url }}" class="btn btn-outline-primary" target="_blank" rel="noopener">{{ h.btn_cv }}</a>
+        <a href="#contact" class="btn btn-link">{{ h.btn_contact }}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="work" class="home-section scroll-animate" aria-labelledby="work-heading">
+  <h2 id="work-heading" class="section-title">{{ h.work_title }}</h2>
+  <p class="section-intro">{{ h.work_intro }}</p>
+  {% assign work_items = site.work | where: "lang", lang | sort: "order" %}
+  <div class="scroller" data-scroller>
+    <button type="button" class="scroller-btn scroller-prev" data-scroller-prev aria-label="{{ h.carousel_prev }}" hidden><i class="bi bi-chevron-left" aria-hidden="true"></i></button>
+    <div class="scroller-track" data-scroller-track tabindex="0" role="region" aria-label="{{ h.carousel_label }}">
+      {% for w in work_items %}
+      <div class="scroller-item">
+        {% include work-card.html work=w %}
+      </div>
+      {% endfor %}
+    </div>
+    <button type="button" class="scroller-btn scroller-next" data-scroller-next aria-label="{{ h.carousel_next }}"><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+  </div>
+  <h3 class="subsection-title">{{ h.more_work }}</h3>
+  {% include more-work-grid.html limit=3 %}
+  <div class="text-center mt-4">
+    <a href="{{ base | append: '/work/' | relative_url }}" class="btn btn-outline-secondary">{{ h.all_work }}</a>
+  </div>
+</section>
+
+<section id="experience" class="home-section scroll-animate" aria-labelledby="experience-heading">
+  <h2 id="experience-heading" class="section-title">{{ h.experience_title }}</h2>
+  <div class="section-intro">
+    {% for para in h.experience_intro %}<p>{{ para }}</p>{% endfor %}
+  </div>
+  <div class="cv-timeline row mx-auto">
+    {% for step in site.data.cv %}
+    {% assign s = step[lang] %}
+    <button type="button" class="cv-step col-md-4 col-sm-6 text-center border-0 bg-transparent" data-bs-toggle="modal" data-bs-target="#cvModal-{{ step.id }}" aria-label="{{ s.title }}, {{ s.org }} {{ h.details_suffix }}">
+      <span class="cv-icon"><i class="bi bi-{{ step.icon }}" aria-hidden="true"></i></span>
+      <h3 class="cv-date">{{ s.date }}</h3>
+      <p>{{ s.title }}<br>{{ s.org }}</p>
+    </button>
+    {% endfor %}
+  </div>
+  <div class="text-center mt-4">
+    <a href="{{ '/CV/CV.pdf' | relative_url }}" class="btn btn-outline-primary" target="_blank" rel="noopener">{{ h.cv_full }}</a>
+  </div>
+
+  {% for step in site.data.cv %}
+  {% assign s = step[lang] %}
+  <div class="modal fade" id="cvModal-{{ step.id }}" tabindex="-1" aria-labelledby="cvModalLabel-{{ step.id }}" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered"><div class="modal-content">
+      <div class="modal-header"><h4 class="modal-title h5" id="cvModalLabel-{{ step.id }}">{{ s.heading }}</h4><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{ h.close }}"></button></div>
+      <div class="modal-body"><ul>
+        {% for d in s.details %}<li>{{ d }}</li>{% endfor %}
+      </ul></div>
+    </div></div>
+  </div>
+  {% endfor %}
+</section>
+<script src="{{ '/js/career-timeline.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
+<script src="{{ '/js/scroller.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
+
+<section id="projects" class="home-section scroll-animate" aria-labelledby="projects-heading">
+  <h2 id="projects-heading" class="section-title">{{ h.projects_title }}</h2>
+  <p class="section-intro">{{ h.projects_intro }}</p>
+  {% assign featured_projects = site.projects | where: "lang", lang | where: "featured", true | sort: "featured_order" %}
+  <div class="row g-4">
+    {% for project in featured_projects %}
+      <div class="col-md-4">
+        {% include project-card.html project=project %}
+      </div>
+    {% endfor %}
+  </div>
+  <div class="text-center mt-4">
+    <a href="{{ base | append: '/projects/' | relative_url }}" class="btn btn-outline-secondary">{{ h.all_projects }}</a>
+  </div>
+</section>
+
+<section id="skills" class="home-section skills-section scroll-animate" aria-labelledby="skills-heading">
+  <h2 id="skills-heading" class="section-title">{{ h.skills_title }}</h2>
+  <p class="section-intro">{{ h.skills_intro }}</p>
+  <div class="row g-4">
+    {% for cat in site.data.skills %}
+    {% assign c = cat[lang] %}
+    {% if lang == "de" and cat.tags_de %}{% assign tags = cat.tags_de %}{% else %}{% assign tags = cat.tags %}{% endif %}
+    <div class="col-lg-4 col-md-6">
+      <div class="skill-category h-100">
+        <h3 class="skill-heading"><i class="bi bi-{{ cat.icon }}" aria-hidden="true"></i> {{ c.title }}</h3>
+        <p>{{ c.text }}</p>
+        <ul class="skill-tags" aria-label="{{ c.title }} – {{ h.skills_label }}">
+          {% for tag in tags %}<li>{{ tag }}</li>{% endfor %}
+        </ul>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <p class="mt-4 mb-0"><strong>{{ h.foundations_label }}</strong> {{ h.foundations }}</p>
+</section>
+
+{% assign posts = site.posts | where: "lang", lang %}
+{% if posts.size > 0 %}
+<section id="writing" class="home-section scroll-animate" aria-labelledby="writing-heading">
+  <h2 id="writing-heading" class="section-title">{{ h.writing_title }}</h2>
+  <div class="row g-4">
+    {% for post in posts limit: 3 %}
+      <div class="col-md-4">
+        <article class="card h-100 post-card">
+          <div class="card-body d-flex flex-column">
+            <p class="card-meta"><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: t.date_format }}</time></p>
+            <h3 class="card-title h5">
+              <a href="{{ post.url | relative_url }}" class="stretched-link text-decoration-none">{{ post.title }}</a>
+            </h3>
+            <p class="card-text">{{ post.description | default: post.excerpt | strip_html | truncate: 180 }}</p>
+          </div>
+        </article>
+      </div>
+    {% endfor %}
+  </div>
+  <div class="text-center mt-4">
+    <a href="{{ base | append: '/blog/' | relative_url }}" class="btn btn-outline-secondary">{{ h.all_articles }}</a>
+  </div>
+</section>
+{% endif %}
+
+<section id="contact" class="home-section contact-section scroll-animate" aria-labelledby="contact-heading">
+  <h2 id="contact-heading" class="section-title">{{ h.contact_title }}</h2>
+  <p class="section-intro">{{ h.contact_intro }}</p>
+  <div class="contact-actions">
+    <a class="btn btn-primary" href="mailto:{{ site.email }}"><i class="bi bi-envelope" aria-hidden="true"></i> {{ site.email }}</a>
+    <a class="btn btn-outline-secondary" href="https://www.linkedin.com/in/nicolas-schneider1/" target="_blank" rel="noopener"><i class="bi bi-linkedin" aria-hidden="true"></i> LinkedIn</a>
+    <a class="btn btn-outline-secondary" href="https://github.com/{{ site.github_username }}" target="_blank" rel="noopener"><i class="bi bi-github" aria-hidden="true"></i> GitHub</a>
+    <a class="btn btn-outline-secondary" href="{{ '/CV/CV.pdf' | relative_url }}" target="_blank" rel="noopener"><i class="bi bi-file-earmark-pdf" aria-hidden="true"></i> {{ h.cv_pdf }}</a>
+  </div>
+</section>

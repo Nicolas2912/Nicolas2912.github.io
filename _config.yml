@@ -56,6 +56,37 @@ collections:
   projects:
     output: true # Tells Jekyll to create a page for each project file
     permalink: /projects/:name/ # Sets the URL structure for project pages
+  work:
+    output: true # Anonymized case studies from client and internal work
+    permalink: /work/:name/
+
+# Languages: English is the default; German pages live under /de/ and in de/ subfolders
+# of the collections. Pages in both languages are linked by `ref` (or by the same file name).
+defaults:
+  - scope:
+      path: ""
+    values:
+      lang: en
+  - scope:
+      path: "de"
+    values:
+      lang: de
+      locale: de_DE
+  - scope:
+      path: "_work/de"
+    values:
+      lang: de
+      locale: de_DE
+  - scope:
+      path: "_projects/de"
+    values:
+      lang: de
+      locale: de_DE
+  - scope:
+      path: "_posts/de"
+    values:
+      lang: de
+      locale: de_DE
 
 # Exclude from the built site. On Jekyll 3.x (GitHub Pages) this list replaces
 # the defaults, so the default entries are repeated here.

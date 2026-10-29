@@ -1,0 +1,47 @@
+---
+layout: default
+---
+{%- include lang.html -%}
+<article class="case-study">
+  <header class="project-header">
+    <a href="{{ base | append: '/work/' | relative_url }}" class="back-link"><i class="bi bi-arrow-left" aria-hidden="true"></i> {{ t.case.all }}</a>
+    <p class="hero-eyebrow">{{ t.case.eyebrow }}</p>
+    <h1 class="project-title">{{ page.title }}</h1>
+    <p class="lead">{{ page.summary }}</p>
+  </header>
+
+  <dl class="case-facts">
+    {% if page.context %}<div><dt>{{ t.case.context }}</dt><dd>{{ page.context }}</dd></div>{% endif %}
+    {% if page.role %}<div><dt>{{ t.case.role }}</dt><dd>{{ page.role }}</dd></div>{% endif %}
+    {% if page.timeframe %}<div><dt>{{ t.case.timeframe }}</dt><dd>{{ page.timeframe }}</dd></div>{% endif %}
+    {% if page.status %}<div><dt>{{ t.case.status }}</dt><dd>{{ page.status }}</dd></div>{% endif %}
+  </dl>
+
+  {% if page.metrics %}
+  <ul class="metric-strip" aria-label="{{ t.case.results }}">
+    {% for m in page.metrics %}
+    <li><span class="metric-value">{{ m.value }}</span><span class="metric-label">{{ m.label }}</span></li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+
+  {% if page.tech %}
+  <ul class="skill-tags case-tech" aria-label="{{ t.case.technologies }}">
+    {% for tag in page.tech %}<li>{{ tag }}</li>{% endfor %}
+  </ul>
+  {% endif %}
+
+  <div class="project-content">
+    {{ content }}
+  </div>
+
+  <p class="case-note">{{ t.case.note }}</p>
+
+  <nav class="case-nav" aria-label="{{ t.case.more }}">
+    {% assign others = site.work | where: "lang", lang | where_exp: "w", "w.url != page.url" | sort: "order" %}
+    {% for w in others limit: 2 %}
+    <a class="case-nav-link" href="{{ w.url | relative_url }}"><span>{{ t.case.next }}</span>{{ w.title }}</a>
+    {% endfor %}
+  </nav>
+</article>
+{% include mermaid.html %}

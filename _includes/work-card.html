@@ -1,0 +1,22 @@
+{% assign w = include.work %}
+<article class="card h-100 work-card">
+  <div class="card-body d-flex flex-column">
+    <p class="card-meta">{{ w.context_short | default: w.context }}</p>
+    <h3 class="card-title h5">
+      <a href="{{ w.url | relative_url }}" class="stretched-link text-decoration-none">{{ w.title }}</a>
+    </h3>
+    <p class="card-text">{{ w.summary }}</p>
+    {% if w.metrics %}
+    <ul class="work-card-metrics">
+      {% for m in w.metrics limit: 2 %}
+      <li><strong>{{ m.value }}</strong> {{ m.label }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    {% if w.tech %}
+    <ul class="skill-tags mt-auto" aria-label="{{ t.case.technologies }}">
+      {% for tag in w.tech limit: 4 %}<li>{{ tag }}</li>{% endfor %}
+    </ul>
+    {% endif %}
+  </div>
+</article>

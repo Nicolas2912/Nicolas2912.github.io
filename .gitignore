@@ -3,3 +3,7 @@
 /_site/
 # macOS
 .DS_Store
+obsidian-work/
+
+# Private work notes (contain confidential data)
+obsidian-work/

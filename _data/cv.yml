@@ -1,0 +1,177 @@
+# Experience & education timeline (newest first). `id` links a step to its detail dialog.
+- id: consultant
+  icon: briefcase
+  en:
+    date: "Jul 2025 – Present"
+    title: "Consultant"
+    org: "4brands Reply"
+    heading: "Consultant at 4brands Reply (Jul 2025 – Present)"
+    details:
+      - "Design and implement CRM, integration, analytics, and AI solutions across Salesforce Consumer Goods Cloud and Microsoft Azure/Fabric."
+      - "Work across technical design and development, including Azure Data Factory and Azure SQL."
+  de:
+    date: "Juli 2025 – heute"
+    title: "Consultant"
+    org: "4brands Reply"
+    heading: "Consultant bei 4brands Reply (Juli 2025 – heute)"
+    details:
+      - "Konzeption und Umsetzung von CRM-, Integrations-, Analytics- und KI-Lösungen mit Salesforce Consumer Goods Cloud und Microsoft Azure/Fabric."
+      - "Arbeit vom technischen Design bis zur Entwicklung, unter anderem mit Azure Data Factory und Azure SQL."
+
+- id: ipt
+  icon: search
+  en:
+    date: "Nov 2024 – May 2025"
+    title: "Working Student / Master’s Thesis"
+    org: "Fraunhofer IPT"
+    heading: "Working Student / Master’s Thesis at Fraunhofer IPT (Nov 2024 – May 2025)"
+    details:
+      - "Researched multimodal data integration approaches for LLMs in industrial maintenance."
+      - "Designed and implemented RAG-based multimodal data integration strategies grounded in machine manual data."
+  de:
+    date: "Nov. 2024 – Mai 2025"
+    title: "Werkstudent / Masterarbeit"
+    org: "Fraunhofer IPT"
+    heading: "Werkstudent / Masterarbeit am Fraunhofer IPT (Nov. 2024 – Mai 2025)"
+    details:
+      - "Forschung zu multimodalen Datenintegrationsansätzen für LLMs in der industriellen Instandhaltung."
+      - "Konzeption und Umsetzung RAG-basierter, multimodaler Datenintegrationsstrategien auf Basis von Maschinenhandbüchern."
+
+- id: reply
+  icon: briefcase
+  en:
+    date: "Oct 2024 – Jun 2025"
+    title: "Working Student"
+    org: "4brands Reply"
+    heading: "Working Student at 4brands Reply (Oct 2024 – Jun 2025)"
+    details:
+      - "Built an automated data processing pipeline between Azure SQL and Salesforce."
+      - "Automated processes in Salesforce using Flows and Apex."
+      - "Developed custom dashboards in Salesforce using Lightning Web Components."
+  de:
+    date: "Okt. 2024 – Juni 2025"
+    title: "Werkstudent"
+    org: "4brands Reply"
+    heading: "Werkstudent bei 4brands Reply (Okt. 2024 – Juni 2025)"
+    details:
+      - "Aufbau einer automatisierten Datenverarbeitungs-Pipeline zwischen Azure SQL und Salesforce."
+      - "Automatisierung von Prozessen in Salesforce mit Flows und Apex."
+      - "Entwicklung individueller Dashboards in Salesforce mit Lightning Web Components."
+
+- id: master
+  icon: mortarboard
+  en:
+    date: "Mar 2023 – Jun 2025"
+    title: "M.Sc. Optimization and Simulation"
+    org: "HSBI Bielefeld · Grade 2.0"
+    heading: "M.Sc. in Optimization and Simulation, HSBI Bielefeld (Mar 2023 – Jun 2025)"
+    details:
+      - "Studied advanced optimization techniques, including bio-inspired algorithms and discrete and nonlinear optimization."
+      - "Conducted projects on reinforcement learning for solving systems of nonlinear equations and convolutional neural networks for image classification."
+      - "Wrote my master’s thesis at the Fraunhofer Institute for Production Technology IPT: “Development of a Decision Framework for Selecting Optimal Multimodal Data Integration Approaches Based on Technical Documentation for LLM-Driven Maintenance Support”."
+      - "Final grade: 2.0 (German scale)."
+  de:
+    date: "März 2023 – Juni 2025"
+    title: "M.Sc. Optimierung und Simulation"
+    org: "HSBI Bielefeld · Note 2,0"
+    heading: "M.Sc. Optimierung und Simulation, HSBI Bielefeld (März 2023 – Juni 2025)"
+    details:
+      - "Vertiefung in fortgeschrittenen Optimierungsverfahren, darunter bioinspirierte Algorithmen sowie diskrete und nichtlineare Optimierung."
+      - "Projekte zu Reinforcement Learning für nichtlineare Gleichungssysteme und zu Convolutional Neural Networks für die Bildklassifikation."
+      - "Masterarbeit am Fraunhofer-Institut für Produktionstechnologie IPT: „Development of a Decision Framework for Selecting Optimal Multimodal Data Integration Approaches Based on Technical Documentation for LLM-Driven Maintenance Support“."
+      - "Abschlussnote: 2,0."
+
+- id: diamant
+  icon: briefcase
+  en:
+    date: "Feb 2023 – Aug 2024"
+    title: "Working Student"
+    org: "Diamant Software"
+    heading: "Working Student at Diamant Software (Feb 2023 – Aug 2024)"
+    details:
+      - "Trained PEFT-based language models to detect invoice approvals."
+      - "Designed and implemented an end-to-end data pipeline covering data collection, preprocessing, model training, and evaluation."
+      - "Evaluated and compared the performance of different machine learning models."
+  de:
+    date: "Feb. 2023 – Aug. 2024"
+    title: "Werkstudent"
+    org: "Diamant Software"
+    heading: "Werkstudent bei Diamant Software (Feb. 2023 – Aug. 2024)"
+    details:
+      - "Training PEFT-basierter Sprachmodelle zur Erkennung von Rechnungsfreigaben."
+      - "Konzeption und Umsetzung einer durchgängigen Datenpipeline von der Datenerhebung über die Vorverarbeitung bis zu Modelltraining und Evaluation."
+      - "Evaluation und Vergleich verschiedener Machine-Learning-Modelle."
+
+- id: diamant-bachelor
+  icon: journal-text
+  en:
+    date: "Nov 2022 – Feb 2023"
+    title: "Bachelor’s Thesis"
+    org: "Diamant Software"
+    heading: "Bachelor’s Thesis at Diamant Software (Nov 2022 – Feb 2023)"
+    details:
+      - "Compared relational database and Elasticsearch performance for storing and searching log files."
+      - "Built a Kibana dashboard to visualize log data and performance metrics."
+  de:
+    date: "Nov. 2022 – Feb. 2023"
+    title: "Bachelorarbeit"
+    org: "Diamant Software"
+    heading: "Bachelorarbeit bei Diamant Software (Nov. 2022 – Feb. 2023)"
+    details:
+      - "Performancevergleich zwischen relationaler Datenbank und Elasticsearch beim Speichern und Durchsuchen von Logdateien."
+      - "Aufbau eines Kibana-Dashboards zur Visualisierung von Logdaten und Performance-Kennzahlen."
+
+- id: diamant-intern
+  icon: code-slash
+  en:
+    date: "Aug 2022 – Oct 2022"
+    title: "Intern"
+    org: "Diamant Software"
+    heading: "Intern at Diamant Software (Aug 2022 – Oct 2022)"
+    details:
+      - "Developed a log processing and storage tool for technical support using Elasticsearch."
+      - "Visualized log data with Kibana."
+  de:
+    date: "Aug. 2022 – Okt. 2022"
+    title: "Praktikant"
+    org: "Diamant Software"
+    heading: "Praktikant bei Diamant Software (Aug. 2022 – Okt. 2022)"
+    details:
+      - "Entwicklung eines Tools zur Verarbeitung und Speicherung von Logdaten für den technischen Support mit Elasticsearch."
+      - "Visualisierung der Logdaten mit Kibana."
+
+- id: interviewer
+  icon: chat-left-text
+  en:
+    date: "Aug 2020 – May 2021"
+    title: "Interviewer"
+    org: "SOKO Institut"
+    heading: "Interviewer at SOKO Institut (Aug 2020 – May 2021)"
+    details:
+      - "Conducted professional interviews on behalf of the Federal Employment Agency to analyze the effectiveness of various measures."
+  de:
+    date: "Aug. 2020 – Mai 2021"
+    title: "Interviewer"
+    org: "SOKO Institut"
+    heading: "Interviewer beim SOKO Institut (Aug. 2020 – Mai 2021)"
+    details:
+      - "Durchführung professioneller Interviews im Auftrag der Bundesagentur für Arbeit zur Analyse der Wirksamkeit verschiedener Maßnahmen."
+
+- id: bsc
+  icon: mortarboard
+  en:
+    date: "Sep 2019 – Feb 2023"
+    title: "B.Sc. Applied Mathematics"
+    org: "FH Bielefeld"
+    heading: "B.Sc. in Applied Mathematics, FH Bielefeld (Sep 2019 – Feb 2023)"
+    details:
+      - "Built a strong foundation in mathematics and algorithms, and in applying mathematical methods in software to solve real-world problems."
+      - "Specialized in data science and machine learning through elective courses."
+  de:
+    date: "Sep. 2019 – Feb. 2023"
+    title: "B.Sc. Angewandte Mathematik"
+    org: "FH Bielefeld"
+    heading: "B.Sc. Angewandte Mathematik, FH Bielefeld (Sep. 2019 – Feb. 2023)"
+    details:
+      - "Solide Grundlagen in Mathematik und Algorithmen sowie in der Anwendung mathematischer Methoden in Software für praktische Problemstellungen."
+      - "Schwerpunkt Data Science und Machine Learning über Wahlpflichtmodule."

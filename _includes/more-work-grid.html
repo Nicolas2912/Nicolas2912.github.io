@@ -1,0 +1,20 @@
+{%- comment -%} Compact project entries from _data/more_work.yml. German text comes from each entry's `de` block. {%- endcomment -%}
+{% assign limit = include.limit | default: 100 %}
+<div class="row g-3">
+  {% for item in site.data.more_work limit: limit %}
+  {% if lang == "de" and item.de %}{% assign txt = item.de %}{% else %}{% assign txt = item %}{% endif %}
+  <div class="col-lg-4 col-md-6">
+    <article class="more-work-item h-100">
+      <p class="card-meta">{{ txt.area | default: item.area }}</p>
+      <h3 class="more-work-title">{{ txt.title | default: item.title }}</h3>
+      <p class="more-work-text">{{ txt.text | default: item.text }}</p>
+      <div class="more-work-footer">
+        <ul class="skill-tags" aria-label="{{ t.case.technologies }}">
+          {% for tag in item.tech %}<li>{{ tag }}</li>{% endfor %}
+        </ul>
+        <p class="more-work-status">{{ txt.status | default: item.status }}</p>
+      </div>
+    </article>
+  </div>
+  {% endfor %}
+</div>

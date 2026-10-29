@@ -11,8 +11,11 @@
   function applyTheme() {
     root.classList.toggle('dark-mode', dark);
     toggle.innerHTML = dark ? '<i class="bi bi-sun" aria-hidden="true"></i>' : '<i class="bi bi-moon" aria-hidden="true"></i>';
-    toggle.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
-    toggle.title = dark ? 'Switch to light mode' : 'Switch to dark mode';
+    const label = dark
+      ? toggle.dataset.labelLight || 'Switch to light mode'
+      : toggle.dataset.labelDark || 'Switch to dark mode';
+    toggle.setAttribute('aria-label', label);
+    toggle.title = label;
     try { localStorage.setItem('theme', dark ? 'dark' : 'light'); } catch (error) {}
   }
 

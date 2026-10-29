@@ -1,0 +1,103 @@
+# Compact entries for the "More work" grid (homepage and /work/).
+# Keep each description to two sentences. Client and product names stay anonymized.
+# Each entry has a `de` block with the German text; `tech` is shared.
+# Order = display order; the homepage shows the first three.
+
+- title: "Benchmarking a local AI workstation"
+  area: "AI infrastructure"
+  text: "Set up a desktop AI system with vLLM behind an OpenAI-compatible gateway and measured throughput, tool calling, and fine-tuning, reaching 255 tokens/s at 100 parallel requests. A QLoRA fine-tune lowered accuracy, so I recommended the base model."
+  tech: [vLLM, LiteLLM, Docker, Grafana, QLoRA]
+  status: "Done · internal"
+  de:
+    title: "Benchmarking einer lokalen KI-Workstation"
+    area: "KI-Infrastruktur"
+    text: "Ein Desktop-KI-System mit vLLM hinter einem OpenAI-kompatiblen Gateway aufgesetzt und Durchsatz, Tool Calling und Fine-Tuning gemessen – mit 255 Tokens/s bei 100 parallelen Anfragen. Ein QLoRA-Fine-Tuning senkte die Genauigkeit, daher habe ich das Basismodell empfohlen."
+    status: "Abgeschlossen · intern"
+
+- title: "Prioritizing store visits with data"
+  area: "Optimization · ML"
+  text: "Backtested a risk model that decides which store visits get extra preparation time. With the same 20% capacity, it reached about 597 more at-risk visits than random selection (precision 88.5% vs. a 49.4% base rate, ROC-AUC 0.813)."
+  tech: [Machine learning, Backtesting, Mixed-integer optimization]
+  status: "Analysis · not deployed"
+  de:
+    title: "Marktbesuche datenbasiert priorisieren"
+    area: "Optimierung · ML"
+    text: "Ein Risikomodell im Backtest geprüft, das entscheidet, welche Marktbesuche zusätzliche Vorbereitungszeit bekommen. Bei gleicher Kapazität von 20 % erreichte es rund 597 Risikobesuche mehr als eine Zufallsauswahl (Precision 88,5 % bei einer Grundrate von 49,4 %, ROC-AUC 0,813)."
+    status: "Analyse · nicht im Einsatz"
+
+- title: "Promotion calendar automation"
+  area: "Data platform"
+  text: "Replaced a manually maintained Excel promotion calendar with a pipeline from the Fabric lakehouse through Power Automate to a VBA generator. It builds the calendar workbook automatically every weekday at 3:30."
+  tech: [Microsoft Fabric, SQL, Power Automate, VBA]
+  status: "In production"
+  de:
+    title: "Automatisierter Aktionskalender"
+    area: "Datenplattform"
+    text: "Einen manuell gepflegten Excel-Aktionskalender durch eine Pipeline ersetzt: vom Fabric Lakehouse über Power Automate zu einem VBA-Generator. Die Kalender-Arbeitsmappe entsteht jetzt automatisch an jedem Werktag um 3:30 Uhr."
+    status: "Produktiv"
+
+- title: "Demo org factory for Consumer Goods Cloud"
+  area: "Salesforce · Data"
+  text: "Rebuilt a demo org from a read-only QA org: curated metadata, dependency-aware seed data, and 39,108 products pseudonymized and bulk-loaded. Guardrails refuse any write to the QA org."
+  tech: [Salesforce CLI, Python, Bulk API]
+  status: "Done"
+  de:
+    title: "Demo-Org-Fabrik für Consumer Goods Cloud"
+    area: "Salesforce · Daten"
+    text: "Eine Demo-Org aus einer schreibgeschützten QA-Org neu aufgebaut: kuratierte Metadaten, abhängigkeitsbewusste Seed-Daten und 39.108 pseudonymisierte, per Bulk API geladene Produkte. Schutzmechanismen verweigern jeden Schreibzugriff auf die QA-Org."
+    status: "Abgeschlossen"
+
+- title: "One-click contract PDFs"
+  area: "Salesforce"
+  text: "Sales reps generate contract PDFs from a record in one click. A single orchestrator picks the template by contract type, so a new type needs one template and one mapping entry, with no change to the Flow."
+  tech: [Apex, Visualforce PDF, Screen Flow]
+  status: "Done"
+  de:
+    title: "Vertrags-PDFs per Klick"
+    area: "Salesforce"
+    text: "Außendienstmitarbeitende erzeugen Vertrags-PDFs mit einem Klick direkt aus dem Datensatz. Ein zentraler Orchestrator wählt die Vorlage nach Vertragstyp, sodass ein neuer Typ nur eine Vorlage und einen Mapping-Eintrag braucht – ohne Änderung am Flow."
+    status: "Abgeschlossen"
+
+- title: "Transaction-safe customer deletion"
+  area: "Salesforce"
+  text: "A Screen Flow that deletes prospects already sent to SAP together with their contacts, visits, listings, and cases, or transfers them to another customer. Every write has a fault path, and any conflict rolls back everything."
+  tech: [Salesforce Flow, LWC]
+  status: "Validated in sandbox"
+  de:
+    title: "Transaktionssicheres Löschen von Kunden"
+    area: "Salesforce"
+    text: "Ein Screen Flow, der bereits an SAP übertragene Interessenten samt Kontakten, Besuchen, Listungen und Fällen löscht oder auf einen anderen Kunden überträgt. Jeder Schreibschritt hat einen Fehlerpfad, und jeder Konflikt setzt alles zurück."
+    status: "In der Sandbox validiert"
+
+- title: "Head-office contacts mirrored to outlets"
+  area: "Salesforce"
+  text: "Contacts linked to a retailer's head office appear automatically on all of its outlets. Bulk-safe Apex triggers keep the mirror in sync on insert, update, and delete."
+  tech: [Apex triggers, Invocable Apex, Flow]
+  status: "In production"
+  de:
+    title: "Zentralkontakte auf Filialen gespiegelt"
+    area: "Salesforce"
+    text: "Kontakte, die mit der Zentrale eines Händlers verknüpft sind, erscheinen automatisch bei allen zugehörigen Filialen. Massendatenfähige Apex-Trigger halten die Spiegelung beim Anlegen, Ändern und Löschen synchron."
+    status: "Produktiv"
+
+- title: "Holidays as calendar blockers"
+  area: "Salesforce"
+  text: "A metadata-driven Apex batch creates holiday entries per field rep, sales org, and year, so they show up in the mobile app. It includes a correction for managed-package automation that reassigned the owners."
+  tech: [Apex Batch, Queueable Apex, Custom Metadata]
+  status: "Done"
+  de:
+    title: "Feiertage als Kalenderblocker"
+    area: "Salesforce"
+    text: "Ein metadatengesteuerter Apex-Batch legt Feiertagstermine pro Außendienstmitarbeitendem, Verkaufsorganisation und Jahr an, damit sie in der mobilen App erscheinen – inklusive einer Korrektur für Managed-Package-Automatisierung, die Besitzer umgeschrieben hat."
+    status: "Abgeschlossen"
+
+- title: "AI documentation with a verifier"
+  area: "AI tooling"
+  text: "A command-line tool where one AI agent writes project documentation from a Git snapshot and a second agent checks every claim against evidence before anything is published."
+  tech: [Python, Codex SDK, JSON Schema]
+  status: "Internal tool"
+  de:
+    title: "KI-Dokumentation mit Prüfinstanz"
+    area: "KI-Tooling"
+    text: "Ein Kommandozeilen-Tool, bei dem ein KI-Agent Projektdokumentation aus einem Git-Snapshot schreibt und ein zweiter Agent jede Aussage gegen Belege prüft, bevor etwas veröffentlicht wird."
+    status: "Internes Tool"

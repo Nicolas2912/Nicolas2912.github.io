@@ -1,0 +1,17 @@
+{%- include lang.html -%}
+<header class="page-header">
+  <h1>{{ t.work_index.title }}</h1>
+  <p class="lead">{{ t.work_index.intro }}</p>
+</header>
+{% assign work_items = site.work | where: "lang", lang | sort: "order" %}
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+  {% for w in work_items %}
+    <div class="col">
+      {% include work-card.html work=w %}
+    </div>
+  {% endfor %}
+</div>
+
+<h2 class="subsection-title">{{ t.work_index.more_title }}</h2>
+<p class="section-intro">{{ t.work_index.more_intro }}</p>
+{% include more-work-grid.html %}

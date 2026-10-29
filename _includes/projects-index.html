@@ -1,0 +1,13 @@
+{%- include lang.html -%}
+<header class="page-header">
+  <h1>{{ t.projects_index.title }}</h1>
+  <p class="lead">{{ t.projects_index.intro }}</p>
+</header>
+{% assign projects = site.projects | where: "lang", lang | sort: "date" | reverse %}
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+  {% for project in projects %}
+    <div class="col">
+      {% include project-card.html project=project %}
+    </div>
+  {% endfor %}
+</div>

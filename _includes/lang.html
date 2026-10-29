@@ -1,0 +1,8 @@
+{%- comment -%}
+  Sets: lang, other_lang, t (interface text from _data/i18n.yml), base ("" or "/de").
+  Include it at the top of any layout or page that shows interface text.
+{%- endcomment -%}
+{%- assign lang = page.lang | default: "en" -%}
+{%- if lang == "de" -%}{%- assign other_lang = "en" -%}{%- else -%}{%- assign other_lang = "de" -%}{%- endif -%}
+{%- assign t = site.data.i18n[lang] -%}
+{%- assign base = t.base -%}

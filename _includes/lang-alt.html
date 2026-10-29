@@ -1,0 +1,22 @@
+{%- comment -%}
+  Sets: alt_url and has_translation. A page's translation is the page in the other
+  language with the same `ref` (or, for collection documents, the same file name).
+  Without one, the switch leads to the other language's home page.
+{%- endcomment -%}
+{%- assign page_ref = page.ref | default: page.slug -%}
+{%- assign alt_url = nil -%}
+{%- assign has_translation = false -%}
+{%- if page_ref -%}
+  {%- assign lang_pool = site.pages | concat: site.documents -%}
+  {%- for d in lang_pool -%}
+    {%- assign d_ref = d.ref | default: d.slug -%}
+    {%- if d_ref == page_ref and d.lang == other_lang and d.collection == page.collection -%}
+      {%- assign alt_url = d.url -%}
+      {%- assign has_translation = true -%}
+      {%- break -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
+{%- unless alt_url -%}
+  {%- assign alt_url = site.data.i18n[other_lang].base | append: "/" -%}
+{%- endunless -%}

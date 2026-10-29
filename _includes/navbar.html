@@ -1,20 +1,27 @@
 <nav class="navbar navbar-expand-lg navbar-light site-navbar">
   <div class="container">
-    <a class="navbar-brand" href="{{ '/' | relative_url }}">{{ site.author }}</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="navbar-brand" href="{{ base | append: '/' | relative_url }}">{{ site.author }}</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="{{ t.nav.toggle_menu }}">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
+      {%- assign work_url = base | append: '/work/' -%}
+      {%- assign projects_url = base | append: '/projects/' -%}
+      {%- assign blog_url = base | append: '/blog/' -%}
       <ul class="navbar-nav ms-auto align-items-lg-center">
-        <li class="nav-item"><a class="nav-link" href="{{ '/#experience' | relative_url }}">Experience</a></li>
-        <li class="nav-item"><a class="nav-link{% if page.collection == 'projects' or page.url == '/projects/' %} active{% endif %}" href="{{ '/projects/' | relative_url }}"{% if page.url == '/projects/' %} aria-current="page"{% endif %}>Projects</a></li>
-        <li class="nav-item"><a class="nav-link{% if page.layout == 'post' or page.url == '/blog/' %} active{% endif %}" href="{{ '/blog/' | relative_url }}"{% if page.url == '/blog/' %} aria-current="page"{% endif %}>Blog</a></li>
-        <li class="nav-item"><a class="nav-link" href="{{ '/CV/CV.pdf' | relative_url }}" target="_blank" rel="noopener">CV</a></li>
+        <li class="nav-item"><a class="nav-link{% if page.collection == 'work' or page.url == work_url %} active{% endif %}" href="{{ work_url | relative_url }}"{% if page.url == work_url %} aria-current="page"{% endif %}>{{ t.nav.work }}</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ base | append: '/#experience' | relative_url }}">{{ t.nav.experience }}</a></li>
+        <li class="nav-item"><a class="nav-link{% if page.collection == 'projects' or page.url == projects_url %} active{% endif %}" href="{{ projects_url | relative_url }}"{% if page.url == projects_url %} aria-current="page"{% endif %}>{{ t.nav.projects }}</a></li>
+        <li class="nav-item"><a class="nav-link{% if page.layout == 'post' or page.url == blog_url %} active{% endif %}" href="{{ blog_url | relative_url }}"{% if page.url == blog_url %} aria-current="page"{% endif %}>{{ t.nav.blog }}</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ '/CV/CV.pdf' | relative_url }}" target="_blank" rel="noopener">{{ t.nav.cv }}</a></li>
         {% if site.github_username %}
         <li class="nav-item"><a class="nav-link" href="https://github.com/{{ site.github_username }}" target="_blank" rel="noopener">GitHub</a></li>
         {% endif %}
         <li class="nav-item">
-          <button id="theme-toggle" type="button" class="btn btn-sm btn-outline-secondary ms-lg-2" aria-label="Toggle dark mode"><i class="bi bi-moon" aria-hidden="true"></i></button>
+          <a class="nav-link lang-switch" href="{{ alt_url | relative_url }}" hreflang="{{ other_lang }}" lang="{{ other_lang }}" title="{{ t.switch_label }}" aria-label="{{ t.switch_label }}">{{ t.switch_short }}</a>
+        </li>
+        <li class="nav-item">
+          <button id="theme-toggle" type="button" class="btn btn-sm btn-outline-secondary ms-lg-2" aria-label="{{ t.theme.to_dark }}" data-label-dark="{{ t.theme.to_dark }}" data-label-light="{{ t.theme.to_light }}"><i class="bi bi-moon" aria-hidden="true"></i></button>
         </li>
       </ul>
     </div>

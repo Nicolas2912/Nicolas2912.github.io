@@ -9,8 +9,8 @@
     </h3>
     <p class="card-text">{{ p.summary }}</p>
     {% if p.tech %}
-    <ul class="skill-tags mt-auto" aria-label="Technologies">
-      {% for t in p.tech limit: 4 %}<li>{{ t }}</li>{% endfor %}
+    <ul class="skill-tags mt-auto" aria-label="{{ t.case.technologies }}">
+      {% for tag in p.tech limit: 4 %}<li>{{ tag }}</li>{% endfor %}
     </ul>
     {% endif %}
   </div>

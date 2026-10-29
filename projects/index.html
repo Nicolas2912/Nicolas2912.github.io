@@ -1,19 +1,8 @@
 ---
 layout: default
 title: Projects
-description: "Personal and university projects in machine learning, optimization, and software engineering."
+ref: projects
 permalink: /projects/
+description: "Personal and university projects in machine learning, optimization, and software engineering."
 ---
-
-<header class="page-header">
-  <h1>Projects</h1>
-  <p class="lead">Personal and university projects in machine learning, optimization, and software engineering.</p>
-</header>
-{% assign projects = site.projects | sort: "date" | reverse %}
-<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-  {% for project in projects %}
-    <div class="col">
-      {% include project-card.html project=project %}
-    </div>
-  {% endfor %}
-</div>
+{% include projects-index.html %}

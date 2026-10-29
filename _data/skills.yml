@@ -1,0 +1,60 @@
+# Skill categories on the homepage. `tags` are shared; `tags_de` overrides them on German pages.
+- icon: cloud
+  en:
+    title: "Salesforce & CRM"
+    text: "Build CRM interfaces and workflows, connect external services, and validate business rules in Salesforce."
+  de:
+    title: "Salesforce & CRM"
+    text: "CRM-Oberflächen und -Workflows bauen, externe Dienste anbinden und Geschäftsregeln in Salesforce absichern."
+  tags: ["Consumer Goods Cloud", "Apex & SOQL", "Lightning Web Components", "Salesforce Flows", "REST & Bulk APIs", "Power BI embedding"]
+  tags_de: ["Consumer Goods Cloud", "Apex & SOQL", "Lightning Web Components", "Salesforce Flows", "REST & Bulk APIs", "Power-BI-Einbettung"]
+
+- icon: database
+  en:
+    title: "Data Engineering & Analytics"
+    text: "Build SQL-backed integration pipelines and Fabric lakehouse transformations, including incremental loads and data reconciliation."
+  de:
+    title: "Data Engineering & Analytics"
+    text: "SQL-gestützte Integrationspipelines und Transformationen im Fabric Lakehouse, inklusive inkrementeller Ladeprozesse und Datenabgleich."
+  tags: ["Azure Data Factory", "Azure SQL / T-SQL", "Microsoft Fabric", "Delta Lake", "ETL / ELT", "Stored procedures"]
+  tags_de: ["Azure Data Factory", "Azure SQL / T-SQL", "Microsoft Fabric", "Delta Lake", "ETL / ELT", "Stored Procedures"]
+
+- icon: gear
+  en:
+    title: "Backend & Integration"
+    text: "Develop APIs and background workers with durable queues, retries, idempotency, and transactional data updates."
+  de:
+    title: "Backend & Integration"
+    text: "APIs und Hintergrundprozesse mit dauerhaften Queues, Wiederholungslogik, Idempotenz und transaktionalen Datenänderungen."
+  tags: ["TypeScript / JavaScript", "Node.js & Express", "C# / .NET", "PostgreSQL", "OAuth 2.0", "Asynchronous processing"]
+  tags_de: ["TypeScript / JavaScript", "Node.js & Express", "C# / .NET", "PostgreSQL", "OAuth 2.0", "Asynchrone Verarbeitung"]
+
+- icon: file-earmark-text
+  en:
+    title: "Applied AI & Document Processing"
+    text: "Integrate vision models into document workflows with structured extraction, schema validation, and human review. Apply a background in language models and multimodal RAG."
+  de:
+    title: "Angewandte KI & Dokumentenverarbeitung"
+    text: "Vision-Modelle in Dokumenten-Workflows einbinden – mit strukturierter Extraktion, Schema-Validierung und menschlicher Prüfung. Dazu Erfahrung mit Sprachmodellen und multimodalem RAG."
+  tags: ["Vision-language models", "Structured outputs", "JSON Schema", "RAG & LlamaIndex", "PyTorch & Transformers", "Python"]
+  tags_de: ["Vision-Language-Modelle", "Strukturierte Ausgaben", "JSON Schema", "RAG & LlamaIndex", "PyTorch & Transformers", "Python"]
+
+- icon: speedometer2
+  en:
+    title: "Local AI & Model Evaluation"
+    text: "Set up local inference environments and benchmark answer quality, tool calling, throughput, and latency. Run QLoRA experiments and compare results against the base model."
+  de:
+    title: "Lokale KI & Modellbewertung"
+    text: "Lokale Inferenzumgebungen aufsetzen und Antwortqualität, Tool Calling, Durchsatz und Latenz messen. QLoRA-Experimente durchführen und mit dem Basismodell vergleichen."
+  tags: ["vLLM", "LiteLLM", "QLoRA / Unsloth", "LLM benchmarking", "Docker Compose", "Grafana & Prometheus"]
+  tags_de: ["vLLM", "LiteLLM", "QLoRA / Unsloth", "LLM-Benchmarking", "Docker Compose", "Grafana & Prometheus"]
+
+- icon: shield-check
+  en:
+    title: "Cloud Delivery & Reliability"
+    text: "Package and deploy API and worker services, build delivery pipelines, and verify changes with automated tests and operational checks."
+  de:
+    title: "Cloud-Delivery & Zuverlässigkeit"
+    text: "API- und Worker-Services paketieren und bereitstellen, Delivery-Pipelines aufbauen und Änderungen mit automatisierten Tests und Betriebsprüfungen absichern."
+  tags: ["Azure Container Apps", "Azure Service Bus", "Azure Blob Storage", "Key Vault & managed identity", "Azure DevOps pipelines", "Terraform", "Git & Docker", "Apex tests & Jest"]
+  tags_de: ["Azure Container Apps", "Azure Service Bus", "Azure Blob Storage", "Key Vault & Managed Identity", "Azure-DevOps-Pipelines", "Terraform", "Git & Docker", "Apex-Tests & Jest"]

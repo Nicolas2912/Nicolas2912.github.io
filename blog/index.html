@@ -1,26 +1,8 @@
 ---
 layout: default
 title: Blog
-description: "Articles on AI, machine learning, and the technology behind them."
+ref: blog
 permalink: /blog/
+description: "Articles on AI, machine learning, and the technology behind them."
 ---
-
-<header class="page-header">
-  <h1>Blog</h1>
-  <p class="lead">Articles on AI, machine learning, and the technology behind them.</p>
-</header>
-<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-  {% for post in site.posts %}
-    <div class="col">
-      <article class="card h-100 post-card"{% if post.lang %} lang="{{ post.lang }}"{% endif %}>
-        <div class="card-body d-flex flex-column">
-          <p class="card-meta"><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%b %-d, %Y' }}</time>{% if post.lang == 'de' %} · Deutsch{% endif %}</p>
-          <h2 class="card-title h5">
-            <a href="{{ post.url | relative_url }}" class="stretched-link text-decoration-none">{{ post.title }}</a>
-          </h2>
-          <p class="card-text">{{ post.description | default: post.excerpt | strip_html | truncate: 220 }}</p>
-        </div>
-      </article>
-    </div>
-  {% endfor %}
-</div>
+{% include blog-index.html %}

@@ -1,16 +1,18 @@
 ---
 layout: default
 ---
-<article class="blog-post h-entry" lang="{{ page.lang | default: 'en' }}">
+{%- include lang.html -%}
+{%- assign blog_url = base | append: '/blog/' -%}
+<article class="blog-post h-entry" lang="{{ lang }}">
   <header class="post-header">
-    <a href="{{ '/blog/' | relative_url }}">{% if page.lang == 'de' %}← Alle Beiträge{% else %}← All posts{% endif %}</a>
-    <p class="post-meta mt-4"><time datetime="{{ page.date | date_to_xmlschema }}">{% if page.lang == 'de' %}{{ page.date | date: '%d.%m.%Y' }}{% else %}{{ page.date | date: '%b %-d, %Y' }}{% endif %}</time> · {{ page.author | default: site.author }}{% if page.lang == 'de' %} · Deutsch{% endif %}</p>
+    <a href="{{ blog_url | relative_url }}">{{ t.blog.all_posts }}</a>
+    <p class="post-meta mt-4"><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: t.date_format }}</time> · {{ page.author | default: site.author }}</p>
     <h1 class="post-title p-name">{{ page.title | escape }}</h1>
     {% if page.description %}<p class="lead">{{ page.description | escape }}</p>{% endif %}
   </header>
   <div class="post-content e-content">{{ content }}</div>
   <footer class="post-footer">
-    <a href="{{ '/blog/' | relative_url }}" class="btn btn-outline-primary">{% if page.lang == 'de' %}Weitere Beiträge{% else %}More posts{% endif %}</a>
-    <a class="btn btn-outline-secondary" href="https://www.linkedin.com/sharing/share-offsite/?url={{ page.url | absolute_url | url_encode }}" target="_blank" rel="noopener noreferrer">{% if page.lang == 'de' %}Auf LinkedIn teilen{% else %}Share on LinkedIn{% endif %}</a>
+    <a href="{{ blog_url | relative_url }}" class="btn btn-outline-primary">{{ t.blog.more_posts }}</a>
+    <a class="btn btn-outline-secondary" href="https://www.linkedin.com/sharing/share-offsite/?url={{ page.url | absolute_url | url_encode }}" target="_blank" rel="noopener noreferrer">{{ t.blog.share }}</a>
   </footer>
 </article>

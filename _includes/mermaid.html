@@ -1,0 +1,41 @@
+<script type="module">
+  // Renders ```mermaid code blocks and re-renders them when the theme changes.
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+
+  const root = document.documentElement;
+  const diagrams = [...document.querySelectorAll('.language-mermaid')].map(block => {
+    const figure = document.createElement('figure');
+    figure.className = 'mermaid-diagram';
+    figure.dataset.source = block.textContent.trim();
+    block.replaceWith(figure);
+    return figure;
+  });
+
+  let generation = 0;
+  async function renderAll() {
+    const current = ++generation;
+    const dark = root.classList.contains('dark-mode');
+    mermaid.initialize({
+      startOnLoad: false,
+      securityLevel: 'strict',
+      theme: dark ? 'dark' : 'neutral',
+      fontFamily: 'Inter, system-ui, sans-serif'
+    });
+    for (const [i, figure] of diagrams.entries()) {
+      try {
+        const { svg } = await mermaid.render(`mermaid-${current}-${i}`, figure.dataset.source);
+        if (current !== generation) return;
+        figure.innerHTML = svg;
+      } catch (error) {
+        figure.textContent = figure.dataset.source;
+      }
+    }
+  }
+
+  if (diagrams.length) {
+    // Measure labels with the final web font, otherwise they get clipped.
+    if (document.fonts) await document.fonts.ready;
+    renderAll();
+    new MutationObserver(renderAll).observe(root, { attributes: true, attributeFilter: ['class'] });
+  }
+</script>
