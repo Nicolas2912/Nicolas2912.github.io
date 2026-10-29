@@ -39,95 +39,8 @@ The project leverages several technologies to balance performance, flexibility, 
 * Build Tools: g++ compiler (with -O3 optimization), Python setuptools
 * Visualization: Matplotlib for interactive plots, MATLAB for animated demonstrations
 
-## Getting Started
+Setup instructions, usage examples, and the full code structure are in the [GitHub repository](https://github.com/Nicolas2912/BEE-TSP-Optimizer).
 
-1. Clone the repository:
-```bash
-git clone https://github.com/Nicolas2912/BEE-TSP-Optimizer.git
-cd BEE-TSP-Optimizer
-```
-
-2. Python setup:
-```bash
-pip install -r requirements.txt
-```
-
-3. C++ setup:
-```bash
-cd cpp
-g++ main.cpp TSP.cpp Bee.cpp -std=c++17 -O3 -o bee_tsp
-```
-
-## Usage
-
-### Python Implementation
-
-```bash
-python BeeAlgorithm.py \
-    --ns 75 --nb 55 --ne 15 --nrb 25 --nre 25 \
-    --routeLen 50 --iterations 100 \
-    --visualize True --visualize_final True
-```
-
-Parameters explained:
-* `ns`: Number of scout bees that explore the solution space (default: 75)
-* `nb`: Number of best sites selected for neighborhood search (default: 55)
-* `ne`: Number of elite sites given priority for intensive exploration (default: 15)
-* `nrb`: Recruited bees for best sites - controls exploitation breadth (default: 25)
-* `nre`: Recruited bees for elite sites - controls exploitation depth (default: 25)
-* `routeLen`: Number of cities in the problem instance (default: 50)
-* `iterations`: Maximum search iterations (default: 100)
-* `visualize`: Enable/disable real-time visualization (default: True)
-* `visualize_final`: Plot the final optimized tour (default: True)
-
-### C++ Implementation
-
-1. Compile:
-```bash
-cd cpp
-g++ main.cpp TSP.cpp Bee.cpp -std=c++17 -O3 -o bee_tsp
-```
-
-2. Run with default parameters:
-```bash
-./bee_tsp
-```
-
-3. Or with custom parameters:
-```bash
-./bee_tsp 75 55 15 25 25 50 100
-```
-(Parameters follow the same order as the Python implementation)
-
-### MATLAB Animation
-
-Open MATLAB and run:
-```matlab
-main
-```
-
-Set `animate = true` in the script to watch the colony explore the TSP landscape in real-time.
-
-## Architecture & Components
-
-Core Modules:
-* `BeeAlgorithm.py`: Main Python implementation with parameter parsing, colony management, and visualization logic
-* `cpp/Bee.cpp`, `cpp/Bee.h`: C++ implementation of the bee agent with local search operators
-* `cpp/TSP.cpp`, `cpp/TSP.h`: Problem modeling, distance calculations, and solution validation
-* `cpp/main.cpp`: Entry point with command-line argument handling
-
-Utilities:
-* `utils/distance_matrix.py`: Efficient calculation of city-to-city distances
-* `utils/csv_handler.py`: Export results for external analysis
-* `utils/visualization.py`: Real-time and final tour plotting functions
-
-Experimental Assets:
-* `examples/`: Sample coordinate files for benchmark TSP instances
-* `solutions/`: Pre-computed tours for comparison and validation
-
-Testing:
-* `tests/test_solutions.py`: Unit tests comparing route lengths against known benchmarks
-* `tests/test_operators.py`: Validation of local search operators
 
 ## Challenges & Solutions
 
@@ -160,4 +73,4 @@ Here are enhancements planned for future iterations:
 
 ## Screenshots
 
-![BeeTSPOptimizer_animation](/images/BeeTSPOptimizer/BeeTSPOptimizer_animation.gif)
+<video class="project-video" src="/images/BeeTSPOptimizer/BeeTSPOptimizer_animation.mp4" autoplay loop muted playsinline aria-label="Animation of the Bee Algorithm improving a tour"></video>

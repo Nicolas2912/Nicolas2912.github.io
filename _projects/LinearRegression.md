@@ -21,7 +21,7 @@ outcome: "Training loss and model fits update live in the browser, so you can se
 
 This project brings together high-performance C++ computing with a modern web application, making it ideal for both education and rapid prototyping. It features analytical Linear Regression and a customizable Feedforward Neural Network, both implemented in C++11 and seamlessly integrated with a Node.js/Express backend. The frontend, built with React, utilizes REST APIs and WebSockets to provide dynamic visualizations of data points, regression lines, training losses, and predictions in real-time.
 
-![app-gif](/images/CPP-LinearRegression-ML/app.gif)
+<video class="project-video" src="/images/CPP-LinearRegression-ML/app.mp4" autoplay loop muted playsinline aria-label="Demo of the web app training a model"></video>
 
 
 ## Tech Stack
@@ -52,126 +52,7 @@ This project brings together high-performance C++ computing with a modern web ap
 - **Platform Support**: Cross-platform (Windows via MinGW, macOS, Linux)
 - **Development**: Hot-reloading for rapid iteration
 
-## Getting Started
-
-### 1. Clone the repository
-
-```bash
-git clone https://github.com/Nicolas2912/cpp-ml-react.git
-cd cpp-ml-react
-```
-
-### 2. Build the C++ engine
-
-```bash
-cd cpp
-make  # Creates linear_regression_app (or .exe on Windows)
-cd ..
-```
-
-### 3. Run the backend server
-
-```bash
-cd server
-npm install
-npm start
-# Server runs on http://localhost:3001
-```
-
-### 4. Launch the frontend client
-
-```bash
-# Open a new terminal
-cd client
-npm install
-npm start
-# Opens at http://localhost:3000
-```
-
-## Usage
-
-### Data Input and Generation
-
-- **Manual Input**: Enter comma-separated X/Y data points
-- **Random Generation**: Generate data by specifying:
-  - Number of points
-  - Desired linearity (noise level)
-
-### Linear Regression Training
-
-1. Click "Train Linear Regression"
-2. Review results:
-   - Slope and intercept coefficients
-   - Mean Squared Error (MSE)
-   - R² (coefficient of determination)
-3. Visualize the regression line on the scatter plot
-4. Predict new Y-values using the input box
-
-### Neural Network Training
-
-1. Configure your network:
-   - Layer architecture (e.g., 1-4-1)
-   - Learning rate
-   - Number of training epochs
-2. Click "Train NN & Predict"
-3. Monitor real-time training loss via WebSockets
-4. Review final predictions, MSE, and total training time
-
-### Interactive Features
-
-- Toggle between dark and light themes
-- Hover over data points for detailed information
-- Use tooltips to understand training metrics
-
-## Architecture & Components
-
-### C++ Engine (`cpp/`)
-
-- **`linear_regression.h/.cpp`**:
-  - Implements linear regression using the normal equation
-  - Computes performance metrics (MSE, R²)
-
-- **`neural_network.h/.cpp`**:
-  - Defines feedforward neural network architecture
-  - Implements sigmoid activation functions
-  - Performs training via gradient descent optimization
-
-- **`main_server.cpp`**:
-  - Provides CLI interface for training commands
-  - Handles data streaming to Node.js backend
-
-- **`Makefile`**:
-  - Builds C++ modules into executable binaries
-  - Configures optimization and parallel support
-
-### Backend Server (`server/`)
-
-- **`server.js`**:
-  - Manages REST API endpoints
-  - Executes C++ subprocesses
-  - Parses computation output
-  - Streams data via WebSockets
-  - Handles cross-platform execution differences
-
-- **Dependencies**:
-  - cors for cross-origin requests
-  - ws for WebSocket communication
-
-### Frontend Client (`client/`)
-
-- React components for:
-  - Data input and visualization
-  - Model configuration
-  - Training controls
-  - Real-time charts
-
-- Styled with Tailwind CSS and DaisyUI for responsive UI
-
-### Additional Components
-
-- **`build/`**: IDE and debugging artifacts
-- **`test_openmp.cpp`**: Utility for verifying OpenMP parallel capabilities
-- **Root-level binaries**: Pre-compiled executables for quick demos
+Setup instructions, usage examples, and the full code structure are in the [GitHub repository](https://github.com/Nicolas2912/cpp-ml-react).
 
 
 ## Challenges
@@ -359,7 +240,6 @@ accuracy.
 * **Other optimizer**: Implement other optimization algorithms (e.g. Adam, RMSprop) to improve convergence and performance.
 
 * **Other activation function**: Implement other activation functions (e.g. ReLU, tanh) to improve performance.
-
 
 
 ## Screenshots

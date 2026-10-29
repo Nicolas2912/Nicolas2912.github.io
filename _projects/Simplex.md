@@ -37,62 +37,7 @@ The stack reflects a mix of practicality and precision:
 * Testing: Python unittest, compared to SciPy’s “highs” solver
 * Dev Tools: Git, pip, pre-commit (for linting, type checks)
 
-## Getting Started
-
-1. Clone the repository:
-```powershell
-git clone https://github.com/nicolas2912/linear-programming-solver.git
-cd linear-programming-solver
-```
-
-2. Create and activate a conda environment:
-```powershell
-conda create -n lp-solver python=3.12
-conda activate lp-solver
-```
-
-3. Install dependencies:
-```powershell
-pip install -r requirements.txt
-```
-
-## Usage
-
-Start the Streamlit application (powershell):
-```powershell
-python -m streamlit run app.py
-```
-
-or for other shells:
-```bash
-python run app.py
-```
-
-If you want to use the LLM solver, create a `.env` file in the root directory and add your Gemini API key:
-```bash
-GEMINI_API_KEY=your_api_key_here
-```
-
-
-## Architecture & Components
-
-Core Modules
-* `simplex.py`: Implements Two-Phase Primal Simplex. Handles standard form conversion, pivot logic, artificial vars, and degeneracy.
-* `inner_point.py`: Early version of a Karmarkar interior-point solver (not yet integrated into the UI).
-* `sensitivity.py`: Computes objective/RHS ranges, shadow prices, and supports interactive sliders for what-if analysis.
-
-Utilities
-* `utils.py`: Input validation, session state helpers, and example problem generators (2D/3D).
-* `plotting.py`: Handles 2D/3D visualization of feasible regions, isoprofit lines, and analysis plots.
-* `ui_components.py`: LaTeX problem display, fraction-rendered tableaus, consistent UI elements.
-
-Streamlit Apps
-* `frontend_simplex.py`: Main solver interface. Supports example loading, custom input, problem visualization, and solver step review.
-* `sensitivity_ui.py`: Separate tab for sensitivity analysis.
-* `pages/llm_lp_solver.py`: Uses Gemini to translate English → LP → SciPy code → solution → explanation.
-
-Tests
-* `test_simplex.py`: Unit tests that validate solver correctness, check edge cases, and compare results against SciPy.
+Setup instructions, usage examples, and the full code structure are in the [GitHub repository](https://github.com/Nicolas2912/SimplexAlgorithm).
 
 
 ## Challenges
@@ -134,4 +79,4 @@ Here’s what I think would bring the most value going forward:
 ![simplex_solution_and_tableau](/images/SimplexAlgorithm/simplex_solution_and_tableau.png)
 ![simplex_streamlit_home-ui](/images/SimplexAlgorithm/simplex_streamlit_home-ui.png)
 ![simplex_whatif_analysis](/images/SimplexAlgorithm/simplex_whatif_analysis.png)
-![simplex_llm_solver](/images/SimplexAlgorithm/simplex_llm_solver.gif)
+<video class="project-video" src="/images/SimplexAlgorithm/simplex_llm_solver.mp4" autoplay loop muted playsinline aria-label="Demo of the LLM LP Solver page"></video>
