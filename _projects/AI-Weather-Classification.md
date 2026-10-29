@@ -1,10 +1,16 @@
 ---
 layout: project
-title:       "AI Weather Classification"
-summary:     "An implementation of a convolutional neuronal net with pytorch to classify weather conditions from pictures"
-date:        2024-05-13
-permalink:   /projects/ai-weather-classification/
+title: "Weather Image Classification with a CNN"
+summary: "A convolutional neural network in PyTorch that classifies 11 weather phenomena from photos, with Optuna hyperparameter tuning and a full evaluation pipeline."
+date: 2024-05-13
+permalink: /projects/ai-weather-classification/
 github_repo: https://github.com/Nicolas2912/AI-Weather-Classification
+image: /images/AI-Weather-Classification/confusion_matrix.png
+image_alt: "Confusion matrix of the weather classifier on the test set"
+tech: [Python, PyTorch, Optuna, scikit-learn]
+problem: "Classifying weather conditions such as fog, frost, hail, or rime from photos, where several classes look visually similar."
+approach: "Built a custom convolutional network in PyTorch, tuned learning rate and weight decay with Optuna, and evaluated the model with weighted F1, precision, recall, and a confusion matrix."
+outcome: "A reproducible pipeline from training to batch prediction, with experiment artifacts such as loss curves and confusion matrices saved for comparison."
 ---
 
 ## Overview

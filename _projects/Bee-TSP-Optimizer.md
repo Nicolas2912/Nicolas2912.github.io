@@ -1,10 +1,18 @@
 ---
 layout: project
-title: "BEE-TSP-Optimizer"
-summary: "A hybrid Python/C++/Matlab implementation of the Bee Algorithm for solving the Traveling Salesman Problem. Features interactive visualizations, performance optimizations, and customizable colony parameters to efficiently find near-optimal routes."
+title: "Bee Algorithm TSP Optimizer"
+summary: "A nature-inspired metaheuristic for the Traveling Salesman Problem, implemented in Python for visualization and in C++ for performance, with a MATLAB animation of the search."
 date: 2025-04-21
 permalink: /projects/bee-tsp-optimizer/
 github_repo: https://github.com/Nicolas2912/BEE-TSP-Optimizer
+image: /images/BeeTSPOptimizer/cover.png
+image_alt: "Tour found by the Bee Algorithm on a set of cities"
+featured: true
+featured_order: 3
+tech: [Python, C++17, MATLAB, NumPy, Matplotlib]
+problem: "Exact methods for the Traveling Salesman Problem scale poorly, so large instances need good heuristics that balance exploration and exploitation."
+approach: "Implemented the Bee Algorithm with scout, elite, and follower bees and 2-opt and swap neighborhood moves, sharing one algorithmic design across a Python version for experimentation and an optimized C++ version for larger instances."
+outcome: "The visualizations show how the colony converges toward near-optimal tours, and the C++ version makes larger benchmark instances practical."
 ---
 
 ## Overview

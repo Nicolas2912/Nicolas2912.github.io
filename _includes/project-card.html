@@ -1,0 +1,17 @@
+{% assign p = include.project %}
+<article class="card h-100 project-card">
+  {% if p.image %}
+  <img src="{{ p.image | relative_url }}" class="card-img-top project-card-image" alt="" loading="lazy">
+  {% endif %}
+  <div class="card-body d-flex flex-column">
+    <h3 class="card-title h5">
+      <a href="{{ p.url | relative_url }}" class="stretched-link text-decoration-none">{{ p.title }}</a>
+    </h3>
+    <p class="card-text">{{ p.summary }}</p>
+    {% if p.tech %}
+    <ul class="skill-tags mt-auto" aria-label="Technologies">
+      {% for t in p.tech limit: 4 %}<li>{{ t }}</li>{% endfor %}
+    </ul>
+    {% endif %}
+  </div>
+</article>

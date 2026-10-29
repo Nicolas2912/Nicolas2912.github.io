@@ -1,5 +1,6 @@
 ---
-layout: post # Use Jekyll's built-in 'post' layout
+layout: post
+published: false # Personal essay, kept out of the professional site
 title: "My First Blog Post"
 date: 2025-04-26
 ---

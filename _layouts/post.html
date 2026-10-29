@@ -4,7 +4,7 @@ layout: default
 <article class="blog-post h-entry" lang="{{ page.lang | default: 'en' }}">
   <header class="post-header">
     <a href="{{ '/blog/' | relative_url }}">{% if page.lang == 'de' %}← Alle Beiträge{% else %}← All posts{% endif %}</a>
-    <p class="post-meta mt-4"><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%d.%m.%Y' }}</time> · {{ page.author | default: site.author }}{% if page.lang == 'de' %} · Deutsch{% endif %}</p>
+    <p class="post-meta mt-4"><time datetime="{{ page.date | date_to_xmlschema }}">{% if page.lang == 'de' %}{{ page.date | date: '%d.%m.%Y' }}{% else %}{{ page.date | date: '%b %-d, %Y' }}{% endif %}</time> · {{ page.author | default: site.author }}{% if page.lang == 'de' %} · Deutsch{% endif %}</p>
     <h1 class="post-title p-name">{{ page.title | escape }}</h1>
     {% if page.description %}<p class="lead">{{ page.description | escape }}</p>{% endif %}
   </header>

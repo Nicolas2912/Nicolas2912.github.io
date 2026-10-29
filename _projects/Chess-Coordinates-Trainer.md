@@ -1,10 +1,16 @@
 ---
 layout: project
-title:       "Chess Coordinates Trainer"
-summary:     "An advanced, interactive chess coordinates training application with precise statistics, timing, and performance tracking, built in Python and Tkinter."
-date:        2025-04-21
-permalink:   /projects/chess-coordinates-trainer/
-github_repo: https://github.com/Nicolas2912/ChessCoordinateTraining.git
+title: "Chess Coordinates Trainer"
+summary: "A desktop app for learning chessboard coordinates, with timed sessions, scoring, and statistics on accuracy and response time. Built with Python and Tkinter."
+date: 2025-04-21
+permalink: /projects/chess-coordinates-trainer/
+github_repo: https://github.com/Nicolas2912/ChessCoordinateTraining
+image: /images/ChessBoardCoordinatesTrainer/full-ui.png
+image_alt: "Chess Coordinates Trainer with board, timer, and statistics panel"
+tech: [Python, Tkinter, Matplotlib]
+problem: "Knowing square names instantly is a basic chess skill, but practicing it on a physical board gives no feedback on speed or accuracy."
+approach: "Built an interactive Tkinter board with randomized targets, configurable session lengths, and a scoring system, and stored results as JSON for historical analysis."
+outcome: "Embedded Matplotlib charts show accuracy, response times, and score progression across sessions."
 ---
 
 ## Overview

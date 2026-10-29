@@ -7,8 +7,8 @@ maintain and extend.
 
 ## Features
 - Responsive layout using Bootstrap 5 with a hero section, project grid, and blog cards
-- Dark/light theme toggle with animated particle background on the homepage
-- Scroll-triggered animations and smooth page transitions powered by vanilla JavaScript
+- Dark/light theme toggle with a diagonal reveal transition
+- Subtle scroll fade-ins and an experience timeline with connector lines, in vanilla JavaScript
 - Structured project collection (`_projects/`) with individual detail pages
 - Blog section sourced from Markdown posts in `_posts/`
 - SEO-ready configuration (`jekyll-seo-tag`, Open Graph metadata, social previews)
@@ -36,7 +36,7 @@ _posts/                # Blog posts (Markdown, dated filenames)
 _projects/             # Project metadata & content (Markdown, front matter)
 blog/index.html        # Blog listing page
 projects/index.html    # Project grid overview
-css/                   # Custom styles (global + particle animation)
+css/                   # Site styles and syntax highlighting
 js/                    # Scroll animations and page transition scripts
 images/                # Profile photo and other assets
 _site/                 # Generated output (ignored by Git)
@@ -48,8 +48,9 @@ Gemfile                # Ruby dependencies for GitHub Pages
 - **Homepage content:** Edit `index.html` for hero text, highlights, and call-to-action links.
 - **Projects:** Add new Markdown files in `_projects/` with front matter (`title`, `summary`, `github_repo`, etc.). Each file becomes a dedicated project page.
 - **Blog posts:** Create new Markdown files under `_posts/` using the `YYYY-MM-DD-title.md` naming convention.
-- **Styling:** Adjust global styles in `css/style.css` and animation-specific rules in `css/dots_animation.css`.
-- **Scripts:** Tweak scroll effects in `js/scroll-animations.js` and navigation transitions in `js/page-transitions.js`.
+- **Styling:** Adjust global styles and design tokens in `css/style.css`. `css/syntax.css` holds the code highlighting theme.
+- **Scripts:** Scroll fade-ins live in `js/scroll-animations.js`, the theme toggle in `js/theme.js`, and the timeline connectors in `js/career-timeline.js`.
+- **Featured projects:** Set `featured: true` and `featured_order` in a project's front matter. `problem`, `approach`, `outcome`, `tech`, and `image` fill the project page header.
 
 ## Deployment
 This repository is ready for GitHub Pages. Push changes to the default branch and GitHub Pages will build and publish the site automatically. To produce a static build locally run:

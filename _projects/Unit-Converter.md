@@ -1,10 +1,16 @@
 ---
 layout: project
-title:       "Unit Converter"
-summary:     "A basic and universal unit converter with python backend with Flash API and a React frontend."
-date:        2025-04-19
-permalink:   /projects/unit-converter/
+title: "Unit Converter"
+summary: "A unit converter for nine physical quantities, with a Python conversion engine behind a Flask API and a React frontend that explains each conversion."
+date: 2025-04-19
+permalink: /projects/unit-converter/
 github_repo: https://github.com/Nicolas2912/UnitConverter
+image: /images/UnitConverter/UI.png
+image_alt: "Unit Converter interface with a conversion result and explanation"
+tech: [Python, Flask, React, Tailwind CSS]
+problem: "Unit conversions across many categories need one consistent registry, plus special handling for offset-based units like temperature."
+approach: "Designed a single factor registry with unit aliases in Python, handled temperature via an intermediate Celsius step, and exposed the engine through a Flask REST API to a React client."
+outcome: "Each result comes with a human-readable explanation of the conversion factor or formula, and a unittest suite covers the conversion engine."
 ---
 
 ## Overview

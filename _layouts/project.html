@@ -1,15 +1,56 @@
 ---
-layout: default # Inherit from the default layout
+layout: default
 ---
-<h1>{{ page.title }}</h1>
-<p><em>{{ page.summary }}</em></p>
+<article class="project-page">
+  <header class="project-header">
+    <a href="{{ '/projects/' | relative_url }}" class="back-link"><i class="bi bi-arrow-left" aria-hidden="true"></i> All projects</a>
+    <h1 class="project-title">{{ page.title }}</h1>
+    <p class="lead">{{ page.summary }}</p>
+    {% if page.tech %}
+    <ul class="skill-tags" aria-label="Technologies">
+      {% for t in page.tech %}<li>{{ t }}</li>{% endfor %}
+    </ul>
+    {% endif %}
+    <div class="project-links">
+      {% if page.github_repo %}
+      <a class="btn btn-primary" href="{{ page.github_repo }}" target="_blank" rel="noopener"><i class="bi bi-github" aria-hidden="true"></i> Source on GitHub</a>
+      {% endif %}
+      {% if page.live_demo %}
+      <a class="btn btn-outline-primary" href="{{ page.live_demo }}" target="_blank" rel="noopener"><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i> Live demo</a>
+      {% endif %}
+    </div>
+  </header>
 
-<!-- Main project content -->
-{{ content | markdownify }}
+  {% if page.image %}
+  <figure class="project-hero">
+    <img src="{{ page.image | relative_url }}" alt="{{ page.image_alt | default: page.title }}">
+  </figure>
+  {% endif %}
 
-{% if page.github_repo %}
-<p><a href="{{ page.github_repo }}" target="_blank">View on GitHub</a></p>
-{% endif %}
-{% if page.live_demo %}
-<p><a href="{{ page.live_demo }}" target="_blank">See Live Demo</a></p>
-{% endif %}
+  {% if page.problem or page.approach or page.outcome %}
+  <section class="project-glance" aria-label="Project at a glance">
+    {% if page.problem %}
+    <div class="glance-item">
+      <h2>Problem</h2>
+      <p>{{ page.problem }}</p>
+    </div>
+    {% endif %}
+    {% if page.approach %}
+    <div class="glance-item">
+      <h2>Approach</h2>
+      <p>{{ page.approach }}</p>
+    </div>
+    {% endif %}
+    {% if page.outcome %}
+    <div class="glance-item">
+      <h2>Outcome</h2>
+      <p>{{ page.outcome }}</p>
+    </div>
+    {% endif %}
+  </section>
+  {% endif %}
+
+  <div class="project-content">
+    {{ content }}
+  </div>
+</article>

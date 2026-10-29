@@ -1,10 +1,20 @@
 ---
 layout: project
-title:       "Linear Regression & Neuronal Network"
-summary:     "A full-stack application for training and visualizing a linear regression model and a neuronal network using C++, Node.js, and React."
-date:        2025-03-29
-permalink:   /projects/LinearRegression-neuronalnetwork/
+title: "Linear Regression & Neural Network in C++"
+summary: "A full-stack application for training and visualizing a linear regression model and a feedforward neural network, with a C++ engine, a Node.js backend, and a React frontend."
+date: 2025-03-29
+permalink: /projects/linear-regression-neural-network/
+redirect_from:
+  - /projects/LinearRegression-neuronalnetwork/
 github_repo: https://github.com/Nicolas2912/cpp-ml-react
+image: /images/CPP-LinearRegression-ML/UI-whitemode_1.png
+image_alt: "Web interface showing a trained regression model and loss curve"
+featured: true
+featured_order: 2
+tech: [C++, OpenMP, Node.js, WebSockets, React, Chart.js]
+problem: "Machine learning libraries hide the mathematics. I wanted to implement the models myself and make training observable in real time."
+approach: "Wrote analytical linear regression and a configurable feedforward network with backpropagation in C++, ran the engine from a Node.js/Express server, and streamed training progress over WebSockets to a React dashboard."
+outcome: "Training loss and model fits update live in the browser, so you can see how hyperparameters and network architecture affect convergence."
 ---
 
 ## Overview

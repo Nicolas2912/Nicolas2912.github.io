@@ -10,7 +10,7 @@
 
   function applyTheme() {
     root.classList.toggle('dark-mode', dark);
-    toggle.textContent = dark ? '☀️' : '🌙';
+    toggle.innerHTML = dark ? '<i class="bi bi-sun" aria-hidden="true"></i>' : '<i class="bi bi-moon" aria-hidden="true"></i>';
     toggle.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
     toggle.title = dark ? 'Switch to light mode' : 'Switch to dark mode';
     try { localStorage.setItem('theme', dark ? 'dark' : 'light'); } catch (error) {}

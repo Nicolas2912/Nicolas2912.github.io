@@ -1,28 +1,26 @@
 ---
 layout: default
 title: Blog
+description: "Articles on AI, machine learning, and the technology behind them."
 permalink: /blog/
 ---
 
-<div class="py-5 text-center">
-  <h1 class="display-5 mb-3">Blog</h1>
-  <p class="lead text-muted">Latest posts and articles</p>
-</div>
+<header class="page-header">
+  <h1>Blog</h1>
+  <p class="lead">Articles on AI, machine learning, and the technology behind them.</p>
+</header>
 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
   {% for post in site.posts %}
     <div class="col">
-      <div class="card h-100 shadow-sm">
+      <article class="card h-100 post-card"{% if post.lang %} lang="{{ post.lang }}"{% endif %}>
         <div class="card-body d-flex flex-column">
-          <h5 class="card-title">
+          <p class="card-meta"><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%b %-d, %Y' }}</time>{% if post.lang == 'de' %} · Deutsch{% endif %}</p>
+          <h2 class="card-title h5">
             <a href="{{ post.url | relative_url }}" class="stretched-link text-decoration-none">{{ post.title }}</a>
-          </h5>
-          <p class="card-text text-muted">{{ post.date | date_to_string }}{% if post.lang == 'de' %} · Deutsch{% endif %}</p>
-          <p class="card-text">{{ post.excerpt | strip_html | truncate: 220 }}</p>
+          </h2>
+          <p class="card-text">{{ post.description | default: post.excerpt | strip_html | truncate: 220 }}</p>
         </div>
-      </div>
+      </article>
     </div>
   {% endfor %}
-</div>
-<div class="text-center mt-4">
-  <a href="{{ '/' | relative_url }}" class="btn btn-outline-secondary">Back to Home</a>
 </div>

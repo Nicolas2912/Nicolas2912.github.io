@@ -5,509 +5,319 @@ description: "Consultant at 4brands Reply, building CRM, integration, analytics,
 image: /images/profile.jpg
 ---
 
-<div class="hero text-center my-5 scroll-animate">
-  <img src="{{ '/images/profile.jpg' | relative_url }}"
-       alt="Nicolas Schneider"
-       class="rounded-circle img-fluid mb-4 scroll-animate-scale"
-       style="max-width:150px;">
-  <h1 class="display-4 scroll-animate">I'm Nicolas Schneider</h1>
-  <p class="lead scroll-animate">I’m a Consultant at 4brands Reply. I design and build CRM, integration, analytics, and AI solutions with Salesforce Consumer Goods Cloud and Microsoft Azure/Fabric. My background in applied mathematics and machine learning helps me connect the technical details with the problem a business needs to solve.</p>
-  <div class="hero-highlights mb-4 scroll-animate">
-    <div class="row justify-content-center">
-      <div class="col-md-4 mb-2">
-        <span class="badge bg-primary me-2">🤖</span>
-        <small>CRM & integration with Salesforce</small>
+<section class="hero scroll-animate" aria-labelledby="hero-heading">
+  <div class="row align-items-center g-4 g-lg-5">
+    <div class="col-md-auto text-center">
+      <img src="{{ '/images/profile.jpg' | relative_url }}"
+           alt="Portrait of Nicolas Schneider"
+           class="hero-portrait rounded-circle"
+           width="168" height="168">
+    </div>
+    <div class="col-md">
+      <p class="hero-eyebrow">Consultant · Data &amp; AI · 4brands Reply</p>
+      <h1 id="hero-heading" class="hero-title">Nicolas Schneider</h1>
+      <p class="lead hero-lead">I design and build CRM, integration, analytics, and AI solutions with Salesforce Consumer Goods Cloud and Microsoft Azure/Fabric. My background in applied mathematics and machine learning helps me connect the technical details with the problem a business needs to solve.</p>
+      <ul class="hero-focus list-unstyled">
+        <li><i class="bi bi-diagram-3" aria-hidden="true"></i> CRM &amp; integration with Salesforce</li>
+        <li><i class="bi bi-bar-chart-line" aria-hidden="true"></i> Data &amp; analytics with Azure/Fabric</li>
+        <li><i class="bi bi-cpu" aria-hidden="true"></i> AI, LLMs &amp; multimodal data integration</li>
+      </ul>
+      <div class="hero-actions">
+        <a href="#experience" class="btn btn-primary">Experience</a>
+        <a href="{{ '/CV/CV.pdf' | relative_url }}" class="btn btn-outline-primary" target="_blank" rel="noopener">Download CV</a>
+        <a href="#contact" class="btn btn-link">Get in touch</a>
       </div>
-      <div class="col-md-4 mb-2">
-        <span class="badge bg-success me-2">🧠</span>
-        <small>Data & analytics with Azure/Fabric</small>
-      </div>
-      <div class="col-md-4 mb-2">
-        <span class="badge bg-info me-2">📊</span>
-        <small>AI, LLMs & multimodal data integration</small>
-      </div>
-    </div>
-  </div>
-  <a href="#projects" class="btn btn-primary btn-lg mx-2 scroll-animate">See My Work</a>
-  <a href="#contact" class="btn btn-outline-primary btn-lg mx-2 scroll-animate">Let's Connect</a>
-  </div>
-  <!-- Minimalistic thematic icons -->
-  <div class="minimal-icons d-flex justify-content-center align-items-center mb-4">
-    <div class="minimal-icon mx-3 scroll-animate" title="Data Analytics & Visualization">
-      <svg viewBox="0 0 80 60" xmlns="http://www.w3.org/2000/svg">
-        <!-- Chart axes -->
-        <line x1="12" y1="8" x2="12" y2="52" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-        <line x1="12" y1="52" x2="72" y2="52" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-        
-        <!-- Grid lines (subtle) -->
-        <line x1="12" y1="42" x2="72" y2="42" stroke="currentColor" stroke-width="0.5" opacity="0.3"/>
-        <line x1="12" y1="32" x2="72" y2="32" stroke="currentColor" stroke-width="0.5" opacity="0.3"/>
-        <line x1="12" y1="22" x2="72" y2="22" stroke="currentColor" stroke-width="0.5" opacity="0.3"/>
-        
-        <!-- Data line with smooth curve -->
-        <path d="M 18,45 Q 28,38 35,35 T 50,25 Q 58,20 65,18" 
-              stroke="currentColor" stroke-width="2.5" fill="none" 
-              stroke-linecap="round" stroke-linejoin="round"/>
-        
-        <!-- Data points -->
-        <circle cx="18" cy="45" r="2.5" fill="currentColor"/>
-        <circle cx="35" cy="35" r="2.5" fill="currentColor"/>
-        <circle cx="50" cy="25" r="2.5" fill="currentColor"/>
-        <circle cx="65" cy="18" r="2.5" fill="currentColor"/>
-        
-        <!-- Axis labels (minimal) -->
-        <line x1="8" y1="52" x2="10" y2="52" stroke="currentColor" stroke-width="1"/>
-        <line x1="12" y1="54" x2="12" y2="56" stroke="currentColor" stroke-width="1"/>
-      </svg>
-    </div>
-    <div class="minimal-icon mx-3 scroll-animate" title="Machine Learning & AI">
-      <svg viewBox="0 0 80 60" xmlns="http://www.w3.org/2000/svg">
-        <!-- Input layer -->
-        <circle cx="15" cy="20" r="4" stroke="currentColor" stroke-width="1.5" fill="none"/>
-        <circle cx="15" cy="30" r="4" stroke="currentColor" stroke-width="1.5" fill="none"/>
-        <circle cx="15" cy="40" r="4" stroke="currentColor" stroke-width="1.5" fill="none"/>
-        
-        <!-- Hidden layer -->
-        <circle cx="40" cy="15" r="4" stroke="currentColor" stroke-width="1.5" fill="none"/>
-        <circle cx="40" cy="25" r="4" stroke="currentColor" stroke-width="1.5" fill="none"/>
-        <circle cx="40" cy="35" r="4" stroke="currentColor" stroke-width="1.5" fill="none"/>
-        <circle cx="40" cy="45" r="4" stroke="currentColor" stroke-width="1.5" fill="none"/>
-        
-        <!-- Output layer -->
-        <circle cx="65" cy="25" r="4" stroke="currentColor" stroke-width="1.5" fill="none"/>
-        <circle cx="65" cy="35" r="4" stroke="currentColor" stroke-width="1.5" fill="none"/>
-        
-        <!-- Connections (weighted) -->
-        <line x1="19" y1="20" x2="36" y2="15" stroke="currentColor" stroke-width="1" opacity="0.6"/>
-        <line x1="19" y1="20" x2="36" y2="25" stroke="currentColor" stroke-width="1.5" opacity="0.8"/>
-        <line x1="19" y1="30" x2="36" y2="25" stroke="currentColor" stroke-width="2" opacity="1"/>
-        <line x1="19" y1="30" x2="36" y2="35" stroke="currentColor" stroke-width="1.5" opacity="0.8"/>
-        <line x1="19" y1="40" x2="36" y2="35" stroke="currentColor" stroke-width="1" opacity="0.6"/>
-        <line x1="19" y1="40" x2="36" y2="45" stroke="currentColor" stroke-width="1" opacity="0.6"/>
-        
-        <line x1="44" y1="15" x2="61" y2="25" stroke="currentColor" stroke-width="1" opacity="0.6"/>
-        <line x1="44" y1="25" x2="61" y2="25" stroke="currentColor" stroke-width="2" opacity="1"/>
-        <line x1="44" y1="35" x2="61" y2="35" stroke="currentColor" stroke-width="2" opacity="1"/>
-        <line x1="44" y1="45" x2="61" y2="35" stroke="currentColor" stroke-width="1" opacity="0.6"/>
-        
-        <!-- Activation indicators -->
-        <circle cx="40" cy="25" r="2" fill="currentColor" opacity="0.7"/>
-        <circle cx="65" cy="30" r="2" fill="currentColor" opacity="0.7"/>
-      </svg>
-    </div>
-    <div class="minimal-icon mx-3 scroll-animate" title="Data Processing & Optimization">
-      <svg viewBox="0 0 80 60" xmlns="http://www.w3.org/2000/svg">
-        <!-- Data matrix representation -->
-        <g stroke="currentColor" stroke-width="1.5" fill="none">
-          <!-- Matrix structure -->
-          <rect x="10" y="10" width="18" height="18" rx="2"/>
-          <rect x="31" y="10" width="18" height="18" rx="2"/>
-          <rect x="52" y="10" width="18" height="18" rx="2"/>
-          <rect x="10" y="32" width="18" height="18" rx="2"/>
-          <rect x="31" y="32" width="18" height="18" rx="2"/>
-          <rect x="52" y="32" width="18" height="18" rx="2"/>
-        </g>
-        
-        <!-- Data visualization inside cells -->
-        <g fill="currentColor" opacity="0.6">
-          <!-- Different data densities -->
-          <rect x="13" y="13" width="3" height="12" rx="1"/>
-          <rect x="18" y="16" width="3" height="9" rx="1"/>
-          <rect x="23" y="14" width="3" height="11" rx="1"/>
-          
-          <circle cx="40" cy="19" r="2"/>
-          <circle cx="45" cy="16" r="1.5"/>
-          <circle cx="38" cy="23" r="1"/>
-          
-          <rect x="55" y="13" width="12" height="2" rx="1"/>
-          <rect x="55" y="17" width="8" height="2" rx="1"/>
-          <rect x="55" y="21" width="10" height="2" rx="1"/>
-          
-          <path d="M 13,35 L 18,42 L 23,38 L 25,45" stroke="currentColor" stroke-width="1.5" fill="none"/>
-          
-          <rect x="34" y="35" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1" opacity="0.4"/>
-          <rect x="36" y="37" width="8" height="8" fill="currentColor" opacity="0.3"/>
-          
-          <g stroke="currentColor" stroke-width="1" opacity="0.5">
-            <line x1="55" y1="35" x2="67" y2="47"/>
-            <line x1="55" y1="47" x2="67" y2="35"/>
-            <circle cx="61" cy="41" r="4" fill="none"/>
-          </g>
-        </g>
-        
-        <!-- Connection indicators -->
-        <g stroke="currentColor" stroke-width="1" opacity="0.4">
-          <line x1="28" y1="19" x2="31" y2="19"/>
-          <line x1="49" y1="19" x2="52" y2="19"/>
-          <line x1="28" y1="41" x2="31" y2="41"/>
-          <line x1="49" y1="41" x2="52" y2="41"/>
-        </g>
-      </svg>
-    </div>
-  </div>
-  <hr class="my-4">
-{% assign latest_post = site.posts.first %}
-{% if latest_post %}
-<section class="my-5 scroll-animate" aria-labelledby="latest-article-heading">
-  <div class="card shadow-sm">
-    <div class="card-body p-4"{% if latest_post.lang %} lang="{{ latest_post.lang }}"{% endif %}>
-      <p class="text-muted mb-2">Latest article · {{ latest_post.date | date_to_string }}</p>
-      <h2 id="latest-article-heading"><a class="text-decoration-none" href="{{ latest_post.url | relative_url }}">{{ latest_post.title }}</a></h2>
-      <p>{{ latest_post.description | default: latest_post.excerpt | strip_html }}</p>
-      <a href="{{ latest_post.url | relative_url }}" class="btn btn-primary">Read article</a>
     </div>
   </div>
 </section>
-{% endif %}
-<section id="projects" class="my-5">
-  <h2 class="mb-4 scroll-animate-slide-left">Featured Projects</h2>
-  <div class="row">
-    {% for project in site.projects limit: 3 %}
-      <div class="col-md-4 mb-4">
-        <div class="card h-100 shadow-sm scroll-animate project-card">
-          <div class="card-body d-flex flex-column">
-            <h5 class="card-title">
-              <a href="{{ project.url | relative_url }}" class="stretched-link text-decoration-none">{{ project.title }}</a>
-            </h5>
-            <p class="card-text">{{ project.summary }}</p>
-            <div class="mt-auto">
-              <a href="{{ project.url | relative_url }}" class="btn btn-sm btn-primary">Learn More</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    {% endfor %}
+
+<!-- Experience timeline -->
+<section id="experience" class="home-section scroll-animate" aria-labelledby="experience-heading">
+  <h2 id="experience-heading" class="section-title">Experience &amp; Education</h2>
+  <div class="section-intro">
+    <p>Since July 2025, I’ve worked as a Consultant at 4brands Reply, following a working student role with the same team. My work combines CRM development, data integration, analytics, and AI.</p>
+    <p>Before that, I worked on language models at Diamant Software and researched multimodal data integration for industrial maintenance at Fraunhofer IPT. Alongside client work, I explore machine learning and optimization through my own projects.</p>
   </div>
-  <div class="text-center scroll-animate">
-    <a href="{{ '/projects/' | relative_url }}" class="btn btn-outline-secondary">View All Projects</a>
+  <div class="cv-timeline row mx-auto">
+    <button type="button" class="cv-step col-md-4 col-sm-6 text-center border-0 bg-transparent" data-bs-toggle="modal" data-bs-target="#cvModal-consultant" aria-label="Consultant at 4brands Reply details">
+      <span class="cv-icon"><i class="bi bi-briefcase" aria-hidden="true"></i></span>
+      <h3 class="cv-date">Jul 2025 – Present</h3>
+      <p>Consultant<br>4brands Reply</p>
+    </button>
+    <button type="button" class="cv-step col-md-4 col-sm-6 text-center border-0 bg-transparent" data-bs-toggle="modal" data-bs-target="#cvModal-ipt" aria-label="Working Student and Master’s Thesis at Fraunhofer IPT details">
+      <span class="cv-icon"><i class="bi bi-search" aria-hidden="true"></i></span>
+      <h3 class="cv-date">Nov 2024 – May 2025</h3>
+      <p>Working Student / Master’s Thesis<br>Fraunhofer IPT</p>
+    </button>
+    <button type="button" class="cv-step col-md-4 col-sm-6 text-center border-0 bg-transparent" data-bs-toggle="modal" data-bs-target="#cvModal-reply" aria-label="Working Student at 4brands Reply details">
+      <span class="cv-icon"><i class="bi bi-briefcase" aria-hidden="true"></i></span>
+      <h3 class="cv-date">Oct 2024 – Jun 2025</h3>
+      <p>Working Student<br>4brands Reply</p>
+    </button>
+    <button type="button" class="cv-step col-md-4 col-sm-6 text-center border-0 bg-transparent" data-bs-toggle="modal" data-bs-target="#cvModal-master" aria-label="M.Sc. in Optimization and Simulation at HSBI Bielefeld details">
+      <span class="cv-icon"><i class="bi bi-mortarboard" aria-hidden="true"></i></span>
+      <h3 class="cv-date">Mar 2023 – Jun 2025</h3>
+      <p>M.Sc. Optimization and Simulation<br>HSBI Bielefeld · Grade 2.0</p>
+    </button>
+    <button type="button" class="cv-step col-md-4 col-sm-6 text-center border-0 bg-transparent" data-bs-toggle="modal" data-bs-target="#cvModal-diamant" aria-label="Working Student at Diamant Software details">
+      <span class="cv-icon"><i class="bi bi-briefcase" aria-hidden="true"></i></span>
+      <h3 class="cv-date">Feb 2023 – Aug 2024</h3>
+      <p>Working Student<br>Diamant Software</p>
+    </button>
+    <button type="button" class="cv-step col-md-4 col-sm-6 text-center border-0 bg-transparent" data-bs-toggle="modal" data-bs-target="#cvModal-diamant-bachelor" aria-label="Bachelor’s Thesis at Diamant Software details">
+      <span class="cv-icon"><i class="bi bi-journal-text" aria-hidden="true"></i></span>
+      <h3 class="cv-date">Nov 2022 – Feb 2023</h3>
+      <p>Bachelor’s Thesis<br>Diamant Software</p>
+    </button>
+    <button type="button" class="cv-step col-md-4 col-sm-6 text-center border-0 bg-transparent" data-bs-toggle="modal" data-bs-target="#cvModal-diamant-intern" aria-label="Intern at Diamant Software details">
+      <span class="cv-icon"><i class="bi bi-code-slash" aria-hidden="true"></i></span>
+      <h3 class="cv-date">Aug 2022 – Oct 2022</h3>
+      <p>Intern<br>Diamant Software</p>
+    </button>
+    <button type="button" class="cv-step col-md-4 col-sm-6 text-center border-0 bg-transparent" data-bs-toggle="modal" data-bs-target="#cvModal-interviewer" aria-label="Interviewer at SOKO Institut details">
+      <span class="cv-icon"><i class="bi bi-chat-left-text" aria-hidden="true"></i></span>
+      <h3 class="cv-date">Aug 2020 – May 2021</h3>
+      <p>Interviewer<br>SOKO Institut</p>
+    </button>
+    <button type="button" class="cv-step col-md-4 col-sm-6 text-center border-0 bg-transparent" data-bs-toggle="modal" data-bs-target="#cvModal-bsc" aria-label="B.Sc. in Applied Mathematics at FH Bielefeld details">
+      <span class="cv-icon"><i class="bi bi-mortarboard" aria-hidden="true"></i></span>
+      <h3 class="cv-date">Sep 2019 – Feb 2023</h3>
+      <p>B.Sc. Applied Mathematics<br>FH Bielefeld</p>
+    </button>
   </div>
-  <!-- CV Detail Modals -->
-  <!-- B.Sc. Details -->
-  <div class="modal fade" id="cvModal-bsc" tabindex="-1" aria-labelledby="cvModalLabel-bsc" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="cvModalLabel-bsc">B.Sc. in Applied Mathematics (09.2019 – 02.2023)</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <ul>
-            <li>Studied advanced mathematical foundation, algorithms and the application of mathematical methods in programming for solving real world problems.</li>
-            <li>Built expertise in data science and machine learning by selecting and completing domain-specific courses.</li>
-            <li>Completed Bachelor thesis at Diamant Software GmbH on performance comparison between searching and inserting log files into a relational database and Elasticsearch.</li>
-            <li>Developed an interactive dashboard in Kibana for visualizing log data and performance metrics.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
+  <div class="text-center mt-4">
+    <a href="{{ '/CV/CV.pdf' | relative_url }}" class="btn btn-outline-primary" target="_blank" rel="noopener">Download full CV (PDF)</a>
   </div>
-  <!-- Interviewer Details -->
-  <div class="modal fade" id="cvModal-interviewer" tabindex="-1" aria-labelledby="cvModalLabel-interviewer" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="cvModalLabel-interviewer">Interviewer at SOKO Institut (08.2020 – 05.2021)</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <ul>
-            <li>Conducting professional interviews on behalf of the Federal Employment Agency to analyze the effectiveness of various measures.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- Master Optimization and Simulation Details -->
-  <div class="modal fade" id="cvModal-master" tabindex="-1" aria-labelledby="cvModalLabel-master" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="cvModalLabel-master">M.Sc. in Optimization and Simulation (03.2023 – 06.2025) · Grade: 2.0</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <ul>
-            <li>Studied advanced optimization techniques, including bio-inspired algorithms, discrete- and nonlinear optimization.</li>
-            <li>Conducted projects on reinforcement learning for solving systems of nonlinear equations and convolutional neural networks for image classification.</li>
-            <li>Completed master thesis at the Fraunhofer Institute for Production Technology IPT on "Development of a Decision Framework for Selecting Optimal Multimodal Data Integration Approaches Based on Technical Documentation for LLM-Driven Maintenance Support".</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- Diamant Software Details -->
-  <div class="modal fade" id="cvModal-diamant" tabindex="-1" aria-labelledby="cvModalLabel-diamant" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="cvModalLabel-diamant">Working Student at Diamant Software (02.2023 – 08.2024)</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <ul>
-            <li>Trained PEFT-based language models to detect invoice approvals.</li>
-            <li>Designed and implemented an end-to-end data pipeline encompassing data collection, preprocessing, model training, and evaluation.</li>
-            <li>Evaluated and compared the performance of different machine learning models.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
+
+  <!-- Timeline detail modals -->
   <div class="modal fade" id="cvModal-consultant" tabindex="-1" aria-labelledby="cvModalLabel-consultant" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered"><div class="modal-content">
-      <div class="modal-header"><h5 class="modal-title" id="cvModalLabel-consultant">Consultant at 4brands Reply (07.2025 – Present)</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
-      <div class="modal-body"><ul><li>Design and implement CRM, integration, analytics, and AI solutions across Salesforce Consumer Goods Cloud and Microsoft Azure/Fabric.</li><li>Work across technical design and development, including Azure Data Factory and Azure SQL.</li></ul></div>
+      <div class="modal-header"><h4 class="modal-title h5" id="cvModalLabel-consultant">Consultant at 4brands Reply (Jul 2025 – Present)</h4><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+      <div class="modal-body"><ul>
+        <li>Design and implement CRM, integration, analytics, and AI solutions across Salesforce Consumer Goods Cloud and Microsoft Azure/Fabric.</li>
+        <li>Work across technical design and development, including Azure Data Factory and Azure SQL.</li>
+      </ul></div>
+    </div></div>
+  </div>
+  <div class="modal fade" id="cvModal-ipt" tabindex="-1" aria-labelledby="cvModalLabel-ipt" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered"><div class="modal-content">
+      <div class="modal-header"><h4 class="modal-title h5" id="cvModalLabel-ipt">Working Student / Master’s Thesis at Fraunhofer IPT (Nov 2024 – May 2025)</h4><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+      <div class="modal-body"><ul>
+        <li>Researched multimodal data integration approaches for LLMs in industrial maintenance.</li>
+        <li>Designed and implemented RAG-based multimodal data integration strategies grounded in machine manual data.</li>
+      </ul></div>
+    </div></div>
+  </div>
+  <div class="modal fade" id="cvModal-reply" tabindex="-1" aria-labelledby="cvModalLabel-reply" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered"><div class="modal-content">
+      <div class="modal-header"><h4 class="modal-title h5" id="cvModalLabel-reply">Working Student at 4brands Reply (Oct 2024 – Jun 2025)</h4><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+      <div class="modal-body"><ul>
+        <li>Built an automated data processing pipeline between Azure SQL and Salesforce.</li>
+        <li>Automated processes in Salesforce using Flows and Apex.</li>
+        <li>Developed custom dashboards in Salesforce using Lightning Web Components.</li>
+      </ul></div>
+    </div></div>
+  </div>
+  <div class="modal fade" id="cvModal-master" tabindex="-1" aria-labelledby="cvModalLabel-master" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered"><div class="modal-content">
+      <div class="modal-header"><h4 class="modal-title h5" id="cvModalLabel-master">M.Sc. in Optimization and Simulation, HSBI Bielefeld (Mar 2023 – Jun 2025)</h4><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+      <div class="modal-body"><ul>
+        <li>Studied advanced optimization techniques, including bio-inspired algorithms and discrete and nonlinear optimization.</li>
+        <li>Conducted projects on reinforcement learning for solving systems of nonlinear equations and convolutional neural networks for image classification.</li>
+        <li>Wrote my master’s thesis at the Fraunhofer Institute for Production Technology IPT: “Development of a Decision Framework for Selecting Optimal Multimodal Data Integration Approaches Based on Technical Documentation for LLM-Driven Maintenance Support”.</li>
+        <li>Final grade: 2.0 (German scale).</li>
+      </ul></div>
+    </div></div>
+  </div>
+  <div class="modal fade" id="cvModal-diamant" tabindex="-1" aria-labelledby="cvModalLabel-diamant" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered"><div class="modal-content">
+      <div class="modal-header"><h4 class="modal-title h5" id="cvModalLabel-diamant">Working Student at Diamant Software (Feb 2023 – Aug 2024)</h4><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+      <div class="modal-body"><ul>
+        <li>Trained PEFT-based language models to detect invoice approvals.</li>
+        <li>Designed and implemented an end-to-end data pipeline covering data collection, preprocessing, model training, and evaluation.</li>
+        <li>Evaluated and compared the performance of different machine learning models.</li>
+      </ul></div>
     </div></div>
   </div>
   <div class="modal fade" id="cvModal-diamant-bachelor" tabindex="-1" aria-labelledby="cvModalLabel-diamant-bachelor" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered"><div class="modal-content">
-      <div class="modal-header"><h5 class="modal-title" id="cvModalLabel-diamant-bachelor">Bachelor’s Thesis at Diamant Software (11.2022 – 02.2023)</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
-      <div class="modal-body"><ul><li>Compared relational database and Elasticsearch performance for storing and searching log files.</li><li>Built a Kibana dashboard to visualize log data and performance metrics.</li></ul></div>
+      <div class="modal-header"><h4 class="modal-title h5" id="cvModalLabel-diamant-bachelor">Bachelor’s Thesis at Diamant Software (Nov 2022 – Feb 2023)</h4><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+      <div class="modal-body"><ul>
+        <li>Compared relational database and Elasticsearch performance for storing and searching log files.</li>
+        <li>Built a Kibana dashboard to visualize log data and performance metrics.</li>
+      </ul></div>
     </div></div>
   </div>
   <div class="modal fade" id="cvModal-diamant-intern" tabindex="-1" aria-labelledby="cvModalLabel-diamant-intern" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered"><div class="modal-content">
-      <div class="modal-header"><h5 class="modal-title" id="cvModalLabel-diamant-intern">Intern at Diamant Software (08.2022 – 10.2022)</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
-      <div class="modal-body"><ul><li>Developed a log processing and storage tool for technical support using Elasticsearch.</li><li>Visualized log data with Kibana.</li></ul></div>
+      <div class="modal-header"><h4 class="modal-title h5" id="cvModalLabel-diamant-intern">Intern at Diamant Software (Aug 2022 – Oct 2022)</h4><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+      <div class="modal-body"><ul>
+        <li>Developed a log processing and storage tool for technical support using Elasticsearch.</li>
+        <li>Visualized log data with Kibana.</li>
+      </ul></div>
     </div></div>
   </div>
-  <!-- 4brands Reply Details -->
-  <div class="modal fade" id="cvModal-reply" tabindex="-1" aria-labelledby="cvModalLabel-reply" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="cvModalLabel-reply">Working Student at 4brands Reply (10.2024 – 06.2025)</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <ul>
-            <li>Built an automated data processing pipeline between Azure SQL and Salesforce.</li>
-            <li>Automated processes in Salesforce using Flows and Apex.</li>
-            <li>Developed custom dashboards in Salesforce for users using Lightning Web Components.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
+  <div class="modal fade" id="cvModal-interviewer" tabindex="-1" aria-labelledby="cvModalLabel-interviewer" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered"><div class="modal-content">
+      <div class="modal-header"><h4 class="modal-title h5" id="cvModalLabel-interviewer">Interviewer at SOKO Institut (Aug 2020 – May 2021)</h4><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+      <div class="modal-body"><ul>
+        <li>Conducted professional interviews on behalf of the Federal Employment Agency to analyze the effectiveness of various measures.</li>
+      </ul></div>
+    </div></div>
   </div>
-  <!-- Fraunhofer IPT Details -->
-  <div class="modal fade" id="cvModal-ipt" tabindex="-1" aria-labelledby="cvModalLabel-ipt" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="cvModalLabel-ipt">Working Student / Master’s Thesis at Fraunhofer IPT (11.2024 – 05.2025)</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <ul>
-            <li>Researched multimodal data integration approaches for LLMs in industrial maintenance.</li>
-            <li>Designed and implemented RAG-based multimodal data integration strategies grounded in machine manual data.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
+  <div class="modal fade" id="cvModal-bsc" tabindex="-1" aria-labelledby="cvModalLabel-bsc" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered"><div class="modal-content">
+      <div class="modal-header"><h4 class="modal-title h5" id="cvModalLabel-bsc">B.Sc. in Applied Mathematics, FH Bielefeld (Sep 2019 – Feb 2023)</h4><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+      <div class="modal-body"><ul>
+        <li>Built a strong foundation in mathematics and algorithms, and in applying mathematical methods in software to solve real-world problems.</li>
+        <li>Specialized in data science and machine learning through elective courses.</li>
+      </ul></div>
+    </div></div>
   </div>
 </section>
-<hr class="my-4">
-<!-- CV Timeline Section -->
-<section id="cv" class="my-5">
-  <h2 class="text-center mb-4 scroll-animate-slide-right">My Journey</h2>
-  <!-- Intro for CV section -->
-  <div class="cv-intro text-center mx-auto mb-4 scroll-animate-fade" style="max-width: 600px;">
-    <p>Since July 2025, I’ve worked as a Consultant at 4brands Reply, following a working student role with the same team. My work combines CRM development, data integration, analytics, and AI.</p>
-    <p>Before that, I worked on language models at Diamant Software and researched multimodal data integration for industrial maintenance at Fraunhofer IPT. Alongside client work, I explore machine learning and optimization through my own projects.</p>
-  </div>
-  <div class="cv-timeline row mx-auto" style="max-width: 960px;">
-    <button type="button" class="cv-step col-md-4 col-sm-6 text-center border-0 bg-transparent" data-bs-toggle="modal" data-bs-target="#cvModal-consultant" aria-label="Consultant at 4brands Reply details">
-      <span class="cv-icon">💼</span>
-      <h5>07.2025 – Present</h5>
-      <p>Consultant<br>4brands Reply</p>
-    </button>
-    <button type="button" class="cv-step col-md-4 col-sm-6 text-center border-0 bg-transparent" data-bs-toggle="modal" data-bs-target="#cvModal-ipt" aria-label="Working Student / Master’s Thesis at Fraunhofer IPT details">
-      <span class="cv-icon">🔬</span>
-      <h5>11.2024 – 05.2025</h5>
-      <p>Working Student / Master’s Thesis<br>Fraunhofer IPT</p>
-    </button>
-    <button type="button" class="cv-step col-md-4 col-sm-6 text-center border-0 bg-transparent" data-bs-toggle="modal" data-bs-target="#cvModal-reply" aria-label="Working Student at 4brands Reply details">
-      <span class="cv-icon">📊</span>
-      <h5>10.2024 – 06.2025</h5>
-      <p>Working Student<br>4brands Reply</p>
-    </button>
-    <button type="button" class="cv-step col-md-4 col-sm-6 text-center border-0 bg-transparent" data-bs-toggle="modal" data-bs-target="#cvModal-master" aria-label="M.Sc. in Optimization and Simulation at HSBI Bielefeld · Grade: 2.0 details">
-      <span class="cv-icon">🎓</span>
-      <h5>03.2023 – 06.2025</h5>
-      <p>M.Sc. in Optimization and Simulation<br>HSBI Bielefeld · Grade: 2.0</p>
-    </button>
-    <button type="button" class="cv-step col-md-4 col-sm-6 text-center border-0 bg-transparent" data-bs-toggle="modal" data-bs-target="#cvModal-diamant" aria-label="Working Student at Diamant Software details">
-      <span class="cv-icon">💼</span>
-      <h5>02.2023 – 08.2024</h5>
-      <p>Working Student<br>Diamant Software</p>
-    </button>
-    <button type="button" class="cv-step col-md-4 col-sm-6 text-center border-0 bg-transparent" data-bs-toggle="modal" data-bs-target="#cvModal-diamant-bachelor" aria-label="Bachelor’s Thesis at Diamant Software details">
-      <span class="cv-icon">📝</span>
-      <h5>11.2022 – 02.2023</h5>
-      <p>Bachelor’s Thesis<br>Diamant Software</p>
-    </button>
-    <button type="button" class="cv-step col-md-4 col-sm-6 text-center border-0 bg-transparent" data-bs-toggle="modal" data-bs-target="#cvModal-diamant-intern" aria-label="Intern at Diamant Software details">
-      <span class="cv-icon">💻</span>
-      <h5>08.2022 – 10.2022</h5>
-      <p>Intern<br>Diamant Software</p>
-    </button>
-    <button type="button" class="cv-step col-md-4 col-sm-6 text-center border-0 bg-transparent" data-bs-toggle="modal" data-bs-target="#cvModal-interviewer" aria-label="Interviewer at SOKO Institut details">
-      <span class="cv-icon">🗣️</span>
-      <h5>08.2020 – 05.2021</h5>
-      <p>Interviewer<br>SOKO Institut</p>
-    </button>
-    <button type="button" class="cv-step col-md-4 col-sm-6 text-center border-0 bg-transparent" data-bs-toggle="modal" data-bs-target="#cvModal-bsc" aria-label="B.Sc. in Applied Mathematics at FH Bielefeld · Grade: 2.3 details">
-      <span class="cv-icon">🎓</span>
-      <h5>09.2019 – 02.2023</h5>
-      <p>B.Sc. in Applied Mathematics<br>FH Bielefeld · Grade: 2.3</p>
-    </button>
-  </div>
-  <div class="text-center mt-4 scroll-animate">
-    <a href="{{ '/CV/CV.pdf' | relative_url }}" class="btn btn-outline-primary btn-lg" target="_blank" download>
-      Download Full CV
-    </a>
-  </div>
-  </section>
-  <script src="{{ '/js/career-timeline.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
-  <hr class="my-4">
-  <!-- Skills Section -->
-  <section id="skills" class="skills-section my-5">
-    <h2 class="text-center mb-4 scroll-animate-slide-left">Skills & Expertise</h2>
-    <p class="text-center mx-auto mb-4" style="max-width: 760px;">My work spans Salesforce applications, data pipelines, and AI services—from business workflows and API design to deployment, testing, and model evaluation.</p>
-    <div class="row g-4">
-      <div class="col-lg-4 col-md-6">
-        <div class="skill-category h-100">
-          <div class="skill-category-header mb-3 scroll-animate">
-            <div class="skill-icon" aria-hidden="true">☁️</div>
-            <h3 class="h5 mb-0">Salesforce &amp; CRM</h3>
-          </div>
-          <p>Build CRM interfaces and workflows, connect external services, and validate business rules in Salesforce.</p>
-          <ul class="list-unstyled d-flex flex-wrap" aria-label="Salesforce &amp; CRM skills">
-            <li class="m-1"><span class="badge bg-primary">Consumer Goods Cloud</span></li>
-            <li class="m-1"><span class="badge bg-primary">Apex &amp; SOQL</span></li>
-            <li class="m-1"><span class="badge bg-primary">Lightning Web Components</span></li>
-            <li class="m-1"><span class="badge bg-primary">Salesforce Flows</span></li>
-            <li class="m-1"><span class="badge bg-primary">REST &amp; Bulk APIs</span></li>
-            <li class="m-1"><span class="badge bg-primary">Power BI embedding</span></li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6">
-        <div class="skill-category h-100">
-          <div class="skill-category-header mb-3 scroll-animate">
-            <div class="skill-icon" aria-hidden="true">📊</div>
-            <h3 class="h5 mb-0">Data Engineering &amp; Analytics</h3>
-          </div>
-          <p>Build SQL-backed integration pipelines and Fabric lakehouse transformations, including incremental loads and data reconciliation.</p>
-          <ul class="list-unstyled d-flex flex-wrap" aria-label="Data Engineering &amp; Analytics skills">
-            <li class="m-1"><span class="badge bg-info">Azure Data Factory</span></li>
-            <li class="m-1"><span class="badge bg-info">Azure SQL / T-SQL</span></li>
-            <li class="m-1"><span class="badge bg-info">Microsoft Fabric</span></li>
-            <li class="m-1"><span class="badge bg-info">Delta Lake</span></li>
-            <li class="m-1"><span class="badge bg-info">ETL / ELT</span></li>
-            <li class="m-1"><span class="badge bg-info">Stored procedures</span></li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6">
-        <div class="skill-category h-100">
-          <div class="skill-category-header mb-3 scroll-animate">
-            <div class="skill-icon" aria-hidden="true">⚙️</div>
-            <h3 class="h5 mb-0">Backend &amp; Integration</h3>
-          </div>
-          <p>Develop APIs and background workers with durable queues, retries, idempotency, and transactional data updates.</p>
-          <ul class="list-unstyled d-flex flex-wrap" aria-label="Backend &amp; Integration skills">
-            <li class="m-1"><span class="badge bg-warning text-dark">TypeScript / JavaScript</span></li>
-            <li class="m-1"><span class="badge bg-warning text-dark">Node.js &amp; Express</span></li>
-            <li class="m-1"><span class="badge bg-warning text-dark">C# / .NET</span></li>
-            <li class="m-1"><span class="badge bg-warning text-dark">PostgreSQL</span></li>
-            <li class="m-1"><span class="badge bg-warning text-dark">OAuth 2.0</span></li>
-            <li class="m-1"><span class="badge bg-warning text-dark">Asynchronous processing</span></li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6">
-        <div class="skill-category h-100">
-          <div class="skill-category-header mb-3 scroll-animate">
-            <div class="skill-icon" aria-hidden="true">🤖</div>
-            <h3 class="h5 mb-0">Applied AI &amp; Document Processing</h3>
-          </div>
-          <p>Integrate vision models into document workflows with structured extraction, schema validation, and human review. Apply a background in language models and multimodal RAG.</p>
-          <ul class="list-unstyled d-flex flex-wrap" aria-label="Applied AI &amp; Document Processing skills">
-            <li class="m-1"><span class="badge bg-success">Vision-language models</span></li>
-            <li class="m-1"><span class="badge bg-success">Structured outputs</span></li>
-            <li class="m-1"><span class="badge bg-success">JSON Schema</span></li>
-            <li class="m-1"><span class="badge bg-success">RAG &amp; LlamaIndex</span></li>
-            <li class="m-1"><span class="badge bg-success">PyTorch &amp; Transformers</span></li>
-            <li class="m-1"><span class="badge bg-success">Python</span></li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6">
-        <div class="skill-category h-100">
-          <div class="skill-category-header mb-3 scroll-animate">
-            <div class="skill-icon" aria-hidden="true">🧪</div>
-            <h3 class="h5 mb-0">Local AI &amp; Model Evaluation</h3>
-          </div>
-          <p>Set up local inference environments and benchmark answer quality, tool calling, throughput, and latency. Run QLoRA experiments and compare results against the base model.</p>
-          <ul class="list-unstyled d-flex flex-wrap" aria-label="Local AI &amp; Model Evaluation skills">
-            <li class="m-1"><span class="badge bg-secondary">vLLM</span></li>
-            <li class="m-1"><span class="badge bg-secondary">LiteLLM</span></li>
-            <li class="m-1"><span class="badge bg-secondary">QLoRA / Unsloth</span></li>
-            <li class="m-1"><span class="badge bg-secondary">LLM benchmarking</span></li>
-            <li class="m-1"><span class="badge bg-secondary">Docker Compose</span></li>
-            <li class="m-1"><span class="badge bg-secondary">Grafana &amp; Prometheus</span></li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6">
-        <div class="skill-category h-100">
-          <div class="skill-category-header mb-3 scroll-animate">
-            <div class="skill-icon" aria-hidden="true">🛠️</div>
-            <h3 class="h5 mb-0">Cloud Delivery &amp; Reliability</h3>
-          </div>
-          <p>Package and deploy API and worker services, build delivery pipelines, and verify changes with automated tests and operational checks.</p>
-          <ul class="list-unstyled d-flex flex-wrap" aria-label="Cloud Delivery &amp; Reliability skills">
-            <li class="m-1"><span class="badge bg-dark">Azure Container Apps</span></li>
-            <li class="m-1"><span class="badge bg-dark">Azure Service Bus</span></li>
-            <li class="m-1"><span class="badge bg-dark">Azure Blob Storage</span></li>
-            <li class="m-1"><span class="badge bg-dark">Key Vault &amp; managed identity</span></li>
-            <li class="m-1"><span class="badge bg-dark">Azure DevOps pipelines</span></li>
-            <li class="m-1"><span class="badge bg-dark">Terraform</span></li>
-            <li class="m-1"><span class="badge bg-dark">Git &amp; Docker</span></li>
-            <li class="m-1"><span class="badge bg-dark">Apex tests &amp; Jest</span></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <p class="mt-4 mb-0"><strong>Further technical foundations:</strong> applied mathematics and optimization, C++, MATLAB, pandas, NumPy, scikit-learn, data visualization, Elasticsearch, React, and HTML/CSS.</p>
-  </section>
-  <hr class="my-4">
-  <section id="blog" class="my-5">
-  <h2 class="mb-4 scroll-animate-slide-right">Latest Blog Posts</h2>
-  <div class="row">
-    {% for post in site.posts limit: 4 %}
-      <div class="col-md-3 mb-4">
-        <div class="card h-100 shadow-sm scroll-animate">
-          <div class="card-body d-flex flex-column">
-            <h5 class="card-title">
-              <a href="{{ post.url | relative_url }}" class="stretched-link text-decoration-none">{{ post.title }}</a>
-            </h5>
-            <p class="card-text">{{ post.excerpt | strip_html | truncate: 100 }}</p>
-            <small class="text-muted">{{ post.date | date_to_string }}</small>
-          </div>
-        </div>
+<script src="{{ '/js/career-timeline.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
+
+<section id="projects" class="home-section scroll-animate" aria-labelledby="projects-heading">
+  <h2 id="projects-heading" class="section-title">Selected Projects</h2>
+  <p class="section-intro">Personal and university projects in machine learning, optimization, and software engineering.</p>
+  {% assign featured_projects = site.projects | where: "featured", true | sort: "featured_order" %}
+  <div class="row g-4">
+    {% for project in featured_projects %}
+      <div class="col-md-4">
+        {% include project-card.html project=project %}
       </div>
     {% endfor %}
   </div>
-  <div class="text-center scroll-animate">
-    <a href="{{ '/blog/' | relative_url }}" class="btn btn-outline-secondary">View All Posts</a>
+  <div class="text-center mt-4">
+    <a href="{{ '/projects/' | relative_url }}" class="btn btn-outline-secondary">All projects</a>
   </div>
 </section>
-<hr class="my-4">
-<section id="contact" class="my-5">
-  <h2 class="scroll-animate-slide-left">Contact</h2>
-  <p class="scroll-animate">Email: <a href="mailto:{{ site.email }}">{{ site.email }}</a></p>
-  <p class="scroll-animate">Find me on <a href="https://github.com/{{ site.github_username }}" target="_blank">GitHub</a> and <a href="https://www.linkedin.com/in/nicolas-schneider1/" target="_blank">LinkedIn</a>.</p>
+
+<section id="skills" class="home-section skills-section scroll-animate" aria-labelledby="skills-heading">
+  <h2 id="skills-heading" class="section-title">Skills</h2>
+  <p class="section-intro">My work spans Salesforce applications, data pipelines, and AI services, from business workflows and API design to deployment, testing, and model evaluation.</p>
+  <div class="row g-4">
+    <div class="col-lg-4 col-md-6">
+      <div class="skill-category h-100">
+        <h3 class="skill-heading"><i class="bi bi-cloud" aria-hidden="true"></i> Salesforce &amp; CRM</h3>
+        <p>Build CRM interfaces and workflows, connect external services, and validate business rules in Salesforce.</p>
+        <ul class="skill-tags" aria-label="Salesforce and CRM skills">
+          <li>Consumer Goods Cloud</li>
+          <li>Apex &amp; SOQL</li>
+          <li>Lightning Web Components</li>
+          <li>Salesforce Flows</li>
+          <li>REST &amp; Bulk APIs</li>
+          <li>Power BI embedding</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-6">
+      <div class="skill-category h-100">
+        <h3 class="skill-heading"><i class="bi bi-database" aria-hidden="true"></i> Data Engineering &amp; Analytics</h3>
+        <p>Build SQL-backed integration pipelines and Fabric lakehouse transformations, including incremental loads and data reconciliation.</p>
+        <ul class="skill-tags" aria-label="Data engineering and analytics skills">
+          <li>Azure Data Factory</li>
+          <li>Azure SQL / T-SQL</li>
+          <li>Microsoft Fabric</li>
+          <li>Delta Lake</li>
+          <li>ETL / ELT</li>
+          <li>Stored procedures</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-6">
+      <div class="skill-category h-100">
+        <h3 class="skill-heading"><i class="bi bi-gear" aria-hidden="true"></i> Backend &amp; Integration</h3>
+        <p>Develop APIs and background workers with durable queues, retries, idempotency, and transactional data updates.</p>
+        <ul class="skill-tags" aria-label="Backend and integration skills">
+          <li>TypeScript / JavaScript</li>
+          <li>Node.js &amp; Express</li>
+          <li>C# / .NET</li>
+          <li>PostgreSQL</li>
+          <li>OAuth 2.0</li>
+          <li>Asynchronous processing</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-6">
+      <div class="skill-category h-100">
+        <h3 class="skill-heading"><i class="bi bi-file-earmark-text" aria-hidden="true"></i> Applied AI &amp; Document Processing</h3>
+        <p>Integrate vision models into document workflows with structured extraction, schema validation, and human review. Apply a background in language models and multimodal RAG.</p>
+        <ul class="skill-tags" aria-label="Applied AI and document processing skills">
+          <li>Vision-language models</li>
+          <li>Structured outputs</li>
+          <li>JSON Schema</li>
+          <li>RAG &amp; LlamaIndex</li>
+          <li>PyTorch &amp; Transformers</li>
+          <li>Python</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-6">
+      <div class="skill-category h-100">
+        <h3 class="skill-heading"><i class="bi bi-speedometer2" aria-hidden="true"></i> Local AI &amp; Model Evaluation</h3>
+        <p>Set up local inference environments and benchmark answer quality, tool calling, throughput, and latency. Run QLoRA experiments and compare results against the base model.</p>
+        <ul class="skill-tags" aria-label="Local AI and model evaluation skills">
+          <li>vLLM</li>
+          <li>LiteLLM</li>
+          <li>QLoRA / Unsloth</li>
+          <li>LLM benchmarking</li>
+          <li>Docker Compose</li>
+          <li>Grafana &amp; Prometheus</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-6">
+      <div class="skill-category h-100">
+        <h3 class="skill-heading"><i class="bi bi-shield-check" aria-hidden="true"></i> Cloud Delivery &amp; Reliability</h3>
+        <p>Package and deploy API and worker services, build delivery pipelines, and verify changes with automated tests and operational checks.</p>
+        <ul class="skill-tags" aria-label="Cloud delivery and reliability skills">
+          <li>Azure Container Apps</li>
+          <li>Azure Service Bus</li>
+          <li>Azure Blob Storage</li>
+          <li>Key Vault &amp; managed identity</li>
+          <li>Azure DevOps pipelines</li>
+          <li>Terraform</li>
+          <li>Git &amp; Docker</li>
+          <li>Apex tests &amp; Jest</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <p class="mt-4 mb-0"><strong>Further technical foundations:</strong> applied mathematics and optimization, C++, MATLAB, pandas, NumPy, scikit-learn, data visualization, Elasticsearch, React, and HTML/CSS.</p>
+</section>
+
+{% if site.posts.size > 0 %}
+<section id="writing" class="home-section scroll-animate" aria-labelledby="writing-heading">
+  <h2 id="writing-heading" class="section-title">Writing</h2>
+  <div class="row g-4">
+    {% for post in site.posts limit: 3 %}
+      <div class="col-md-4">
+        <article class="card h-100 post-card"{% if post.lang %} lang="{{ post.lang }}"{% endif %}>
+          <div class="card-body d-flex flex-column">
+            <p class="card-meta"><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%b %-d, %Y' }}</time></p>
+            <h3 class="card-title h5">
+              <a href="{{ post.url | relative_url }}" class="stretched-link text-decoration-none">{{ post.title }}</a>
+            </h3>
+            <p class="card-text">{{ post.description | default: post.excerpt | strip_html | truncate: 180 }}</p>
+          </div>
+        </article>
+      </div>
+    {% endfor %}
+  </div>
+  <div class="text-center mt-4">
+    <a href="{{ '/blog/' | relative_url }}" class="btn btn-outline-secondary">All articles</a>
+  </div>
+</section>
+{% endif %}
+
+<section id="contact" class="home-section contact-section scroll-animate" aria-labelledby="contact-heading">
+  <h2 id="contact-heading" class="section-title">Contact</h2>
+  <p class="section-intro">I’m happy to talk about CRM and data integration, applied AI, or a project you’re working on. Email is the fastest way to reach me.</p>
+  <div class="contact-actions">
+    <a class="btn btn-primary" href="mailto:{{ site.email }}"><i class="bi bi-envelope" aria-hidden="true"></i> {{ site.email }}</a>
+    <a class="btn btn-outline-secondary" href="https://www.linkedin.com/in/nicolas-schneider1/" target="_blank" rel="noopener"><i class="bi bi-linkedin" aria-hidden="true"></i> LinkedIn</a>
+    <a class="btn btn-outline-secondary" href="https://github.com/{{ site.github_username }}" target="_blank" rel="noopener"><i class="bi bi-github" aria-hidden="true"></i> GitHub</a>
+    <a class="btn btn-outline-secondary" href="{{ '/CV/CV.pdf' | relative_url }}" target="_blank" rel="noopener"><i class="bi bi-file-earmark-pdf" aria-hidden="true"></i> CV (PDF)</a>
+  </div>
 </section>

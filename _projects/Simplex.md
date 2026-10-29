@@ -1,10 +1,18 @@
 ---
 layout: project
-title:       "Simplex"
-summary:     "A python implementation of the Simplex algorithm to solve linear optimization problems. With a streamlit interface and additional features for visualization (also sensitivity analysis) and a LLM integration."
-date:        2025-04-19
-permalink:   /projects/simplex/
+title: "Simplex LP Solver Suite"
+summary: "A linear programming toolkit in Python: a two-phase Simplex solver with step-by-step tableaus, 2D/3D visualizations, sensitivity analysis, and a natural-language interface powered by an LLM."
+date: 2025-04-19
+permalink: /projects/simplex/
 github_repo: https://github.com/Nicolas2912/SimplexAlgorithm
+image: /images/SimplexAlgorithm/simplex_2d_visualiation.png
+image_alt: "Feasible region and optimal vertex of a 2D linear program in the Streamlit app"
+featured: true
+featured_order: 1
+tech: [Python, NumPy, SciPy, Streamlit, Plotly, Google Gemini]
+problem: "Most LP solvers are black boxes: they return an optimum but hide how the algorithm gets there and how sensitive the solution is to the inputs."
+approach: "Implemented the two-phase primal Simplex method with optional exact arithmetic, a Streamlit interface that shows every pivot step, sensitivity analysis with shadow prices and allowable ranges, and an LLM page that turns plain-English problems into solvable LPs."
+outcome: "Solver results are validated against SciPy's HiGHS solver in a unit test suite covering feasible, infeasible, unbounded, and equality-constrained problems."
 ---
 
 ## Overview
